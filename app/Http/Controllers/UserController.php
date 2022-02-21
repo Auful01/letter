@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -11,5 +14,40 @@ class UserController extends Controller
     {
         $jabatan = DB::table('jabatan')->select('*')->get();
         return $jabatan;
+    }
+
+    public function dataAnggota()
+    {
+        $user = User::all();
+        return view('sekretaris.keanggotaan.data-anggota', ["user" => $user]);
+    }
+
+    public function registerAnggota(Request $request)
+    {
+        // return $request;
+        $user = User::create([
+            'nama_depan' => $request->nama_depan,
+            'nama_belakang' => $request->nama_belakang,
+            'username' => $request->username,
+            'jabatan_id' => $request->jabatan,
+            'password' => Hash::make('12345678'),
+        ]);
+
+        $filename = $request->file('file')->getClientOriginalName();
+        if ($request->file('file')) {
+            $request->file('file')->storeAs('profile', $filename, 'public');
+        }
+
+        Profile::create([
+            'user_id' => $user->id,
+            'alamat' => $request->alamat,
+            'status_akun' => $request->status_akun,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'status' => $request->status,
+            'foto' => $filename
+        ]);
+
+        return $user;
     }
 }

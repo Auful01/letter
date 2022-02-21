@@ -9,15 +9,18 @@
                 <div class="row">
                     <div class="form-group col">
                         <label for="">Nomer Surat</label>
-                        <input type="text" name="nomer_surat" class="form-control" id="nomer_surat">
+                        <input type="text" name="" class="form-control" id="" value="002/L/409.52.06/V/2022" disabled>
+                        <input type="text" name="nomer_surat" class="form-control" id="nomer_surat" value="002/L/409.52.06/V/2022" hidden>
                     </div>
                     <div class="form-group col">
                         <label for="">Pembuat</label>
-                        <input type="text" name="pembuat" class="form-control" id="pembuat">
+                        <input type="text" name="" class="form-control" id="" value="{{Auth::user()->nama_depan}} {{Auth::user()->nama_belakang}}" disabled>
+                        <input type="text" name="pembuat" class="form-control" id="pembuat" value="{{Auth::user()->nama_depan}} {{Auth::user()->nama_belakang}}" hidden>
                     </div>
                     <div class="form-group col">
                         <label for="">Tanggal Pembuatan</label>
-                        <input type="date" name="tanggal_pembuatan" class="form-control" id="tanggal_pembuatan">
+                        <input type="text" name="" value="{{date('d M Y') }}" class="form-control" id="" disabled>
+                        <input type="text" name="tanggal_pembuatan" value="{{date('Y-m-d') }}" class="form-control" id="tanggal_pembuatan"  hidden>
                     </div>
                 </div>
                 <hr>

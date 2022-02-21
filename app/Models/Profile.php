@@ -5,21 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Surat extends Model
+class Profile extends Model
 {
     use HasFactory;
-    protected $table = 'surat_masuk';
-    protected $primaryKey = 'id';
+
+    protected $table = 'profile';
     protected $fillable = [
         'user_id',
-        'no_surat',
-        'perihal',
-        'asal_instansi',
-        'file_surat'
+        'alamat',
+        'status_akun',
+        'phone',
+        'email',
+        'status',
+        'foto'
     ];
 
     /**
-     * Get the user tha the Surat
+     * Get the user that owns the Profile
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

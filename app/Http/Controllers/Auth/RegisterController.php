@@ -29,7 +29,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo()
+    {
+        // toast('Hai Anda Berhasil Mendaftar', 'success');
+        if (auth()->user()->jabatan_id == 1) {
+            return '/dashboard';
+        } else if (auth()->user()->jabatan_id == 2) {
+            return '/dashboard';
+        }
+    }
 
     /**
      * Create a new controller instance.

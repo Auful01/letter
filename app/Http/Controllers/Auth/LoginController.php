@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,21 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected function authenticated(Request $request, $user)
+    {
+        // return $user->role->name;
+        // toast('Hai ' . $user->name . ', Anda Berhasil Login', 'success');
+
+        // notify()->success('Hi ' . $request->name . ', welcome to codelapan');
+        if ($user->jabatan->jabatan == 'Kepala Desa') { // do your magic here
+            return redirect('/dashboard');
+        } else if ($user->jabatan->jabatan == 'Sekretaris') {
+            return redirect('/dashboard');
+        }
+
+        return redirect('/');
+    }
 
     /**
      * Create a new controller instance.
