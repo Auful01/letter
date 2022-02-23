@@ -64,15 +64,20 @@ Route::middleware(['auth', 'role:Sekretaris,user'])->group(function () {
     Route::post('store-arsip', [ArsipController::class, 'store'])->name('store-arsip');
 });
 
-Route::get('rekap-arsip', [ArsipController::class, 'getArsip'])->name('rekap-arsip');
-Route::get('detail-arsip', [ArsipController::class, 'detailArsip'])->name('detail-arsip');
-Route::get('selected-arsip', [ArsipController::class, 'selectedArsip'])->name('selected-arsip');
-Route::get('data-anggota', [UserController::class, 'dataAnggota'])->name('data-anggota');
+Route::middleware(['auth'])->group(function () {
+    Route::get('rekap-arsip', [ArsipController::class, 'getArsip'])->name('rekap-arsip');
+    Route::get('detail-arsip', [ArsipController::class, 'detailArsip'])->name('detail-arsip');
+    Route::get('selected-arsip', [ArsipController::class, 'selectedArsip'])->name('selected-arsip');
+    Route::get('data-anggota', [UserController::class, 'dataAnggota'])->name('data-anggota');
 
-Route::get('rekap-SKTM', [SuratController::class, 'loadSktm'])->name('rekap-sktm');
+    Route::get('rekap-SKTM', [SuratController::class, 'loadSktm'])->name('rekap-sktm');
 
-Route::get('detail-user', [UserController::class, 'detailUser']);
-Route::get('print-pdf', [SuratController::class, 'printPDF'])->name('print-pdf');
+    Route::get('detail-user', [UserController::class, 'detailUser']);
+    Route::get('print-pdf', [SuratController::class, 'printPDF'])->name('print-pdf');
+    Route::get('/', function () {
+        return redirect()->route('dashboard');
+    })->name('home');
+});
 
 Route::middleware(['auth', 'role:Kepala Desa'])->group(function () {
     // Route::get('dashboard', function () {
@@ -82,8 +87,3 @@ Route::middleware(['auth', 'role:Kepala Desa'])->group(function () {
     Route::get('detail-memo', [MemoController::class, 'detailMemo'])->name('detail-memo');
     // ARSIP
 });
-
-
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-})->name('home');
