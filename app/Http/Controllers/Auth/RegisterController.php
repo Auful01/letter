@@ -34,7 +34,7 @@ class RegisterController extends Controller
     protected function redirectTo()
     {
         Profile::create([
-            'user_id' => auth()->user->id,
+            'user_id' => auth()->user()->id,
             'status_akun' => 'aktif'
         ]);
         // toast('Hai Anda Berhasil Mendaftar', 'success');
