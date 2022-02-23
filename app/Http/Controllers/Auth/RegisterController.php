@@ -33,6 +33,10 @@ class RegisterController extends Controller
     // protected $redirectTo = RouteServiceProvider::HOME;
     protected function redirectTo()
     {
+        Profile::create([
+            'user_id' => auth()->user->id,
+            'status_akun' => 'aktif'
+        ]);
         // toast('Hai Anda Berhasil Mendaftar', 'success');
         if (auth()->user()->jabatan_id == 1) {
             return '/dashboard';
@@ -78,17 +82,12 @@ class RegisterController extends Controller
     {
 
 
-        $user = User::create([
+        return User::create([
             'nama_depan' => $data['nama_depan'],
             'nama_belakang' => $data['nama_belakang'],
             'username' => $data['username'],
             'jabatan_id' => $data['jabatan'],
             'password' => Hash::make($data['password']),
-        ]);
-
-        return Profile::create([
-            'user_id' => $user->id,
-            'status_akun' => 'aktif'
         ]);
     }
 }
