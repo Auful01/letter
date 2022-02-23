@@ -1,67 +1,88 @@
 @extends('layout.app')
 
 @section('content')
-    <table class="table table-hover" id="myTable">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Lengkap</th>
-                <th>Username</th>
-                <th>Jabatan</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php
-                $no = 0;
-            @endphp
-            @foreach ($usera as $ua)
-                <tr>
-                    <td>{{ $no }}</td>
-                    <td>{{ $ua->user->nama_depan . ' ' . $ua->user->nama_belakang }}</td>
-                    <td>{{ $ua->user->username }}</td>
-                    <td>{{ $ua->user->jabatan->jabatan }}</td>
-                    <td> <button class="btn btn-sm btn-primary detail-anggota" data-id="{{ $ua->id }}"
-                            title="Detail Anggota" data-toggle="modal"><i class="fas fa-eye"></i></button> </td>
-                </tr>
-                @php
-                    $no++;
-                @endphp
-            @endforeach
-        </tbody>
-    </table>
-    <table class="table table-hover" id="iTable">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Lengkap</th>
-                <th>Username</th>
-                <th>Jabatan</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php
-                $no = 0;
-            @endphp
-            @foreach ($userb as $ub)
-                {{-- @if ($ub->profile->status_akun == 'tidak aktif') --}}
-                <tr>
-                    <td>{{ $no }}</td>
-                    <td>{{ $ub->user->nama_depan . ' ' . $ub->user->nama_belakang }}</td>
-                    <td>{{ $ub->user->username }}</td>
-                    <td>{{ $ub->user->jabatan->jabatan }}</td>
-                    <td> <button class="btn btn-sm btn-primary detail-anggota" title="Detail Anggota"
-                            data-id="{{ $ub->id }}" data-toggle="modal"><i class="fas fa-eye"></i></button> </td>
-                </tr>
-                {{-- @endif --}}
+    <div class="card">
+        <div class="card-header">
+            <h5>List Anggota Aktif</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Lengkap</th>
+                            <th>Username</th>
+                            <th>Jabatan</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $no = 0;
+                        @endphp
+                        @foreach ($usera as $ua)
+                            <tr>
+                                <td>{{ $no }}</td>
+                                <td>{{ $ua->user->nama_depan . ' ' . $ua->user->nama_belakang }}</td>
+                                <td>{{ $ua->user->username }}</td>
+                                <td>{{ $ua->user->jabatan->jabatan }}</td>
+                                <td> <button class="btn btn-sm btn-primary detail-anggota" data-id="{{ $ua->id }}"
+                                        title="Detail Anggota" data-toggle="modal"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-                @php
-                    $no++;
-                @endphp
-            @endforeach
-        </tbody>
-    </table>
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5>List Anggota Nonaktif</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="iTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Lengkap</th>
+                            <th>Username</th>
+                            <th>Jabatan</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $no = 0;
+                        @endphp
+                        @foreach ($userb as $ub)
+                            {{-- @if ($ub->profile->status_akun == 'tidak aktif') --}}
+                            <tr>
+                                <td>{{ $no }}</td>
+                                <td>{{ $ub->user->nama_depan . ' ' . $ub->user->nama_belakang }}</td>
+                                <td>{{ $ub->user->username }}</td>
+                                <td>{{ $ub->user->jabatan->jabatan }}</td>
+                                <td> <button class="btn btn-sm btn-primary detail-anggota" title="Detail Anggota"
+                                        data-id="{{ $ub->id }}" data-toggle="modal"><i
+                                            class="fas fa-eye"></i></button> </td>
+                            </tr>
+                            {{-- @endif --}}
+
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
     <div class="modal fade" id="modal-detailAnggota" tabindex="-1" aria-labelledby="exampleModalLabel"

@@ -60,6 +60,29 @@
             </div>
         </div>
 
+        @if (Auth::user()->jabatan->jabatan == 'Kepala Desa')
+            <div class="col-md-3  ">
+                <div class="card shadow border-left-success">
+                    <div class="card-body py-4">
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-md-9">
+                                <b class="text-success"> MEMO</b>
+                                <br>
+                                <b> {{ $memo }}</b>
+                            </div>
+                            <div class="col-md-3">
+                                {{-- <i class="fas "></i> --}}
+                                {{-- <i class="fas fa-inbox-in"></i> --}}
+                                {{-- <i class="fas fa-inbox-in"></i> --}}
+                                <i class="fas fa-inbox fa-3x" style="color: rgba(138, 138, 138, 0.459)"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+
 
     </div>
 @endsection

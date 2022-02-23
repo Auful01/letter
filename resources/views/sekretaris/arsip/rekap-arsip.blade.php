@@ -67,40 +67,44 @@
 
 
     </div>
-    <div class="table-responsive mx-3">
-        <table class="table table-hover" id="table-sktm">
-            <thead>
-                <tr>
-                    <th>No - No Surat</th>
-                    <th>Asal Instansi</th>
-                    <th>Perihal</th>
-                    <th>Tanggal Surat</th>
-                    <th>Tanggal Terima</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id='isi-table'>
-                @php
-                    $no = 0;
-                @endphp
-                @foreach ($surat as $s)
-                    <tr>
-                        <td>{{ $no }} - {{ $s->no_surat }}</td>
-                        <td>{{ $s->asal_instansi }}</td>
-                        <td>{{ $s->perihal }}</td>
-                        <td>{{ date('d M Y', strtotime($s->created_at)) }}</td>
-                        <td>{{ date('d M Y', strtotime($s->created_at)) }}</td>
-                        <td> <button class="btn btn-sm btn-primary detail-arsip" data-id="{{ $s->id }}"
-                                title="Detail Surat"><i class="fas fa-eye"></i></button> <button
-                                class="btn btn-sm btn-danger hapus-arsip" data-id="{{ $s->id }}"><i
-                                    class="fas fa-eraser"></i></button></td>
-                    </tr>
-                    @php
-                        $no++;
-                    @endphp
-                @endforeach
-            </tbody>
-        </table>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive mx-3">
+                <table class="table table-hover" id="table-sktm">
+                    <thead>
+                        <tr>
+                            <th>No - No Surat</th>
+                            <th>Asal Instansi</th>
+                            <th>Perihal</th>
+                            <th>Tanggal Surat</th>
+                            <th>Tanggal Terima</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id='isi-table'>
+                        @php
+                            $no = 0;
+                        @endphp
+                        @foreach ($surat as $s)
+                            <tr>
+                                <td>{{ $no }} - {{ $s->no_surat }}</td>
+                                <td>{{ $s->asal_instansi }}</td>
+                                <td>{{ $s->perihal }}</td>
+                                <td>{{ date('d M Y', strtotime($s->created_at)) }}</td>
+                                <td>{{ date('d M Y', strtotime($s->created_at)) }}</td>
+                                <td> <button class="btn btn-sm btn-primary detail-arsip" data-id="{{ $s->id }}"
+                                        title="Detail Surat"><i class="fas fa-eye"></i></button> <button
+                                        class="btn btn-sm btn-danger hapus-arsip" data-id="{{ $s->id }}"><i
+                                            class="fas fa-eraser"></i></button></td>
+                            </tr>
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
 

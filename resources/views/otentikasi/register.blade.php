@@ -70,8 +70,8 @@
                                     <div class="col">
                                         <input type="text" name="username"
                                             class="form-control @error('username') is-invalid @enderror"
-                                            placeholder="Username" value="{{ old('username') }}" autocomplete="username"
-                                            id="">
+                                            placeholder="Username" value="{{ old('username') }}"
+                                            autocomplete="username" id="">
                                         @error('username')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -83,7 +83,6 @@
                                         <select name="jabatan"
                                             class="form-control @error('jabatan') is-invalid @enderror" id="jabatan"
                                             aria-placeholder="">
-                                            <option value="">Pilih Jabatan</option>
                                         </select>
                                     </div>
                                 </div>
@@ -136,7 +135,8 @@
             type: 'GET',
             success: function(data) {
                 $.each(data, function(k, v) {
-                    $('#jabatan').append($('<option>').val(v.id).text(v.jabatan))
+                    $('#jabatan').append($('<option>').val(v.id).text(v.jabatan).prop('selected', v
+                        .jabatan == 'user' ? true : false))
                 })
             }
         })

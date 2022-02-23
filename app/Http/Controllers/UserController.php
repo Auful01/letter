@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+use Alert;
+
 class UserController extends Controller
 {
     public function loadJabatan()
@@ -40,7 +42,7 @@ class UserController extends Controller
             $request->file('file')->storeAs('profile', $filename, 'public');
         }
 
-        Profile::create([
+        $profile =  Profile::create([
             'user_id' => $user->id,
             'alamat' => $request->alamat,
             'status_akun' => $request->status_akun,
@@ -49,8 +51,8 @@ class UserController extends Controller
             'status' => $request->status,
             'foto' => $filename
         ]);
-
-        return view('sekretaris.keanggotaan.data-anggota', ['user' => $user]);
+        // Alert::success('Tersimpan', 'anggota baru ditambahkan');
+        return $profile;
     }
 
 

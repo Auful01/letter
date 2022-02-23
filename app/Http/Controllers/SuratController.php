@@ -13,7 +13,7 @@ class SuratController extends Controller
     {
         // return $request;
         Sktm::create($request->all());
-        return redirect()->back();
+        return redirect()->route('rekap-sktm');
     }
 
     public function loadSktm()
@@ -62,8 +62,9 @@ class SuratController extends Controller
         return Sktm::find($request->id)->delete();
     }
 
-    public function printPDF()
+    public function printPDF($id)
     {
+        $sktm = Sktm::find($id);
         $data = [
             'title' => 'Testimoni',
             'date' => date('m/d/Y')
@@ -71,6 +72,6 @@ class SuratController extends Controller
 
         $pdf = PDF::loadView('report', $data);
 
-        return $pdf->download('test' . date('y-m-d') . '.pdf');
+        return $pdf->download($sktm->nomer_surat . '.pdf');
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\UserController;
+use App\Models\Memo;
 use App\Models\Sktm;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -27,11 +28,12 @@ Route::get('dashboard', function () {
     $user = User::all()->count();
     $sktmNow = Sktm::with('user')->where('created_at', '=', date("Y-m-d H:i:s"))->get()->count();
     $sktm = Sktm::all()->count();
+    $memo = Memo::all()->count();
     // return $user;
     return view('sekretaris.dashboard', ['user' => $user, 'sktm' => $sktm, 'sktmNow' => $sktmNow]);
 })->name('dashboard');
 
-Route::middleware(['auth', 'role:Sekretaris,user'])->group(function () {
+Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::post('store-sktm', [SuratController::class, 'store'])->name('store-sktm');
 
     Route::get('registrasi-anggota', function () {
@@ -73,7 +75,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('rekap-SKTM', [SuratController::class, 'loadSktm'])->name('rekap-sktm');
 
     Route::get('detail-user', [UserController::class, 'detailUser']);
-    Route::get('print-pdf', [SuratController::class, 'printPDF'])->name('print-pdf');
+    Route::get('print-pdf/{id}', [SuratController::class, 'printPDF'])->name('print-pdf');
     Route::get('/', function () {
         return redirect()->route('dashboard');
     })->name('home');

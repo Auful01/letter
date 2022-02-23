@@ -41,7 +41,7 @@
                         <label for="">Status Akun</label>
                         {{-- <input type="text" name="jabatan" class="form-control" id=""> --}}
                         <select name="status_akun" id="status_akun" class="form-control">
-                            <option value="aktif">aktif</option>
+                            <option value="aktif" selected>aktif</option>
                             <option value="tidak aktif">tidak aktif</option>
                         </select>
                     </div>
@@ -52,7 +52,7 @@
                         {{-- <input type="text" name="jabatan" class="form-control" id=""> --}}
                         <select name="status" id="status" class="form-control">
                             <option value="menikah">menikah</option>
-                            <option value="belum menikah">belum menikah</option>
+                            <option value="belum menikah" selected>belum menikah</option>
                         </select>
                     </div>
                     <div class="form-group col">
@@ -109,7 +109,7 @@
                 dataType: 'JSON',
                 contentType: false,
                 data: fd,
-                success: function() {
+                success: function(data) {
                     Swal.fire({
                         title: 'Good job!',
                         text: 'You clicked the button!',
@@ -118,7 +118,10 @@
                         timerProgressBar: true,
                         showConfirmButton: false
                     })
-                    $('#form-anggota')[0].reset()
+                    setTimeout(() => {
+                        window.location.href = "/data-anggota"
+                    }, 2000);
+                    // $('#form-anggota')[0].reset()
                 }
             })
         })

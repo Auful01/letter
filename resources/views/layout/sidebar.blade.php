@@ -36,7 +36,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
-                @if (Auth::user()->jabatan->jabatan == 'Sekretaris' || Auth::user()->jabatan->jabatan == 'user')
+                @if (Auth::user()->jabatan->jabatan == 'Sekretaris')
                     <a class="collapse-item" href="{{ route('registrasi-anggota') }}">Registrasi Anggota</a>
                 @endif
                 <a class="collapse-item" href="{{ route('data-anggota') }}">Data Anggota</a>
@@ -74,7 +74,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    @if (Auth::user()->jabatan->jabatan == 'Sekretaris' || Auth::user()->jabatan->jabatan == 'user')
+    @if (Auth::user()->jabatan->jabatan == 'Sekretaris')
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                 aria-expanded="true" aria-controls="collapsePages">
@@ -115,7 +115,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    @if (Auth::user()->jabatan->jabatan == 'Sekretaris' || Auth::user()->jabatan->jabatan == 'user')
+    @if (Auth::user()->jabatan->jabatan == 'Sekretaris')
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#arsip" aria-expanded="true"
                 aria-controls="collapsePages">
@@ -146,11 +146,11 @@
         </div>
     </li>
 
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        MEMO
-    </div>
-    @if (Auth::user()->jabatan->jabatan == 'Sekretaris' || Auth::user()->jabatan->jabatan == 'user')
+    @if (Auth::user()->jabatan->jabatan == 'Sekretaris')
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            MEMO
+        </div>
         <li class="nav-item ">
             <a class="nav-link" href="{{ route('memo') }}">
                 <i class="far fa-calendar-check"></i>
@@ -158,6 +158,10 @@
         </li>
     @endif
     @if (Auth::user()->jabatan->jabatan == 'Kepala Desa')
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            MEMO
+        </div>
         <li class="nav-item ">
             <a class="nav-link" href="{{ route('list-memo') }}">
                 <i class="far fa-calendar-alt"></i>

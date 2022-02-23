@@ -67,40 +67,45 @@
 
 
     </div>
-    <div class="table-responsive mx-3">
-        <table class="table table-hover" id="table-sktm">
-            <thead>
-                <tr>
-                    <th>No - No Surat</th>
-                    <th>Pembuat</th>
-                    <th>Pengaju</th>
-                    <th>Tanggal Buat</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id='isi-table'>
-                @php
-                    $no = 0;
-                @endphp
-                @foreach ($sktm as $u)
-                    <tr>
-                        <td>{{ $no }} - {{ $u->nomer_surat }}</td>
-                        <td>{{ Auth::user()->nama_depan . ' ' . Auth::user()->nama_belakang }}</td>
-                        <td>{{ $u->nama_pengaju }}</td>
-                        <td>{{ date('d M Y', strtotime($u->created_at)) }}</td>
-                        <td> <button class="btn btn-sm btn-primary detail-surat" data-id="{{ $u->id }}"
-                                title="Detail Surat"><i class="fas fa-eye"></i></button> <a
-                                href="{{ route('print-pdf') }}" class="btn btn-sm btn-warning"
-                                data-id="{{ $u->nomer_surat }}"><i class="fas fa-print"></i></a> <button
-                                class="btn btn-sm btn-danger hapus-surat" data-id="{{ $u->id }}"><i
-                                    class="fas fa-eraser"></i></button></td>
-                    </tr>
-                    @php
-                        $no++;
-                    @endphp
-                @endforeach
-            </tbody>
-        </table>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive mx-3">
+                <table class="table table-hover" id="table-sktm">
+                    <thead>
+                        <tr>
+                            <th>No - No Surat</th>
+                            <th>Pembuat</th>
+                            <th>Pengaju</th>
+                            <th>Tanggal Buat</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id='isi-table'>
+                        @php
+                            $no = 0;
+                        @endphp
+                        @foreach ($sktm as $u)
+                            <tr>
+                                <td>{{ $no }} - {{ $u->nomer_surat }}</td>
+                                <td>{{ $u->pembuat }}</td>
+                                <td>{{ $u->nama_pengaju }}</td>
+                                <td>{{ date('d M Y', strtotime($u->created_at)) }}</td>
+                                <td> <button class="btn btn-sm btn-primary detail-surat" data-id="{{ $u->id }}"
+                                        title="Detail Surat"><i class="fas fa-eye"></i></button> <a
+                                        href="{{ route('print-pdf', $u->id) }}" class="btn btn-sm btn-warning"
+                                        data-id="{{ $u->nomer_surat }}"><i class="fas fa-print"></i></a> <button
+                                        class="btn btn-sm btn-danger hapus-surat" data-id="{{ $u->id }}"><i
+                                            class="fas fa-eraser"></i></button></td>
+                            </tr>
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
 

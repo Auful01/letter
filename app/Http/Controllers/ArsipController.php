@@ -12,9 +12,11 @@ class ArsipController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $filename = $request->file('file_surat')->getClientOriginalName();
         if ($request->file('file_surat')) {
+            $filename = $request->file('file_surat')->getClientOriginalName();
             $request->file('file_surat')->storeAs('file', $filename, 'public');
+        } else {
+            $filename = ' ';
         }
         Surat::create([
             'user_id' => Auth::user()->id,
@@ -24,7 +26,7 @@ class ArsipController extends Controller
             'file_surat' => $filename
         ]);
 
-        return redirect()->back();
+        return redirect()->route('rekap-arsip');
     }
 
     public function getArsip()
