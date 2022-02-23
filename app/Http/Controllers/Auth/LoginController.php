@@ -36,11 +36,11 @@ class LoginController extends Controller
         // notify()->success('Hi ' . $request->name . ', welcome to codelapan');
         if ($user->jabatan->jabatan == 'Kepala Desa') { // do your magic here
             return redirect('/dashboard');
-        } else if ($user->jabatan->jabatan == 'Sekretaris') {
+        } else if ($user->jabatan->jabatan == 'Sekretaris' || $user->jabatan->jabatan == 'user') {
             return redirect('/dashboard');
         }
 
-        return redirect('/');
+        return redirect('/dashboard');
     }
 
     /**

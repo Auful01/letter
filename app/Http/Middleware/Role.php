@@ -18,6 +18,13 @@ class Role
     public function handle(Request $request, Closure $next, $role)
     {
         // return $next($request);
+        $role = strtolower(request()->user()->type);
+        $allowed_roles = array_slice(func_get_args(), 2);
+
+        if (in_array($role, $allowed_roles)) {
+            return $next($request);
+        }
+
         if (!$request->user()->hasRole($role)) {
             return response()->view('401', [], 403);
         }
@@ -25,9 +32,12 @@ class Role
         if (!$request->user()->hasRole($role) == 'Kepala Desa') {
             return $next($request);
         }
-        if (!$request->user()->hasRole($role) == 'Sekretaris') {
+        if (!$request->user()->hasRole($role) == 'Sekretaris' || !$request->user()->hasRole($role) == 'user') {
             return $next($request);
         }
+        // if () {
+        //     return $next($request);
+        // }
         return $next($request);
     }
 }

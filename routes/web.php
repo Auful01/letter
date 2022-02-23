@@ -4,6 +4,8 @@ use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\UserController;
+use App\Models\Sktm;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,13 +21,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::get('load-jabatan', [UserController::class, 'loadJabatan']);
 
-Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
-    Route::get('load-jabatan', [UserController::class, 'loadJabatan']);
+Route::get('dashboard', function () {
+    $user = User::all()->count();
+    $sktmNow = Sktm::with('user')->where('created_at', '=', date("Y-m-d H:i:s"))->get()->count();
+    $sktm = Sktm::all()->count();
+    // return $user;
+    return view('sekretaris.dashboard', ['user' => $user, 'sktm' => $sktm, 'sktmNow' => $sktmNow]);
+})->name('dashboard');
+
+Route::middleware(['auth', 'role:Sekretaris,user'])->group(function () {
     Route::post('store-sktm', [SuratController::class, 'store'])->name('store-sktm');
-    Route::get('dashboard', function () {
-        return view('sekretaris.dashboard');
-    })->name('dashboard');
+
     Route::get('registrasi-anggota', function () {
         return view('sekretaris.keanggotaan.registrasi');
     })->name('registrasi-anggota');
@@ -63,17 +71,19 @@ Route::get('data-anggota', [UserController::class, 'dataAnggota'])->name('data-a
 
 Route::get('rekap-SKTM', [SuratController::class, 'loadSktm'])->name('rekap-sktm');
 
+Route::get('detail-user', [UserController::class, 'detailUser']);
 Route::get('print-pdf', [SuratController::class, 'printPDF'])->name('print-pdf');
 
 Route::middleware(['auth', 'role:Kepala Desa'])->group(function () {
-    Route::get('dashboard', function () {
-        return view('sekretaris.dashboard');
-    })->name('dashboard');
+    // Route::get('dashboard', function () {
+    //     return view('sekretaris.dashboard');
+    // })->name('dashboard');
     Route::get('list-memo', [MemoController::class, 'getMemo'])->name('list-memo');
     Route::get('detail-memo', [MemoController::class, 'detailMemo'])->name('detail-memo');
     // ARSIP
-    Route::get('load-jabatan', [UserController::class, 'loadJabatan']);
 });
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+})->name('home');

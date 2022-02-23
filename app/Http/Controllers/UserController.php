@@ -18,8 +18,10 @@ class UserController extends Controller
 
     public function dataAnggota()
     {
-        $user = User::all();
-        return view('sekretaris.keanggotaan.data-anggota', ["user" => $user]);
+        $usera = Profile::with('user')->where('status_akun', '=', 'aktif')->get();
+        $userb = Profile::with('user')->where('status_akun', '=', 'tidak aktif')->get();
+        // $user = User::all();
+        return view('sekretaris.keanggotaan.data-anggota', ["usera" => $usera, 'userb' => $userb]);
     }
 
     public function registerAnggota(Request $request)
@@ -48,6 +50,13 @@ class UserController extends Controller
             'foto' => $filename
         ]);
 
+        return view('sekretaris.keanggotaan.data-anggota', ['user' => $user]);
+    }
+
+
+    public function detailUser(Request $request)
+    {
+        $user = Profile::with('user', 'user.jabatan')->where('id', '=', $request->id)->get();
         return $user;
     }
 }

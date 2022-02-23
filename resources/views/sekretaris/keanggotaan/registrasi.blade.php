@@ -3,25 +3,27 @@
 @section('content')
     <div class="card shadow">
         <div class="card-body">
-            <form  enctype="multipart/form-data" id="form-anggota">
+            <form enctype="multipart/form-data" id="form-anggota">
                 @csrf
                 <div class="row">
                     <div class="form-group col">
                         <label for="">Nama Depan</label>
-                        <input type="text" class="form-control" id="nama-depan" name="nama_depan">
+                        <input type="text" class="form-control" id="nama-depan" name="nama_depan" placeholder="Nama Depan">
                     </div>
                     <div class="form-group col">
                         <label for="">Nama Belakang</label>
-                        <input type="text" class="form-control" id="nama-belakang" name="nama_belakang">
+                        <input type="text" class="form-control" id="nama-belakang" name="nama_belakang"
+                            placeholder="Nama Belakang">
                     </div>
                     <div class="form-group col">
                         <label for="">Username</label>
-                        <input type="text" class="form-control" id="username" name="username">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="">Alamat</label>
-                    <textarea name="alamat" id="alamat" cols="30" rows="5" class="form-control"></textarea>
+                    <textarea name="alamat" id="alamat" cols="30" rows="5" class="form-control"
+                        placeholder="Alamat Lengkap"></textarea>
                 </div>
 
                 <div class="row">
@@ -55,11 +57,11 @@
                     </div>
                     <div class="form-group col">
                         <label for="">No Hp</label>
-                        <input type="text" class="form-control" name="phone" id="phone">
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Nomer HP">
                     </div>
                     <div class="form-group col">
                         <label for="">Email aktif</label>
-                        <input type="email" class="form-control" name="email" id="email">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group">
@@ -75,7 +77,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
-        $('#submit-register').on('click', function () {
+        $('#submit-register').on('click', function() {
             var namdep = $('#nama-depan').val()
             var nambel = $('#nama-belakang').val()
             var username = $('#username').val()
@@ -83,7 +85,7 @@
             var alamat = $('#alamat').val()
             var status_akun = $('#status_akun').find(':selected').val()
             var phone = $('#phone').val()
-            var email =  $('#email').val()
+            var email = $('#email').val()
             var status = $('#status').find(":selected").val()
             var foto = $('#foto')[0].files;
             var fd = new FormData()
@@ -101,20 +103,20 @@
 
 
             $.ajax({
-                url : "register-anggota",
-                type : 'POST',
+                url: "register-anggota",
+                type: 'POST',
                 processData: false,
-                dataType : 'JSON',
+                dataType: 'JSON',
                 contentType: false,
-                data : fd,
-                success: function () {
+                data: fd,
+                success: function() {
                     Swal.fire({
                         title: 'Good job!',
                         text: 'You clicked the button!',
                         icon: 'success',
-                        timer : 2000,
+                        timer: 2000,
                         timerProgressBar: true,
-                        showConfirmButton : false
+                        showConfirmButton: false
                     })
                     $('#form-anggota')[0].reset()
                 }

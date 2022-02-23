@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{route('dashboard')}}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -28,18 +28,18 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+            aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
             <span>Keanggotaan</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
-                @if (Auth::user()->jabatan->jabatan == "Sekretaris")
-                    <a class="collapse-item" href="{{route('registrasi-anggota')}}">Registrasi Anggota</a>
+                @if (Auth::user()->jabatan->jabatan == 'Sekretaris' || Auth::user()->jabatan->jabatan == 'user')
+                    <a class="collapse-item" href="{{ route('registrasi-anggota') }}">Registrasi Anggota</a>
                 @endif
-                <a class="collapse-item" href="{{route('data-anggota')}}">Data Anggota</a>
+                <a class="collapse-item" href="{{ route('data-anggota') }}">Data Anggota</a>
             </div>
         </div>
     </li>
@@ -74,94 +74,95 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    @if (Auth::user()->jabatan->jabatan == "Sekretaris")
+    @if (Auth::user()->jabatan->jabatan == 'Sekretaris' || Auth::user()->jabatan->jabatan == 'user')
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                 aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Jenis Surat</span>
             </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Jenis Surat:</h6>
-                    <a class="collapse-item" href="{{route('form-sktm')}}">SKTM</a>
+                    <a class="collapse-item" href="{{ route('form-sktm') }}">SKTM</a>
 
                 </div>
             </div>
         </li>
     @endif
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
-            aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true"
+            aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Rekapan Surat</span>
         </a>
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Rekapan:</h6>
-                <a class="collapse-item" href="{{route('rekap-sktm')}}">SKTM</a>
+                <a class="collapse-item" href="{{ route('rekap-sktm') }}">SKTM</a>
 
             </div>
         </div>
     </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-          SURAT MASUK
-      </div>
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        SURAT MASUK
+    </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      @if (Auth::user()->jabatan->jabatan == "Sekretaris")
+    <!-- Nav Item - Pages Collapse Menu -->
+    @if (Auth::user()->jabatan->jabatan == 'Sekretaris' || Auth::user()->jabatan->jabatan == 'user')
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#arsip"
-                aria-expanded="true" aria-controls="collapsePages">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#arsip" aria-expanded="true"
+                aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Arsip</span>
             </a>
             <div id="arsip" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Jenis Surat:</h6>
-                    <a class="collapse-item" href="{{route('arsip')}}">SKTM</a>
+                    <a class="collapse-item" href="{{ route('arsip') }}">SKTM</a>
 
                 </div>
             </div>
         </li>
-      @endif
-      <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#rekapArsip"
-              aria-expanded="true" aria-controls="collapsePages">
-              <i class="fas fa-fw fa-folder"></i>
-              <span>Rekapan Arsip</span>
-          </a>
-          <div id="rekapArsip" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                  <h6 class="collapse-header">Rekapan:</h6>
-                  <a class="collapse-item" href="{{route('rekap-arsip')}}">Arsip</a>
+    @endif
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#rekapArsip" aria-expanded="true"
+            aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Rekapan Arsip</span>
+        </a>
+        <div id="rekapArsip" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Rekapan:</h6>
+                <a class="collapse-item" href="{{ route('rekap-arsip') }}">Arsip</a>
 
-              </div>
-          </div>
-      </li>
+            </div>
+        </div>
+    </li>
 
-      <hr class="sidebar-divider">
-      <div class="sidebar-heading">
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
         MEMO
     </div>
-    @if (Auth::user()->jabatan->jabatan == "Sekretaris")
+    @if (Auth::user()->jabatan->jabatan == 'Sekretaris' || Auth::user()->jabatan->jabatan == 'user')
         <li class="nav-item ">
-            <a class="nav-link" href="{{route('memo')}}">
+            <a class="nav-link" href="{{ route('memo') }}">
                 <i class="far fa-calendar-check"></i>
                 <span>Memo</span></a>
         </li>
     @endif
-    @if (Auth::user()->jabatan->jabatan == "Kepala Desa")
-    <li class="nav-item ">
-        <a class="nav-link" href="{{route('list-memo')}}">
-            <i class="far fa-calendar-alt"></i>
-            <span>Memo</span></a>
-    </li>
+    @if (Auth::user()->jabatan->jabatan == 'Kepala Desa')
+        <li class="nav-item ">
+            <a class="nav-link" href="{{ route('list-memo') }}">
+                <i class="far fa-calendar-alt"></i>
+                <span>Memo</span></a>
+        </li>
     @endif
 
 
