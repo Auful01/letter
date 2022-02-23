@@ -27,7 +27,6 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-        @include('sweetalert::alert')
         <!-- Sidebar -->
         @include('layout.sidebar')
         <!-- End of Sidebar -->
