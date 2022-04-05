@@ -83,12 +83,28 @@
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Jenis Surat:</h6>
-                    <a class="collapse-item" href="{{ route('form-sktm') }}">SKTM</a>
+                <div class="bg-white py-2 collapse-inner rounded kategori">
+                    <h6 class="collapse-header jenis-surat" id="">Jenis Surat:</h6>
+
+                    {{-- <a class="collapse-item kategori" href="{{ route('form-sktm') }}"></a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat Pindah (Keluar/Datang)</a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat Persyaratan Ahli Waris</a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat Pensiunan</a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat Umum/ Serbaguna</a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat Domisili Penduduk</a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat pengantar Ijin Keramaian</a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat Keterangan Janda/Duda</a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat Pengantar NA</a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat Keterangan Belum Kawin</a>
+                        <a class="collapse-item" href="{{ route('arsip') }}">Surat Keterangan Usaha</a> --}}
 
                 </div>
             </div>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="{{ route('input-surat') }}">
+                <i class="far fa-calendar-alt"></i>
+                <span>Input Surat</span></a>
         </li>
     @endif
     <li class="nav-item">
@@ -98,9 +114,9 @@
             <span>Rekapan Surat</span>
         </a>
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Rekapan:</h6>
-                <a class="collapse-item" href="{{ route('rekap-sktm') }}">SKTM</a>
+            <div class="bg-white py-2 collapse-inner rounded kategori">
+                <h6 class="collapse-header jenis-surat">Rekapan:</h6>
+                <a class="collapse-item " href="{{ route('rekap-sktm') }}">SKTM</a>
 
             </div>
         </div>
@@ -127,8 +143,14 @@
                     <h6 class="collapse-header">Jenis Surat:</h6>
                     <a class="collapse-item" href="{{ route('arsip') }}">SKTM</a>
 
+
                 </div>
             </div>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="{{ route('arsip-surat-keluar') }}">
+                <i class="far fa-calendar-alt"></i>
+                <span>Rekap Arsip</span></a>
         </li>
     @endif
     <li class="nav-item">

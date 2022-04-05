@@ -7,10 +7,11 @@
             <form action="{{ route('store-sktm') }}" method="POST">
                 @csrf
                 <div class="row">
+                    <input type="text" name="id_kategori" id="id_kategori" hidden>
                     <div class="form-group col">
                         <label for="">Nomer Surat</label>
-                        <input type="text" name="" class="form-control" id="" value="002/L/409.52.06/V/2022" disabled>
-                        <input type="text" name="nomer_surat" class="form-control" id="nomer_surat"
+                        <input type="text" name="" class="form-control ns" id="" value="002/L/409.52.06/V/2022" disabled>
+                        <input type="text" name="nomer_surat" class="form-control ns" id="nomer_surat"
                             value="002/L/409.52.06/V/2022" hidden>
                     </div>
                     <div class="form-group col">
@@ -119,4 +120,24 @@
             </form>
         </div>
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            console.log(localStorage.getItem('srt'));
+            console.log(localStorage.getItem('id'));
+            $('body .ns').val('002/' + localStorage.getItem('srt') + '/409.52.06/V/2022')
+            $('body #id_kategori').val(localStorage.getItem('id'))
+        })
+
+        $('body').on('click', '.l-surat', function(params) {
+            var data = $(this).data('srt')
+            var id = $(this).attr('id')
+
+            localStorage.setItem('srt', data)
+            localStorage.setItem('id', id)
+            // alert(data)
+        })
+    </script>
 @endsection

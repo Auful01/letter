@@ -25,6 +25,8 @@ class Sktm extends Model
         'status',
         'alamat',
         'keperluan',
-        'keterangan'
+        'keterangan',
+        'filename',
+        'id_kategori'
     ];
 }

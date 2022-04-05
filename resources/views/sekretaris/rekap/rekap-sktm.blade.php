@@ -1,16 +1,8 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="row d-flex justify-content-between">
-        <div class="col-md-5 m-3">
-            <div class="card shadow border-bottom-primary">
-                <div class="card-body">
-                    <b>REKAPAN SURAT KETERANGAN TIDAK MAMPU</b>
-                    <br>
-                    <b>.</b>
-                </div>
-            </div>
-        </div>
+    <div class="row d-flex justify-content-start">
+
 
         <div class="col-md-3 m-3">
             <div class="card shadow border-bottom-info">
@@ -91,12 +83,16 @@
                                 <td>{{ $u->pembuat }}</td>
                                 <td>{{ $u->nama_pengaju }}</td>
                                 <td>{{ date('d M Y', strtotime($u->created_at)) }}</td>
-                                <td> <button class="btn btn-sm btn-primary detail-surat" data-id="{{ $u->id }}"
-                                        title="Detail Surat"><i class="fas fa-eye"></i></button> <a
-                                        href="{{ route('print-pdf', $u->id) }}" class="btn btn-sm btn-warning"
-                                        data-id="{{ $u->nomer_surat }}"><i class="fas fa-print"></i></a> <button
-                                        class="btn btn-sm btn-danger hapus-surat" data-id="{{ $u->id }}"><i
-                                            class="fas fa-eraser"></i></button></td>
+                                <td>
+                                    {{-- href="{{ route('print-pdf', $u->id) }}" --}}
+                                    <a href="/report" class="btn btn-sm btn-info" id="preview"
+                                        data-id="{{ $u->nomer_surat }}"><i class="fas fa-eye"></i></a>
+                                    <button class="btn btn-sm btn-warning detail-surat" data-id="{{ $u->id }}"
+                                        title="Detail Surat"><i class="fas fa-pencil-alt"></i></button>
+                                    {{-- <embed src="{{ view('report') }}" type='application/pdf"> --}}
+                                    <button class="btn btn-sm btn-danger hapus-surat" data-id="{{ $u->id }}"><i
+                                            class="fas fa-eraser"></i></button>
+                                </td>
                             </tr>
                             @php
                                 $no++;
@@ -122,6 +118,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <input type="text" name="id" id="id" hidden>
                     <div class="row">
                         <div class="form-group col">
                             <label for="">Nomer Surat</label>
@@ -134,6 +131,7 @@
                         <div class="form-group col">
                             <label for="">Tanggal Pembuatan</label>
                             <input type="text" name="tanggal_pembuatan" class="form-control" id="tanggal_pembuatan">
+                            <input type="text" name="" class="form-control" id="tgl_buat" hidden>
                         </div>
                     </div>
                     <hr>
@@ -212,6 +210,10 @@
                         <label for="">Keterangan</label>
                         <textarea name="keterangan" class="form-control" id="keterangan" cols="20" rows="5"></textarea>
                     </div>
+                    <div class="form-group text-right">
+                        <button class="btn btn-secondary">Cancel</button>
+                        <button type="button" id="save-surat" class="btn btn-primary">Save</button>
+                    </div>
                 </div>
 
             </div>
@@ -222,7 +224,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
         $(document).ready(function() {
-            $('#table-sktm').DataTable();
+            var table = $('#table-sktm').DataTable()
+            // $('#table-sktm').DataTable();
         });
 
         $(document).ready(function() {
@@ -362,29 +365,95 @@
                     // // console.log(`"{{ date('d M Y', strtotime('"`+ buat +"')) }}"`);
                     // console.log(buat);
                     // console.log(`{{ date('d M Y', strtotime('22-10-2022')) }}`);
-
-                    $('body #nomer_surat').val(data.nomer_surat).prop('disabled', true)
-                    $('body #pembuat').val(data.pembuat).prop('disabled', true)
+                    // console.log(id);
+                    $('body #id').val(id)
+                    $('body #nomer_surat').val(data.nomer_surat)
+                    $('body #pembuat').val(data.pembuat)
                     // $('body #tanggal_pembuatan').val(`{{ date('d M Y', strtotime(`+ data.created_at + `)) }}`)
-                    $('body #tanggal_pembuatan').val(tgl).prop('disabled', true)
-                    $('body #pembuat').val(data.pembuat).prop('disabled', true)
-                    $('body #nama_pengaju').val(data.nama_pengaju).prop('disabled', true)
-                    $('body #jenis_kelamin').val(data.jenis_kelamin).prop('selected', true).prop(
-                        'disabled', true)
-                    $('body #agama').val(data.agama).prop('selected', true).prop('disabled', true)
-                    $('body #ttl').val(data.ttl).prop('disabled', true)
-                    $('body #nik').val(data.nik).prop('disabled', true)
-                    $('body #ktp').val(data.ktp).prop('disabled', true)
-                    $('body #pekerjaan').val(data.pekerjaan).prop('disabled', true)
-                    $('body #pendidikan').val(data.pendidikan).prop('disabled', true)
-                    $('body #status').val(data.status).prop('selected', true).prop('disabled', true)
-                    $('body #alamat').val(data.alamat).prop('disabled', true)
-                    $('body #keperluan').val(data.keperluan).prop('disabled', true)
-                    $('body #keterangan').val(data.keterangan).prop('disabled', true)
+                    $('body #tanggal_pembuatan').val(tgl)
+                    $('body #tgl_buat').val(data.tanggal_pembuatan)
+                    $('body #pembuat').val(data.pembuat)
+                    $('body #nama_pengaju').val(data.nama_pengaju)
+                    $('body #jenis_kelamin').val(data.jenis_kelamin).prop('selected', true)
+                    $('body #agama').val(data.agama).prop('selected', true)
+                    $('body #ttl').val(data.ttl)
+                    $('body #nik').val(data.nik)
+                    $('body #ktp').val(data.ktp)
+                    $('body #pekerjaan').val(data.pekerjaan)
+                    $('body #pendidikan').val(data.pendidikan)
+                    $('body #status').val(data.status).prop('selected', true)
+                    $('body #alamat').val(data.alamat)
+                    $('body #keperluan').val(data.keperluan)
+                    $('body #keterangan').val(data.keterangan)
                 }
             })
         })
 
+        $('body').on('click', '#save-surat', function() {
+            var id = $('body #id').val()
+            var nomer_surat = $('body #nomer_surat').val()
+            var pembuat = $('body #pembuat').val()
+            var tanggal_pembuatan = $('body #tgl_buat').val()
+            var nama_pengaju = $('body #nama_pengaju').val()
+            var jenis_kelamin = $('body #jenis_kelamin').val()
+            var agama = $('body #agama').val()
+            var ttl = $('body #ttl').val()
+            var nik = $('body #nik').val()
+            var ktp = $('body #ktp').val()
+            var pekerjaan = $('body #pekerjaan').val()
+            var pendidikan = $('body #pendidikan').val()
+            var status = $('body #status').val()
+            var alamat = $('body #alamat').val()
+            var keperluan = $('body #keperluan').val()
+            var keterangan = $('body #keterangan').val()
+            // console.log(id, nomer_surat, pembuat, tanggal_pembuatan);
+            $.ajax({
+                url: 'update-surat',
+                type: 'PUT',
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    'id': id,
+                    'nomer_surat': nomer_surat,
+                    'pembuat': pembuat,
+                    'tanggal_pembuatan': tanggal_pembuatan,
+                    'nama_pengaju': nama_pengaju,
+                    'jenis_kelamin': jenis_kelamin,
+                    'agama': agama,
+                    'ttl': ttl,
+                    'nik': nik,
+                    'ktp': ktp,
+                    'pekerjaan': pekerjaan,
+                    'pendidikan': pendidikan,
+                    'status': status,
+                    'alamat': alamat,
+                    'keperluan': keperluan,
+                    'keterangan': keterangan
+                },
+                success: function() {
+                    Swal.fire({
+                        title: 'Good job!',
+                        text: 'You clicked the button!',
+                        icon: 'success',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        showConfirmButton: false
+                    })
+                    $('#modal-detail-surat').modal('hide')
+                    setTimeout(() => {
+                        window.location.reload()
+                        // $('#table-sktm').DataTable().destroy()
+                        // $('#table-sktm').DataTable().ajax.reload()
+
+                    }, 2000);
+                }
+            })
+        })
+
+        $('body #preview').on('click', function() {
+            // window.onload = function() {
+            window.print()
+            // }
+        })
 
         $('#cek-dokumen').on('click', function() {
             var tanggal = $('#tanggal').find(':selected').val()

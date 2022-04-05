@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 use League\Flysystem\Filesystem as Flysystem;
 use League\Flysystem\Local\LocalFilesystemAdapter as LocalAdapter;
 use League\Flysystem\MountManager;
+use League\Flysystem\UnixVisibility\PortableVisibilityConverter;
+use League\Flysystem\Visibility;
 
 class VendorPublishCommand extends Command
 {
@@ -51,6 +53,8 @@ class VendorPublishCommand extends Command
      * This name is used to identify the command during lazy loading.
      *
      * @var string|null
+     *
+     * @deprecated
      */
     protected static $defaultName = 'vendor:publish';
 
@@ -243,9 +247,11 @@ class VendorPublishCommand extends Command
      */
     protected function publishDirectory($from, $to)
     {
+        $visibility = PortableVisibilityConverter::fromArray([], Visibility::PUBLIC);
+
         $this->moveManagedFiles(new MountManager([
             'from' => new Flysystem(new LocalAdapter($from)),
-            'to' => new Flysystem(new LocalAdapter($to)),
+            'to' => new Flysystem(new LocalAdapter($to, $visibility)),
         ]));
 
         $this->status($from, $to, 'Directory');

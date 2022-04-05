@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 use Alert;
+use App\Models\Kategori;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,6 +18,12 @@ class UserController extends Controller
     {
         $jabatan = DB::table('jabatan')->select('*')->get();
         return $jabatan;
+    }
+
+    public function loadKategori()
+    {
+        $kat = Kategori::all();
+        return $kat;
     }
 
     public function dataAnggota()
@@ -60,5 +68,11 @@ class UserController extends Controller
     {
         $user = Profile::with('user', 'user.jabatan')->where('id', '=', $request->id)->get();
         return $user;
+    }
+
+    public function profile()
+    {
+        $user = Profile::with('user', 'user.jabatan')->where('user_id', '=', Auth::user()->id)->first();
+        return view('sekretaris.profile', ['user' => $user]);
     }
 }

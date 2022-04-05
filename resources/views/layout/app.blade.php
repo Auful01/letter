@@ -109,9 +109,41 @@
         </div>
     </div>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+         function getIdentity() {
+            var nik = $('#nik').val()
+            var kategoriId = $('#jenis_id').val()
+            var nama = $('#nama').val()
+            var ttl = $('#tempat').val() + ', ' + $('#tgl-lahir').val()
+            var kelamin = $('#kelamin').find(':selected').val()
+            var kerja = $('#pekerjaan').find(':selected').val()
+            var kerjaLain = $('#kerja-lain').val()
+            var nokk = $('#kk').val()
+            var alamat = $('#alamat').val()
+            var agama = $('#agama').find(':selected').val()
+            var statusKawin = $('#status-kawin').find(':selected').val()
+            var pendidikan = $('#pendidikan').val()
+            return {
+                'nik' : nik,
+                'nama' : nama,
+                'ttl' : ttl,
+                'kelamin' : kelamin,
+                'kerja' : kerja,
+                'kerjaLain' : kerjaLain,
+                'kategoriId' : kategoriId,
+                'nokk' : nokk,
+                'alamat' : alamat,
+                'agama' : agama ,
+                'statusKawin' : statusKawin,
+                'pendidikan' : pendidikan
+            }
+            // console.log(nik,nama,ttl,kelamin,kerja,kerjaLain,nokk,alamat,agama,statusKawin,pendidikan);
+        }
+    </script>
     @include('layout.js')
-
+    @yield('script')
 
 </body>
 
