@@ -143,6 +143,7 @@
         }
     </script>
     @include('layout.js')
+    @yield('modal')
     @yield('script')
 
 </body>

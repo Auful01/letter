@@ -542,7 +542,9 @@
     p {
         margin-top: 0;
         /* margin-bottom: ; */
-        font-size: 12px;
+        font-size: 14pt;
+        /* text-align: ce */
+        /* text-indent: 30px; */
     }
 
     img {
@@ -556,7 +558,94 @@
 
 </style>
 
-<body>
+<body onload="window.print()">
+    @foreach ($skbm as $s)
+
+    @endforeach
+    <div class="container" style="margin-left: 4cm;margin-top: 3cm;margin-bottom: 3cm;margin-right: 3cm;">
+        <div class="text-center">
+            <h1 style="text-decoration: underline; font-weight: bold">SURAT KETERANGAN</h1>
+            <p>No: 474/ &nbsp;&nbsp;&nbsp; /409.10.4/2022</p>
+        </div>
+        <br>
+        <div>
+            <p>Yang bertanda tangan di bawah Kepala Desa Sidodadi Kecamatan Garum Kabupaten Blitar,
+                menerangkan bahwa :
+            </p>
+        </div>
+        <ul style="list-style: none">
+            <li>
+                <div class="row">
+                    <div class="col-md-3">Nama</div>
+                    <div class="col">: {{ $skbm->identitas->nama}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-md-3">Tempat/Tanggal Lahir</div>
+                    <div class="col">: {{ $skbm->identitas->ttl}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-md-3">Jenis Kelamin</div>
+                    <div class="col">: {{ $skbm->identitas->kelamin}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-md-3">Kewarganegaraan</div>
+                    <div class="col">: Indonesia</div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-md-3">Agama</div>
+                    <div class="col">: {{ $skbm->identitas->agama}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-md-3">Aamat</div>
+                    <div class="col">: {{ $skbm->identitas->alamat}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-md-3">NIK</div>
+                    <div class="col">: {{ $skbm->identitas->nik}}</div>
+                </div>
+            </li>
+        </ul>
+
+        <p>
+            Menerangkan bahwa orang tersbeut diatas benar-benar Pendidik Desa Sidodadi Kecamatan Garum Kabupaten Blitar,
+            selanjutnya menerangkan bahwa orang tersbut di atas saat ini benar-benar belum pernah menikah / belum kawin.
+        </p>
+        <p>
+            Surat keterangan ini dipergunakan untuk melengkapi persyaratan menikah
+        </p>
+        <p>
+            Demikian surat keterangan ini dibuat dengan sebenarnya untuk diperguinakan sebagaimana mestinya
+        </p>
+        <br>
+
+
+        <div class="row d-flex justify-content-right">
+            <div class="col-md-8">
+
+            </div>
+            <div class="col-md-4">
+                <p>Sidodadi, {{ date("Y M d") }}</p>
+                <p> Kepala Desa Sidodadi</p>
+
+                <br>
+                <br>
+
+                <b>H. NARNO</b>
+            </div>
+        </div>
+    </div>
 
 
 

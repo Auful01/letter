@@ -65,6 +65,8 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     // FIND SURAT
     Route::get('find-skbm', [SuratController::class, 'findSkbm']);
 
+    // PRINT SURAT
+    Route::get('print-skbm', [SuratController::class, 'printSkbm']);
     // SAVE SURAT KELUAR
     Route::post('save-skbm', [SuratController::class, 'saveSkbm']);
 

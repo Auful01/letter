@@ -147,7 +147,7 @@ class SuratController extends Controller
 
     public function findSkbm(Request $request)
     {
-        $data = Skbm::where('nomer_surat', '=', $request->nosurat)->firstOrFail();
+        $data = Skbm::with('identitas')->where('nomer_surat', '=', $request->nosurat)->firstOrFail();
         return $data;
     }
 
@@ -166,10 +166,36 @@ class SuratController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    return '<a data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '"  class="btn btn-xs btn-primary edit-surat"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+                    return '<a data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '"  class="btn btn-xs btn-primary edit-surat"><i class="glyphicon glyphicon-edit"></i> Edit</a>  <button class="btn btn-danger print-surat" data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '">print</button>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
     }
+
+
+    public function printSkbm(Request $request)
+    {
+
+        // $skbm = Skbm::where('id', '=', $request->nosurat)->firstOrFail();
+        $skbm = Skbm::with('identitas')->where('nomer_surat', '=', $request->nosurat)->firstOrFail();
+        // return $skbm;
+
+        return view('report', ['skbm' => $skbm]);
+        // $pdf = PDF::loadView('report', ['skbm' => $skbm]);
+        // $pdf->setPaper('A4', 'landscape');
+
+        // // Render the HTML as PDF
+        // $pdf->render();
+
+        // // Output the generated PDF to Browser
+        // // return $pdf->stream();
+        // return $pdf->download($skbm->nomer_surat . '.pdf');
+        // return $pdf->stream();
+    }
+    // public function printSurat(Request $request)
+    // {
+    //     $surat = Kategori::where('id','=',$request->kategori_id)->firstOrFail();
+    //     $data = DB::select('SELECT '. array_pop(explode('-',$surat->link)) . '.* FROM '. array_pop(explode('-',$surat->link)) .' WHERE nomer_surat =' .$request->);
+    // }
 }
