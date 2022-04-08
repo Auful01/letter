@@ -134,6 +134,20 @@
                             <input type="text" class="form-control" placeholder="Perihal" name="perihal" id="perihal">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="">Tanggal Surat</label>
+                            <input type="date" class="form-control" name="tgl_surat" id="tgl_surat">
+                        </div>
+                        <div class="form-group col">
+                            <label for="">Tanggal Menerima</label>
+                            <input type="date" class="form-control" name="tgl_menerima" id="tgl_menerima">
+                        </div>
+                        <div class="form-group col">
+                            <label for="">Sifat Surat</label>
+                            <input type="text" class="form-control" name="sifat_surat" id="sifat_surat">
+                        </div>
+                    </div>
                     <hr>
                     <div class="row">
                         <div class="form-group col">
@@ -150,7 +164,7 @@
                     <div class="form-group col">
                         <label for="">File Surat Masuk</label>
                         <br>
-                        <a href="" class="btn btn-sm btn-primary" id="file_surat"><i class="fas fa-download"></i></a>
+                        <a href="" class="btn btn-sm btn-primary file_surat" id="file_surat"><i class="fas fa-download"></i></a>
                         {{-- <input type="file" class="form-control" value="{{date('d M Y')}}" name="file_surat"> --}}
                     </div>
                 </div>
@@ -277,7 +291,7 @@
         $('body').on('click', '.detail-arsip', function() {
             var id = $(this).data('id')
             $('#modal-detail-arsip').modal('show')
-
+            console.log(id);
             $.ajax({
                 url: 'detail-arsip',
                 type: 'GET',
@@ -307,9 +321,12 @@
 
                     $('body #no_surat').val(data.no_surat).prop('disabled', true)
                     $('body #perihal').val(data.perihal).prop('disabled', true)
+                    $('body #tgl_surat').val(data.tgl_surat).prop('disabled', true)
+                    $('body #sifat_surat').val(data.sifat_surat).prop('disabled', true)
+                    $('body #tgl_menerima').val(data.tgl_menerima).prop('disabled', true)
                     // $('body #tanggal_pembuatan').val(`{{ date('d M Y', strtotime(`+ data.created_at + `)) }}`)
                     $('body #instansi').val(data.asal_instansi).prop('disabled', true)
-                    $('body #file_surat').attr('href',
+                    $('body .file_surat').attr('href',
                         `{{ asset('storage/file/${data.file_surat}') }}`)
                     $('body #penginput').val(data.user_id).prop('disabled', true)
                     // $('body #jenis_kelamin').val(data.jenis_kelamin).prop('selected',true).prop('disabled',true)

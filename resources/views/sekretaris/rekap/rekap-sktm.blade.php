@@ -339,7 +339,7 @@
         $('body').on('click', '.detail-surat', function() {
             var id = $(this).data('id')
             $('#modal-detail-surat').modal('show')
-
+            console.log('id');
             $.ajax({
                 url: 'detail-surat',
                 type: 'GET',

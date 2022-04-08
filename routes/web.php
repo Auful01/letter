@@ -100,6 +100,8 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
 
     Route::post('save-memo', [MemoController::class, 'store'])->name('save-memo');
 
+    // LOAD TTD
+    Route::get('load-ttd', [SuratController::class, 'loadTtd']);
 
     // SURAT ROUTE
     Route::get('detail-surat', [SuratController::class, 'detailSurat'])->name("detail-surat");

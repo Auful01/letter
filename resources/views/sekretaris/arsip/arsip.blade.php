@@ -21,6 +21,21 @@
                         <input type="text" class="form-control" placeholder="Perihal" name="perihal" id="perihal">
                     </div>
                 </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="">Tanggal Surat</label>
+                        <input type="date" class="form-control" name="tgl_surat">
+                    </div>
+                    <div class="form-group col">
+                        <label for="">Tanggal Menerima</label>
+                        <input type="date" class="form-control" name="tgl_menerima">
+                    </div>
+                    <div class="form-group col">
+                        <label for="">Sifat Surat</label>
+                        <input type="text" class="form-control" name="sifat_surat">
+                    </div>
+                </div>
+
                 <hr>
                 <div class="row">
                     <div class="form-group col">

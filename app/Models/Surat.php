@@ -14,6 +14,9 @@ class Surat extends Model
         'user_id',
         'no_surat',
         'perihal',
+        'tgl_surat',
+        'tgl_menerima',
+        'sifat_surat',
         'asal_instansi',
         'file_surat'
     ];

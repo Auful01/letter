@@ -36,6 +36,7 @@ return array(
     'App\\Models\\Memo' => $baseDir . '/app/Models/Memo.php',
     'App\\Models\\Profile' => $baseDir . '/app/Models/Profile.php',
     'App\\Models\\Skbm' => $baseDir . '/app/Models/Skbm.php',
+    'App\\Models\\Skl' => $baseDir . '/app/Models/Skl.php',
     'App\\Models\\Sktm' => $baseDir . '/app/Models/Sktm.php',
     'App\\Models\\Surat' => $baseDir . '/app/Models/Surat.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

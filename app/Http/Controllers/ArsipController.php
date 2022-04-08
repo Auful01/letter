@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Surat;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,9 @@ class ArsipController extends Controller
             'user_id' => Auth::user()->id,
             'no_surat' => $request->nomer_surat,
             'perihal' => $request->perihal,
+            'tgl_menerima' => $request->tgl_menerima,
+            'tgl_surat' => $request->tgl_surat,
+            'sifat_surat' => $request->sifat_surat,
             'asal_instansi' => $request->instansi,
             'file_surat' => $filename
         ]);
@@ -37,7 +41,7 @@ class ArsipController extends Controller
 
     public function detailArsip(Request $request)
     {
-        return Surat::find($request->id)->first();
+        return Surat::find($request->id);
     }
 
     public function selectedArsip(Request $request)

@@ -7,6 +7,8 @@ use App\Models\Kategori;
 use App\Models\Skbm;
 use App\Models\Skl;
 use App\Models\Sktm;
+use App\Models\Surat;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -94,8 +96,20 @@ class SuratController extends Controller
 
     public function hapusSurat(Request $request)
     {
-        return Sktm::find($request->id)->delete();
+        // return $request;
+        // $data = Sktm::all();
+        return Surat::where('id', '=', $request->id)->delete();
+        // return $data;
     }
+
+
+    public function loadTtd()
+    {
+        $user = DB::select('SELECT * FROM users WHERE jabatan_id = 1 OR jabatan_id = 2');
+        // $user = User::with('jabatan')->where('jabatan_id', '=', ['1', '2'])->get();
+        return $user;
+    }
+
 
     public function printPDF($id)
     {

@@ -75,7 +75,7 @@
                     <div class="col">
                         <select name="ttd" id="ttd" class="form-control">
                             <option value="">-- Silahkan pilih nama --</option>
-                            <option value="auful">Muhammad Auful Kirom</option>
+                            {{-- <option value="auful">Muhammad Auful Kirom</option> --}}
 
                         </select>
                         {{-- <input type="date" class="form-control" name="berlaku_dari" id=""> --}}
@@ -92,6 +92,20 @@
 
 @section('script')
     <script>
+        $(document).ready(function () {
+            $.ajax({
+                url : '/load-ttd',
+                type : 'GET',
+                success : function (data) {
+                    console.log(data);
+                    $.each(data, function (k,v) {
+                        $('#ttd').append($('<option>').val(v.id).text(v.nama_depan + ' ' + v.nama_belakang))
+                    })
+                }
+            })
+        })
+
+
         $('#pekerjaan').on('change', function () {
             var coba = $(this).find(':selected').val()
             console.log(coba);
@@ -140,7 +154,18 @@
                 contentType : false,
                 processData : false,
                 success : function () {
-                    alert('success')
+                    // alert('success')
+                    Swal.fire({
+                        title : 'Success',
+                        text : 'Data saved!',
+                        icon : 'success',
+                        showConfirmButton : false,
+                        timer : 2000,
+                        timeProgressBar :  true
+                    })
+                    setTimeout(() => {
+                        window.open('{{route('arsip-surat-keluar')}}')
+                    }, 2000);
                 }
             })
             // console.log(identity.nik,identity.nama,identity.ttl,identity.kelamin,identity.kerja,identity.kerjaLain,identity.nokk,identity.alamat,identity.agama,identity.statusKawin,identity.pendidikan, noSurat, perlu,berlaku, sampai,tujuan,file);

@@ -671,6 +671,7 @@ class ComposerStaticInit2da0c9b8498fe59cc5cf3cf0e676b177
         'App\\Models\\Memo' => __DIR__ . '/../..' . '/app/Models/Memo.php',
         'App\\Models\\Profile' => __DIR__ . '/../..' . '/app/Models/Profile.php',
         'App\\Models\\Skbm' => __DIR__ . '/../..' . '/app/Models/Skbm.php',
+        'App\\Models\\Skl' => __DIR__ . '/../..' . '/app/Models/Skl.php',
         'App\\Models\\Sktm' => __DIR__ . '/../..' . '/app/Models/Sktm.php',
         'App\\Models\\Surat' => __DIR__ . '/../..' . '/app/Models/Surat.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
