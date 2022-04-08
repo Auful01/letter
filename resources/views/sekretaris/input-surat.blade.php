@@ -41,7 +41,7 @@
                                         ${v.nama_kategori}
                                     </div>
                                     <div class="col-md-2">
-                                        <a class="btn btn-primary btn-input" onclick="{localStorage.setItem('surat_id', '${v.id}')}" href={{url('`+link+`')}}>Buat</a>
+                                        <a class="btn btn-primary btn-input ${link == 'coba' ? 'isDisabled' : ''}"  onclick="{localStorage.setItem('surat_id', '${v.id}')}" href={{url('`+link+`')}} >Buat</a>
                                     </div>
                                 </div>
                             </div>

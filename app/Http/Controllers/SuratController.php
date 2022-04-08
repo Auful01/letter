@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Identitas;
 use App\Models\Kategori;
 use App\Models\Skbm;
+use App\Models\Skl;
 use App\Models\Sktm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -120,6 +121,11 @@ class SuratController extends Controller
         $skbm = Skbm::all()->last();
         return $skbm;
     }
+    public function getLastSkl()
+    {
+        $skl = Skl::all()->last();
+        return $skl;
+    }
 
     public function saveSkbm(Request $request)
     {
@@ -144,10 +150,48 @@ class SuratController extends Controller
         ]);
     }
 
+    public function saveSkl(Request $request)
+    {
+        // return $request;
+        $data = Identitas::create($request->all());
+
+        $filename = $request->file('file')->getClientOriginalName();
+
+        if ($request->file('file')) {
+            $request->file('file')->storeAs('sk_rtrw', $filename, 'public');
+        }
+
+        Skl::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'tujuan' => $request->tujuan,
+            'perlu' => $request->perlu,
+            // 'alamat' => $request->alamat,
+            'sk_rtrw' => $filename,
+            'berlaku_mulai' => $request->berlaku,
+            'berlaku_sampai' => $request->sampai,
+            'keterangan' => $request->keterangan,
+            'ttd' => $request->ttd
+        ]);
+    }
+
+    public function reportPrint(Request $request)
+    {
+        // return $request;
+        $data = DB::select('SELECT * FROM identitas WHERE kategori_id = ' . $request->kategoriSurat . ' AND DATE_FORMAT(created_at,"%Y-%m-%d") BETWEEN "' . $request->dari . '" AND "' . $request->sampai . '"');
+        // return $data;
+        return view('report-all', ['data' => $data, 'dari' => $request->dari, 'sampai' => $request->sampai]);
+    }
 
     public function findSkbm(Request $request)
     {
         $data = Skbm::with('identitas')->where('nomer_surat', '=', $request->nosurat)->firstOrFail();
+        return $data;
+    }
+
+    public function findSkl(Request $request)
+    {
+        $data = Skl::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
         return $data;
     }
 
@@ -161,14 +205,32 @@ class SuratController extends Controller
     {
         // return $data;
         if ($request->ajax()) {
-            $data = DB::select('SELECT skbm.nomer_surat as skbm_id ,kategori.nama_kategori as kategori, identitas.kategori_id as kategori_id, identitas.nomer_surat as nomer_surat,  identitas.nama as nama, identitas.created_at as created_at, identitas.nomer_surat as nomer_surat, skbm.ttd as ttd  FROM identitas INNER JOIN kategori ON kategori.id = identitas.kategori_id INNER JOIN skbm ON skbm.identitas_id = identitas.id  ');
+            $data = DB::select('SELECT identitas.nomer_surat as nomer_surat ,kategori.nama_kategori as kategori, identitas.kategori_id as kategori_id, identitas.nomer_surat as nomer_surat,  identitas.nama as nama, identitas.created_at as created_at, identitas.nomer_surat as nomer_surat  FROM identitas INNER JOIN kategori ON kategori.id = identitas.kategori_id   ');
 
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->addColumn('ttd', function ($row) {
+                    $kategori = Kategori::where('id', '=', $row->kategori_id)->firstOrFail();
+                    switch ($kategori->link) {
+                        case 'form-skbm':
+                            $data = Skbm::with('identitas')->where('nomer_surat', '=', $row->nomer_surat)->firstOrFail();
+                            return '<p>' . $data->ttd . '</p>';
+                            break;
+                        case 'form-skl':
+                            $data = Skl::with('identitas')->where('nomor_surat', '=', $row->nomer_surat)->firstOrFail();
+                            return '<p>' . $data->ttd . '</p>';
+                            break;
+
+                        default:
+
+                            break;
+                    }
+                })
                 ->addColumn('action', function ($row) {
+                    $kategori = Kategori::where('id', '=', $row->kategori_id)->firstOrFail();
                     return '<a data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '"  class="btn btn-xs btn-primary edit-surat"><i class="glyphicon glyphicon-edit"></i> Edit</a>  <button class="btn btn-danger print-surat" data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '">print</button>';
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['ttd', 'action'])
                 ->make(true);
         }
     }
@@ -177,25 +239,8 @@ class SuratController extends Controller
     public function printSkbm(Request $request)
     {
 
-        // $skbm = Skbm::where('id', '=', $request->nosurat)->firstOrFail();
         $skbm = Skbm::with('identitas')->where('nomer_surat', '=', $request->nosurat)->firstOrFail();
-        // return $skbm;
 
         return view('report', ['skbm' => $skbm]);
-        // $pdf = PDF::loadView('report', ['skbm' => $skbm]);
-        // $pdf->setPaper('A4', 'landscape');
-
-        // // Render the HTML as PDF
-        // $pdf->render();
-
-        // // Output the generated PDF to Browser
-        // // return $pdf->stream();
-        // return $pdf->download($skbm->nomer_surat . '.pdf');
-        // return $pdf->stream();
     }
-    // public function printSurat(Request $request)
-    // {
-    //     $surat = Kategori::where('id','=',$request->kategori_id)->firstOrFail();
-    //     $data = DB::select('SELECT '. array_pop(explode('-',$surat->link)) . '.* FROM '. array_pop(explode('-',$surat->link)) .' WHERE nomer_surat =' .$request->);
-    // }
 }

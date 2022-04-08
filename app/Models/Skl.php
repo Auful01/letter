@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Skbm extends Model
+class Skl extends Model
 {
     use HasFactory;
-
-    protected $table = 'skbm';
+    protected $table = 'skl';
     protected $fillable = [
         'identitas_id',
-        'nomer_surat',
+        'nomor_surat',
         'tujuan',
         'perlu',
-        'alamat',
         'sk_rtrw',
+        'alamat',
+        'keterangan',
         'berlaku_mulai',
         'berlaku_sampai',
         'ttd'

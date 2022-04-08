@@ -24,7 +24,18 @@
 </head>
 
 <body id="page-top">
+<style>
+    a.isDisabled {
+  pointer-events: none;
+}
 
+    a.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+</style>
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->

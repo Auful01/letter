@@ -62,13 +62,18 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
         return view('sekretaris.surat-keluar.skl');
     })->name('form-skl');
 
+    // REPORT PRINT
+    Route::get('report-print', [SuratController::class, 'reportPrint'])->name('report-print');
     // FIND SURAT
     Route::get('find-skbm', [SuratController::class, 'findSkbm']);
+    Route::get('find-skl', [SuratController::class, 'findSkl']);
 
     // PRINT SURAT
     Route::get('print-skbm', [SuratController::class, 'printSkbm']);
+
     // SAVE SURAT KELUAR
     Route::post('save-skbm', [SuratController::class, 'saveSkbm']);
+    Route::post('save-skl', [SuratController::class, 'saveSkl']);
 
     // GET CURRENT CATEGORY
     Route::get('find-category', [SuratController::class, 'findCategory']);
@@ -78,6 +83,7 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
 
     // GET LAST NUMBER
     Route::get('get-last-skbm', [SuratController::class, 'getLastSkbm']);
+    Route::get('get-last-skl', [SuratController::class, 'getLastSkl']);
 
     // ARSIP
     Route::get('arsip-surat-keluar', function () {

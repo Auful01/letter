@@ -555,114 +555,35 @@
     .bg-success {
         background-color: #28a745 !important;
     }
-    /*  */
+
 </style>
 
 <body onload="window.print()">
-    @foreach ($skbm as $s)
 
-    @endforeach
-    <div class="container" style="margin-left: 4cm;margin-top: 3cm;margin-bottom: 3cm;margin-right: 3cm;">
-        <div class="row">
-
-            <div class="col-md-1">
-                <img src="{{asset('img/kop.jpg')}}" style="max-height: 200px"  alt="">
-            </div>
-            <div class="col">
-                <div class="text-center">
-                    {{-- <div class="row"> --}}
-                        <h4>PEMERINTAH KABUPATEN BLITAR</h4>
-                        <h4>KECAMATAN GARUM</h4>
-                        <h4>DESA SIDODADI</h4>
-                        <p>Jln. Raya Sidodadi No.01 Sidodadi-Garum-Blitar</p>
-                        <p>Kode Pos : 66162</p>
-                    {{-- </div> --}}
-                </div>
-            </div>
-        </div>
-        <hr style="border-bottom: 3px solid #000">
+    <div class="container">
         <div class="text-center">
-            <h1 style="text-decoration: underline; font-weight: bold">SURAT KETERANGAN</h1>
-            <p>No: 474/ &nbsp;&nbsp;&nbsp; /409.10.4/2022</p>
+            <h3>LAPORAN SURAT KELURAHAN</h3>
+            <p>Dari tanggal {{ date('d-M-Y', strtotime($dari)) }} sampai {{ date('d-M-Y', strtotime($sampai))  }}</p>
         </div>
-        <br>
-        <div>
-            <p>Yang bertanda tangan di bawah Kepala Desa Sidodadi Kecamatan Garum Kabupaten Blitar,
-                menerangkan bahwa :
-            </p>
-        </div>
-        <ul style="list-style: none">
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Nama</div>
-                    <div class="col">: {{ $skbm->identitas->nama}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Tempat/Tanggal Lahir</div>
-                    <div class="col">: {{ $skbm->identitas->ttl}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Jenis Kelamin</div>
-                    <div class="col">: {{ $skbm->identitas->kelamin}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Kewarganegaraan</div>
-                    <div class="col">: Indonesia</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Agama</div>
-                    <div class="col">: {{ $skbm->identitas->agama}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Aamat</div>
-                    <div class="col">: {{ $skbm->identitas->alamat}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">NIK</div>
-                    <div class="col">: {{ $skbm->identitas->nik}}</div>
-                </div>
-            </li>
-        </ul>
-
-        <p>
-            Menerangkan bahwa orang tersbeut diatas benar-benar Pendidik Desa Sidodadi Kecamatan Garum Kabupaten Blitar,
-            selanjutnya menerangkan bahwa orang tersbut di atas saat ini benar-benar belum pernah menikah / belum kawin.
-        </p>
-        <p>
-            Surat keterangan ini dipergunakan untuk melengkapi persyaratan menikah
-        </p>
-        <p>
-            Demikian surat keterangan ini dibuat dengan sebenarnya untuk diperguinakan sebagaimana mestinya
-        </p>
-        <br>
-
-
-        <div class="row d-flex justify-content-right">
-            <div class="col-md-8">
-
-            </div>
-            <div class="col-md-4">
-                <p>Sidodadi, {{ date("Y M d") }}</p>
-                <p> Kepala Desa Sidodadi</p>
-
-                <br>
-                <br>
-
-                <b>H. NARNO</b>
-            </div>
-        </div>
+        <table class="table">
+            <thead>
+                <th>No</th>
+                <th>Nomor Surat</th>
+                <th>Nama Pemohon</th>
+                <th>Tgl Surat</th>
+                {{-- <th>Tanda Tangan</th> --}}
+            </thead>
+            <tbody>
+                @foreach ($data as $d)
+                    <tr>
+                        <td>{{$d->id}}</td>
+                        <td>{{$d->nomer_surat}}</td>
+                        <td>{{$d->nama}}</td>
+                        <td>{{$d->created_at}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
 
