@@ -136,6 +136,7 @@
             var agama = $('#agama').find(':selected').val()
             var statusKawin = $('#status-kawin').find(':selected').val()
             var pendidikan = $('#pendidikan').val()
+            var kebangsaan = $('#kebangsaan').val()
             return {
                 'nik' : nik,
                 'nama' : nama,
@@ -146,11 +147,25 @@
                 'kategoriId' : kategoriId,
                 'nokk' : nokk,
                 'alamat' : alamat,
+                'kebangsaan' : kebangsaan,
                 'agama' : agama ,
                 'statusKawin' : statusKawin,
                 'pendidikan' : pendidikan
             }
             // console.log(nik,nama,ttl,kelamin,kerja,kerjaLain,nokk,alamat,agama,statusKawin,pendidikan);
+        }
+
+        function loadTtd() {
+            $.ajax({
+                url : '/load-ttd',
+                type : 'GET',
+                success : function (data) {
+                    console.log(data);
+                    $.each(data, function (k,v) {
+                        $('#ttd').append($('<option>').val(v.id).text(v.nama_depan + ' ' + v.nama_belakang))
+                    })
+                }
+            })
         }
     </script>
     @include('layout.js')

@@ -1,3 +1,4 @@
+{{-- FIXED --}}
 @extends('layout.app')
 
 @section('content')
@@ -92,18 +93,10 @@
 
 @section('script')
     <script>
-        $(document).ready(function () {
-            $.ajax({
-                url : '/load-ttd',
-                type : 'GET',
-                success : function (data) {
-                    console.log(data);
-                    $.each(data, function (k,v) {
-                        $('#ttd').append($('<option>').val(v.id).text(v.nama_depan + ' ' + v.nama_belakang))
-                    })
-                }
-            })
-        })
+        loadTtd()
+        // $(document).ready(function () {
+
+        // })
 
 
         $('#pekerjaan').on('change', function () {

@@ -31,15 +31,15 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Keanggotaan</span>
+            <span>Staff Administrasi</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
                 @if (Auth::user()->jabatan->jabatan == 'Sekretaris')
-                    <a class="collapse-item" href="{{ route('registrasi-anggota') }}">Registrasi Anggota</a>
+                    <a class="collapse-item" href="{{ route('registrasi-anggota') }}">Registrasi Staff</a>
                 @endif
-                <a class="collapse-item" href="{{ route('data-anggota') }}">Data Anggota</a>
+                <a class="collapse-item" href="{{ route('data-anggota') }}">Data Staff</a>
             </div>
         </div>
     </li>
@@ -61,7 +61,7 @@
         <li class="nav-item ">
             <a class="nav-link" href="{{ route('input-surat') }}">
                 <i class="far fa-calendar-alt"></i>
-                <span>Input Surat</span></a>
+                <span>Buat Surat</span></a>
         </li>
     @endif
     <li class="nav-item ">
@@ -99,7 +99,7 @@
         <li class="nav-item ">
             <a class="nav-link" href="{{ route('arsip') }}">
                 <i class="far fa-calendar-alt"></i>
-                <span>Input Surat</span></a>
+                <span>Arsip Surat</span></a>
         </li>
     @endif
     {{-- <li class="nav-item">
@@ -130,7 +130,7 @@
         <li class="nav-item ">
             <a class="nav-link" href="{{ route('memo') }}">
                 <i class="far fa-calendar-check"></i>
-                <span>Memo</span></a>
+                <span>Memo ku</span></a>
         </li>
     @endif
     @if (Auth::user()->jabatan->jabatan == 'Kepala Desa')

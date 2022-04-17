@@ -1,3 +1,4 @@
+{{-- FIXED --}}
 @extends('layout.app')
 
 @section('content')

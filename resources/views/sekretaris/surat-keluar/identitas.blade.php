@@ -59,6 +59,15 @@
             </div>
 
         </div>
+
+        <div class="row mb-4" {{ Request::segment(1) == 'form-skpn' || Request::segment(1) == 'form-skpm' ? '' : 'hidden' }}>
+            <div class="col-md-3 text-right">
+                <label for="">Kebangsaan</label>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="kebangsaan" id="kebangsaan">
+            </div>
+        </div>
     </div>
 
 
@@ -107,9 +116,9 @@
                 </select>
             </div>
         </div>
-        <div class="row mb-4">
+        <div class="row mb-4" {{ Request::segment(1) == 'form-skpn' ? 'hidden' : '' }}>
             <div class="col-md-3  text-right">
-                <label for="">Pendidikan</label>
+                <label for="">Pendidikan </label>
             </div>
             <div class="col-md-4">
                 <select class="form-control pendidikan" name="pendidikan" id="pendidikan" >

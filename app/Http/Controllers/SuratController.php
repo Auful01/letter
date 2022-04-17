@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Identitas;
 use App\Models\Kategori;
+use App\Models\Sk;
 use App\Models\Skbm;
+use App\Models\Skck;
+use App\Models\Skik;
+use App\Models\Skiu;
 use App\Models\Skl;
+use App\Models\Skpm;
+use App\Models\Skpn;
 use App\Models\Sktm;
+use App\Models\Sp;
 use App\Models\Surat;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -130,6 +137,7 @@ class SuratController extends Controller
         return $data;
     }
 
+    // GET LAST
     public function getLastSkbm()
     {
         $skbm = Skbm::all()->last();
@@ -140,11 +148,56 @@ class SuratController extends Controller
         $skl = Skl::all()->last();
         return $skl;
     }
+    public function getLastSkck()
+    {
+        $skck = Skck::all()->last();
+        return $skck;
+    }
+    public function getLastSkik()
+    {
+        $skik = Skik::all()->last();
+        return $skik;
+    }
+    public function getLastSktm()
+    {
+        $skik = Sktm::all()->last();
+        return $skik;
+    }
+    public function getLastSkiu()
+    {
+        $skiu = Skiu::all()->last();
+        return $skiu;
+    }
+    public function getLastSp()
+    {
+        $sp = Sp::all()->last();
+        return $sp;
+    }
+    public function getLastSkpn()
+    {
+        $skpn = Skpn::all()->last();
+        return $skpn;
+    }
+    public function getLastSkpm()
+    {
+        $skpm = Skpm::all()->last();
+        return $skpm;
+    }
+    public function getLastSk()
+    {
+        $sk = Sk::all()->last();
+        return $sk;
+    }
 
+    // SAVE LETTERS
     public function saveSkbm(Request $request)
     {
         // return $request;
         $data = Identitas::create($request->all());
+        $ttd = User::where('id', '=', $request->ttd)->first();
+        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
+        $data->ttd = $userttd;
+        $data->save();
 
         $filename = $request->file('file')->getClientOriginalName();
 
@@ -160,7 +213,7 @@ class SuratController extends Controller
             'sk_rtrw' => $filename,
             'berlaku_mulai' => $request->berlaku,
             'berlaku_sampai' => $request->sampai,
-            'ttd' => $request->ttd
+            'ttd' => $userttd
         ]);
     }
 
@@ -168,6 +221,10 @@ class SuratController extends Controller
     {
         // return $request;
         $data = Identitas::create($request->all());
+        $ttd = User::where('id', '=', $request->ttd)->first();
+        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
+        $data->ttd = $userttd;
+        $data->save();
 
         $filename = $request->file('file')->getClientOriginalName();
 
@@ -185,7 +242,213 @@ class SuratController extends Controller
             'berlaku_mulai' => $request->berlaku,
             'berlaku_sampai' => $request->sampai,
             'keterangan' => $request->keterangan,
-            'ttd' => $request->ttd
+            'ttd' => $userttd
+        ]);
+    }
+
+    public function saveSkck(Request $request)
+    {
+        $data = Identitas::create($request->all());
+        $ttd = User::where('id', '=', $request->ttd)->first();
+        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
+        $data->ttd = $userttd;
+        $data->save();
+
+        $filename = $request->file('file')->getClientOriginalName();
+
+        if ($request->file('file')) {
+            $request->file('file')->storeAs('sk_rtrw', $filename, 'public');
+        }
+
+        Skck::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'tujuan' => $request->tujuan,
+            'perlu' => $request->perlu,
+            // 'alamat' => $request->alamat,
+            'sk_rtrw' => $filename,
+            'berlaku_mulai' => $request->berlaku,
+            'berlaku_sampai' => $request->sampai,
+            'ttd' => $userttd
+        ]);
+    }
+
+    public function saveSkik(Request $request)
+    {
+        $data = Identitas::create($request->all());
+        $ttd = User::where('id', '=', $request->ttd)->first();
+        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
+        $data->ttd = $userttd;
+        $data->save();
+
+        $filename = $request->file('file')->getClientOriginalName();
+
+        if ($request->file('file')) {
+            $request->file('file')->storeAs('sk_rtrw', $filename, 'public');
+        }
+
+        Skik::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'tujuan' => $request->tujuan,
+            'perlu' => $request->perlu,
+            'sk_rtrw' => $filename,
+            'berlaku_mulai' => $request->berlaku,
+            'berlaku_sampai' => $request->sampai,
+            'nama_acara' => $request->nama_acara,
+            'tanggal_acara' =>  $request->tgl_acara,
+            'ttd' => $userttd
+        ]);
+    }
+
+    public function saveSkiu(Request $request)
+    {
+        $data = Identitas::create($request->all());
+        $ttd = User::where('id', '=', $request->ttd)->first();
+        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
+        $data->ttd = $userttd;
+        $data->save();
+
+        $filename = $request->file('file')->getClientOriginalName();
+
+        if ($request->file('file')) {
+            $request->file('file')->storeAs('sk_rtrw', $filename, 'public');
+        }
+
+        Skiu::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'tujuan' => $request->tujuan,
+            'perlu' => $request->perlu,
+            'sk_rtrw' => $filename,
+            'berlaku_mulai' => $request->berlaku,
+            'berlaku_sampai' => $request->sampai,
+            'nama_usaha' => $request->nama_usaha,
+            'alamat_usaha' =>  $request->alamat_usaha,
+            'ttd' => $userttd
+        ]);
+    }
+
+    public function saveSp(Request $request)
+    {
+        $data = Identitas::create($request->all());
+        $ttd = User::where('id', '=', $request->ttd)->first();
+        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
+        $data->ttd = $userttd;
+        $data->save();
+
+        $filename = $request->file('file')->getClientOriginalName();
+
+        if ($request->file('file')) {
+            $request->file('file')->storeAs('sk_rtrw', $filename, 'public');
+        }
+
+        Sp::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'tujuan' => $request->tujuan,
+            'perlu' => $request->perlu,
+            'sk_rtrw' => $filename,
+            'berlaku_mulai' => $request->berlaku,
+            'berlaku_sampai' => $request->sampai,
+            'tgl_sk_rtrw' => $request->tgl_sk_rtrw,
+            'ttd' => $userttd
+        ]);
+    }
+
+    public function saveSkpn(Request $request)
+    {
+        $data = Identitas::create($request->all());
+        $ttd = User::where('id', '=', $request->ttd)->first();
+        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
+        $data->ttd = $userttd;
+        $data->save();
+
+        $filename = $request->file('file')->getClientOriginalName();
+
+        if ($request->file('file')) {
+            $request->file('file')->storeAs('sk_rtrw', $filename, 'public');
+        }
+
+        Skpn::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'alamat_tujuan' => $request->tujuan,
+            'perlu' => $request->perlu,
+            'sk_rtrw' => $filename,
+            'berlaku_mulai' => $request->berlaku,
+            'berlaku_sampai' => $request->sampai,
+            'alamat_asal' => $request->alamat_asal,
+            'desa' => $request->desa,
+            'kecamatan' => $request->kecamatan,
+            'kabupaten' => $request->kabupaten,
+            'provinsi' => $request->provinsi,
+            'tgl_pindah' => $request->tgl_pindah,
+            'alamat_pindah' => $request->alamat_pindah,
+            'ttd' => $userttd
+        ]);
+    }
+
+    public function saveSkpm(Request $request)
+    {
+        $data = Identitas::create($request->all());
+        $ttd = User::where('id', '=', $request->ttd)->first();
+        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
+        $data->ttd = $userttd;
+        $data->save();
+
+        $filename = $request->file('file')->getClientOriginalName();
+
+        if ($request->file('file')) {
+            $request->file('file')->storeAs('sk_rtrw', $filename, 'public');
+        }
+
+        Skpm::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'alamat_asal' => $request->alamat_asal,
+            'perlu' => $request->perlu,
+            'sk_rtrw' => $filename,
+            'berlaku_dari' => $request->berlaku,
+            'berlaku_sampai' => $request->sampai,
+            'desa' => $request->desa,
+            'kecamatan' => $request->kecamatan,
+            'kabupaten' => $request->kabupaten,
+            'provinsi' => $request->provinsi,
+            'tgl_pindah' => $request->tgl_pindah,
+            'alamat_pindah' => $request->alamat_pindah,
+            'ttd' => $userttd
+        ]);
+    }
+
+    public function saveSk(Request $request)
+    {
+        $data = Identitas::create($request->all());
+        $ttd = User::where('id', '=', $request->ttd)->first();
+        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
+        $data->ttd = $userttd;
+        $data->save();
+
+        Sk::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'alamat' => $request->alamat,
+            'tujuan' => $request->tujuan,
+            'uraian' => $request->uraian,
+            'desa' => $request->desa,
+            'kecamatan' => $request->kecamatan,
+            'kabupaten' => $request->kabupaten,
+            'provinsi' => $request->provinsi,
+            'nama_kuasa' => $request->nama_kuasa,
+            'ttl_kuasa' => $request->ttl_kuasa,
+            'kelamin_kuasa' => $request->kelamin_kuasa,
+            'domisili_kuasa' => $request->domisili_kuasa,
+            'pekerjaan_kuasa' => $request->pekerjaan_kuasa,
+            'alamat_kuasa' => $request->alamat_kuasa,
+            'desa_kuasa' => $request->desa_kuasa,
+            'kecamatan_kuasa' => $request->kecamatan_kuasa,
+            'kabupaten_kuasa' => $request->kabupaten_kuasa,
+            'ttd' => $userttd
         ]);
     }
 
@@ -219,32 +482,15 @@ class SuratController extends Controller
     {
         // return $data;
         if ($request->ajax()) {
-            $data = DB::select('SELECT identitas.nomer_surat as nomer_surat ,kategori.nama_kategori as kategori, identitas.kategori_id as kategori_id, identitas.nomer_surat as nomer_surat,  identitas.nama as nama, identitas.created_at as created_at, identitas.nomer_surat as nomer_surat  FROM identitas INNER JOIN kategori ON kategori.id = identitas.kategori_id   ');
+            $data = DB::select('SELECT identitas.nomer_surat as nomer_surat ,kategori.nama_kategori as kategori, identitas.kategori_id as kategori_id, identitas.nomer_surat as nomer_surat,  identitas.nama as nama, identitas.created_at as created_at, identitas.nomer_surat as nomer_surat, identitas.ttd as ttd  FROM identitas INNER JOIN kategori ON kategori.id = identitas.kategori_id   ');
 
             return Datatables::of($data)
                 ->addIndexColumn()
-                ->addColumn('ttd', function ($row) {
-                    $kategori = Kategori::where('id', '=', $row->kategori_id)->firstOrFail();
-                    switch ($kategori->link) {
-                        case 'form-skbm':
-                            $data = Skbm::with('identitas')->where('nomer_surat', '=', $row->nomer_surat)->firstOrFail();
-                            return '<p>' . $data->ttd . '</p>';
-                            break;
-                        case 'form-skl':
-                            $data = Skl::with('identitas')->where('nomor_surat', '=', $row->nomer_surat)->firstOrFail();
-                            return '<p>' . $data->ttd . '</p>';
-                            break;
-
-                        default:
-
-                            break;
-                    }
-                })
                 ->addColumn('action', function ($row) {
                     $kategori = Kategori::where('id', '=', $row->kategori_id)->firstOrFail();
-                    return '<a data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '"  class="btn btn-xs btn-primary edit-surat"><i class="glyphicon glyphicon-edit"></i> Edit</a>  <button class="btn btn-danger print-surat" data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '">print</button>';
+                    return '<a data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '"  class="btn btn-xs btn-primary edit-surat"><i class="glyphicon glyphicon-edit"></i> Edit</a>  <button class="btn btn-danger print-surat" data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '">print</button> <button class="btn btn-secondary hapus-surat" data-kategori="' . $row->kategori_id . '" data-nosurat="' . $row->nomer_surat . '">Hapus</button>';
                 })
-                ->rawColumns(['ttd', 'action'])
+                ->rawColumns(['action'])
                 ->make(true);
         }
     }

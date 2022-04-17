@@ -1,3 +1,4 @@
+{{-- FIXED --}}
 @extends('layout.app')
 
 @section('content')
@@ -13,7 +14,7 @@
                             <label for="">Nomor</label>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" name="nomor_surat"  >
+                            <input type="text" class="form-control" name="nomor_surat"  id="nomor_surat" >
                             <small class="text-muted">*nomor surat bertambah otomatis</small>
                         </div>
                     </div>
@@ -32,13 +33,13 @@
                             <label for="">Berlaku</label>
                         </div>
                         <div class="col-md-4">
-                            <input type="date" class="form-control" name="berlaku_dari" id="">
+                            <input type="date" class="form-control" name="berlaku_dari" id="berlaku">
                         </div>
                         <div class="col-md-1  text-right">
                             <label for="">Sampai</label>
                         </div>
                         <div class="col-md-4">
-                            <input type="date" class="form-control" name="berlaku_sampai" id="">
+                            <input type="date" class="form-control" name="berlaku_sampai" id="sampai">
                         </div>
                     </div>
                 </div>
@@ -58,7 +59,7 @@
                             <label for="">Surat Keterangan RT/RW</label>
                         </div>
                         <div class="col">
-                            <input type="file" class="form-control">
+                            <input type="file" class="form-control" id="sk_rtrw">
                         </div>
                     </div>
                 </div>
@@ -83,7 +84,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <button class="btn btn-sm btn-primary"> <i class="fas fa-check"></i> Simpan</button>
+                <button class="btn btn-sm btn-primary" id="save-skck"> <i class="fas fa-check"></i> Simpan</button>
                 <button class="btn btn-sm btn-danger"> <i class="fas fa-redo"></i> Kembali</button>
             </div>
         </div>
@@ -92,6 +93,8 @@
 
 @section('script')
     <script>
+        loadTtd()
+
         $('#pekerjaan').on('change', function () {
             var coba = $(this).find(':selected').val()
             console.log(coba);
@@ -100,6 +103,75 @@
             } else {
                 $('body #kerja-lain').prop('hidden', true)
             }
+        })
+
+        $('#save-skck').on('click', function() {
+            var fd = new FormData();
+            var identity = getIdentity()
+            var noSurat = $('#nomor_surat').val()
+            var perlu = $('#perlu').val()
+            var berlaku = $('#berlaku').val()
+            var sampai = $('#sampai').val()
+            var tujuan = $('#tujuan').val()
+            var file = $('#sk_rtrw')[0].files[0]
+            var ttd = $('#ttd').find(':selected').val()
+
+            fd.append('_token', '{{ csrf_token() }}')
+            fd.append('nik', identity.nik)
+            fd.append('nama', identity.nama)
+            fd.append('ttl', identity.ttl)
+            fd.append('kelamin', identity.kelamin)
+            fd.append('pekerjaan', identity.kerja == 'lain' ? identity.kerjaLain : identity.kerja)
+            fd.append('nkk', identity.nokk)
+            fd.append('kategori_id', identity.kategoriId)
+            fd.append('alamat', identity.alamat)
+            fd.append('agama', identity.agama)
+            fd.append('status_kawin', identity.statusKawin)
+            fd.append('pendidikan', identity.pendidikan)
+            fd.append('nomer_surat', noSurat)
+            fd.append('perlu', perlu)
+            fd.append('berlaku', berlaku)
+            fd.append('sampai', sampai)
+            fd.append('tujuan',tujuan)
+            fd.append('file',file)
+            fd.append('ttd',ttd)
+
+            $.ajax({
+                url : '/save-skck',
+                type : 'POST',
+                data : fd,
+                contentType : false,
+                processData : false,
+                success : function () {
+                    // alert('success')
+                    Swal.fire({
+                        title : 'Success',
+                        text : 'Data saved!',
+                        icon : 'success',
+                        showConfirmButton : false,
+                        timer : 2000,
+                        timeProgressBar :  true
+                    })
+                    setTimeout(() => {
+                        window.open('{{route('arsip-surat-keluar')}}')
+                    }, 2000);
+                }
+            })
+            // console.log(identity.nik,identity.nama,identity.ttl,identity.kelamin,identity.kerja,identity.kerjaLain,identity.nokk,identity.alamat,identity.agama,identity.statusKawin,identity.pendidikan, noSurat, perlu,berlaku, sampai,tujuan,file);
+        })
+
+        $(document).ready(function () {
+            $.ajax({
+                url : '/get-last-skck',
+                type : 'GET',
+                success : function (data) {
+                    console.log(data == '' ? true : false);
+                    data == '' ? $('#nomor_surat').val(1) : $('#nomor_surat').val(parseInt(data.nomer_surat) + 1)
+                }
+            })
+
+            $('body #jenis_id').val(localStorage.getItem('surat_id'))
+        //    console.log(localStorage.getItem('surat_id'));
         })
     </script>
 @endsection

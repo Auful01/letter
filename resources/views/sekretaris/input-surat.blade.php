@@ -4,7 +4,7 @@
     <div class="container ">
         <div class="row d-flex justify-content-between">
             <div class="col-md-1 ml-3">
-                ID
+                Kode Surat
             </div>
             <div class="col-md-4">
                 Nama Kategori

@@ -660,7 +660,7 @@
                 <br>
                 <br>
 
-                <b>H. NARNO</b>
+                <b>{{ $skbm->ttd }}</b>
             </div>
         </div>
     </div>

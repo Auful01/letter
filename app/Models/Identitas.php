@@ -15,13 +15,16 @@ class Identitas extends Model
         'nkk',
         'nama',
         'ttl',
+        'alamat',
         'agama',
         'kelamin',
         'status_kawin',
         'pekerjaan',
         'pendidikan',
         'kategori_id',
-        'nomer_surat'
+        'nomer_surat',
+        'ttd',
+        'kebangsaan'
     ];
 
     /**

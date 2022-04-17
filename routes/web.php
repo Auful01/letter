@@ -47,20 +47,60 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
 
     // SURAT KELUAR
     Route::get('form-sktm', function () {
-        return view('user.surat.form-sktm');
+        return view('sekretaris.surat-keluar.sktm');
     })->name('form-sktm');
+
     Route::get('form-skbm', function () {
         return view('sekretaris.surat-keluar.belum-menikah');
     })->name('form-skbm');
+
+    Route::get('form-umkm', function () {
+        return view('sekretaris.surat-keluar.umkm');
+    })->name('form-umkm');
+
+    Route::get('form-skdu', function () {
+        return view('sekretaris.surat-keluar.skdu');
+    })->name('form-skdu');
+
+    Route::get('form-sp', function () {
+        return view('sekretaris.surat-keluar.surat-pengantar');
+    })->name('form-sp');
+
     Route::get('form-skck', function () {
         return view('sekretaris.surat-keluar.skck');
     })->name('form-skck');
+
     Route::get('form-skik', function () {
         return view('sekretaris.surat-keluar.skik');
     })->name('form-skik');
+
+    Route::get('form-skiu', function () {
+        return view('sekretaris.surat-keluar.izin-usaha');
+    })->name('form-skiu');
+
+    Route::get('form-spm', function () {
+        return view('sekretaris.surat-keluar.makam');
+    })->name('form-spm');
+
     Route::get('form-skl', function () {
         return view('sekretaris.surat-keluar.skl');
     })->name('form-skl');
+
+    Route::get('form-skn', function () {
+        return view('sekretaris.surat-keluar.skn');
+    })->name('form-skn');
+
+    Route::get('form-skpn', function () {
+        return view('sekretaris.surat-keluar.skpn');
+    })->name('form-skpn');
+
+    Route::get('form-skpm', function () {
+        return view('sekretaris.surat-keluar.skpm');
+    })->name('form-skpm');
+
+    Route::get('form-sk', function () {
+        return view('sekretaris.surat-keluar.surat-kuasa');
+    })->name('form-sk');
 
     // REPORT PRINT
     Route::get('report-print', [SuratController::class, 'reportPrint'])->name('report-print');
@@ -72,8 +112,15 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('print-skbm', [SuratController::class, 'printSkbm']);
 
     // SAVE SURAT KELUAR
-    Route::post('save-skbm', [SuratController::class, 'saveSkbm']);
-    Route::post('save-skl', [SuratController::class, 'saveSkl']);
+    Route::post('save-skbm', [SuratController::class, 'saveSkbm']); //FIXED
+    Route::post('save-skl', [SuratController::class, 'saveSkl']); //FIXED
+    Route::post('save-skck', [SuratController::class, 'saveSkck']); //FIXED
+    Route::post('save-skik', [SuratController::class, 'saveSkik']); //FIXED
+    Route::post('save-skiu', [SuratController::class, 'saveSkiu']); //FIXED
+    Route::post('save-sp', [SuratController::class, 'saveSp']); //FIXED
+    Route::post('save-skpn', [SuratController::class, 'saveSkpn']); //FIXED
+    Route::post('save-sk', [SuratController::class, 'saveSk']); //FIXED
+    Route::post('save-skpm', [SuratController::class, 'saveSkpm']); //FIXED
 
     // GET CURRENT CATEGORY
     Route::get('find-category', [SuratController::class, 'findCategory']);
@@ -82,8 +129,15 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('load-arsip-surat', [SuratController::class, 'loadArsipSurat'])->name('load-all-letter');
 
     // GET LAST NUMBER
-    Route::get('get-last-skbm', [SuratController::class, 'getLastSkbm']);
-    Route::get('get-last-skl', [SuratController::class, 'getLastSkl']);
+    Route::get('get-last-skbm', [SuratController::class, 'getLastSkbm']); //FIXED
+    Route::get('get-last-sktm', [SuratController::class, 'getLastSktm']);
+    Route::get('get-last-skl', [SuratController::class, 'getLastSkl']); //FIXED
+    Route::get('get-last-skck', [SuratController::class, 'getLastSkck']); //FIXED
+    Route::get('get-last-skik', [SuratController::class, 'getLastSkik']); //FIXED
+    Route::get('get-last-skiu', [SuratController::class, 'getLastSkiu']);
+    Route::get('get-last-sp', [SuratController::class, 'getLastSp']);
+    Route::get('get-last-skpn', [SuratController::class, 'getLastSkpn']);
+    Route::get('get-last-skpm', [SuratController::class, 'getLastSkpm']);
 
     // ARSIP
     Route::get('arsip-surat-keluar', function () {
