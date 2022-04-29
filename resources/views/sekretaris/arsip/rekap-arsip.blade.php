@@ -1,7 +1,23 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="row d-flex justify-content-between">
+<style>
+    #popup {
+  display: none;
+  border: 1px black solid;
+  width: 400px; height: 200px;
+  top:20px; left:20px;
+  background-color: white;
+  z-index: 10;
+  padding: 2em;
+  position: fixed;
+}
+
+.darken { background: rgba(0, 0, 0, 0.7); }
+
+#iframe { border: 0; }
+</style>
+    {{-- <div class="row d-flex justify-content-between">
         <div class="col-md-5 m-3">
             <div class="card shadow border-bottom-primary">
                 <div class="card-body">
@@ -40,7 +56,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="row mt-5 mx-3">
         {{-- form --}}
@@ -164,6 +180,9 @@
                     <div class="form-group col">
                         <label for="">File Surat Masuk</label>
                         <br>
+                        {{-- <embed src="" class="embed" type=""> --}}
+                            {{-- <iframe src="" class="embed" frameborder="0"></iframe> --}}
+                        <button class="btn btn-danger print_surat"><i class="fas fa-print"></i></button>
                         <a href="" class="btn btn-sm btn-primary file_surat" id="file_surat"><i class="fas fa-download"></i></a>
                         {{-- <input type="file" class="form-control" value="{{date('d M Y')}}" name="file_surat"> --}}
                     </div>
@@ -328,6 +347,9 @@
                     $('body #instansi').val(data.asal_instansi).prop('disabled', true)
                     $('body .file_surat').attr('href',
                         `{{ asset('storage/file/${data.file_surat}') }}`)
+                    $('body .embed').attr('src',
+                        `{{ asset('storage/file/${data.file_surat}') }}`)
+                    localStorage.setItem('file', data.file_surat)
                     $('body #penginput').val(data.user_id).prop('disabled', true)
                     // $('body #jenis_kelamin').val(data.jenis_kelamin).prop('selected',true).prop('disabled',true)
                     // $('body #agama').val(data.agama).prop('selected', true).prop('disabled',true)
@@ -344,6 +366,14 @@
             })
         })
 
+        $('body').on('click', '.print_surat', function () {
+            var file = localStorage.getItem('file')
+            var url = `{{ asset('storage/file/${file}') }}`
+
+            window.open(url, '_blank')
+            // $('#embed-modal').modal('show')
+            // $('iframe').attr('src', url)
+        })
 
         $('#cek-arsip').on('click', function() {
             var tanggal = $('#tanggal').find(':selected').val()
@@ -421,4 +451,14 @@
             })
         })
     </script>
+@endsection
+
+@section('modal')
+<div class="modal fade" id="embed-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+            <iframe src="" frameborder="0"  style="width: 100%; height: 100%;"></iframe>
+      </div>
+    </div>
+  </div>
 @endsection

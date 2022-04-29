@@ -107,9 +107,27 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     // FIND SURAT
     Route::get('find-skbm', [SuratController::class, 'findSkbm']);
     Route::get('find-skl', [SuratController::class, 'findSkl']);
+    Route::get('find-skck', [SuratController::class, 'findSkck']);
+    Route::get('find-skik', [SuratController::class, 'findSkik']);
+    Route::get('find-skiu', [SuratController::class, 'findSkiu']);
+    Route::get('find-sp', [SuratController::class, 'findSp']);
+    Route::get('find-sk', [SuratController::class, 'findSk']);
+    Route::get('find-skpn', [SuratController::class, 'findSkpn']);
+    Route::get('find-skpm', [SuratController::class, 'findSkpm']);
 
     // PRINT SURAT
     Route::get('print-skbm', [SuratController::class, 'printSkbm']);
+    Route::get('print-skl', [SuratController::class, 'printSkl']);
+    Route::get('print-skck', [SuratController::class, 'printSkck']);
+    Route::get('print-skik', [SuratController::class, 'printSkik']);
+    Route::get('print-skiu', [SuratController::class, 'printSkiu']);
+    Route::get('print-sp', [SuratController::class, 'printSp']);
+    Route::get('print-skpn', [SuratController::class, 'printSkpn']);
+    Route::get('print-sk', [SuratController::class, 'printSk']);
+    Route::get('print-skpm', [SuratController::class, 'printSkpm']);
+
+    // DELETE SURAT
+    Route::delete('hapus', [SuratController::class, 'hapus']);
 
     // SAVE SURAT KELUAR
     Route::post('save-skbm', [SuratController::class, 'saveSkbm']); //FIXED
@@ -121,6 +139,17 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::post('save-skpn', [SuratController::class, 'saveSkpn']); //FIXED
     Route::post('save-sk', [SuratController::class, 'saveSk']); //FIXED
     Route::post('save-skpm', [SuratController::class, 'saveSkpm']); //FIXED
+
+    // UpdATE SKBM
+    Route::post('update-skbm', [SuratController::class, 'updateSkbm']);
+    Route::post('update-skl', [SuratController::class, 'updateSkl']);
+    Route::post('update-skck', [SuratController::class, 'updateSkck']);
+    Route::post('update-skik', [SuratController::class, 'updateSkik']);
+    Route::post('update-skiu', [SuratController::class, 'updateSkiu']);
+    Route::post('update-sp', [SuratController::class, 'updateSp']);
+    Route::post('update-skpn', [SuratController::class, 'updateSkpn']);
+    Route::post('update-sk', [SuratController::class, 'updateSk']);
+    Route::post('update-skpm', [SuratController::class, 'updateSkpm']);
 
     // GET CURRENT CATEGORY
     Route::get('find-category', [SuratController::class, 'findCategory']);

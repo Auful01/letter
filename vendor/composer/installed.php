@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd873e04522e6c0078a3f3415c1cbfdab7c4cf7ef',
+    'reference' => '122ace75851d6b87535c56359c03577081ad11c3',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -497,7 +497,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd873e04522e6c0078a3f3415c1cbfdab7c4cf7ef',
+      'reference' => '122ace75851d6b87535c56359c03577081ad11c3',
     ),
     'laravel/sail' => 
     array (
@@ -633,6 +633,24 @@
       array (
       ),
       'reference' => 'c66aefcafb4f6c269510e9ac46b82619a904c576',
+    ),
+    'mike42/escpos-php' => 
+    array (
+      'pretty_version' => 'v3.0',
+      'version' => '3.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'dcb569a123d75f9f6a4a927aae7625ca6b7fdcf3',
+    ),
+    'mike42/gfx-php' => 
+    array (
+      'pretty_version' => 'v0.6',
+      'version' => '0.6.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ed9ded2a9298e4084a9c557ab74a89b71e43dbdb',
     ),
     'mockery/mockery' => 
     array (
@@ -968,8 +986,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0|2.0|3.0',
-        1 => '1.0.0 || 2.0.0 || 3.0.0',
+        0 => '1.0.0 || 2.0.0 || 3.0.0',
+        1 => '1.0|2.0|3.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1023,6 +1041,15 @@
       array (
       ),
       'reference' => '8505afd4fea63b81a85d3b7b53ac3cb8dc347c28',
+    ),
+    'rawilk/laravel-printing' => 
+    array (
+      'pretty_version' => 'v3.0.0',
+      'version' => '3.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'abf0cf5b3f5ea4878070fd633de184831cb8add0',
     ),
     'realrashid/sweet-alert' => 
     array (

@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
+        {{-- <div class="card-header">
             <h5>List Anggota Aktif</h5>
-        </div>
+        </div> --}}
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover" id="myTable">
@@ -29,6 +29,9 @@
                                 <td>{{ $ua->user->jabatan->jabatan }}</td>
                                 <td> <button class="btn btn-sm btn-primary detail-anggota" data-id="{{ $ua->id }}"
                                         title="Detail Anggota" data-toggle="modal"><i class="fas fa-eye"></i></button>
+
+                                        <button class="btn btn-sm btn-danger detail-anggota" data-id="{{ $ua->id }}"
+                                            title="Detail Anggota" data-toggle="modal"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
                             @php
@@ -41,7 +44,7 @@
         </div>
     </div>
 
-    <div class="card mt-4">
+    {{-- <div class="card mt-4">
         <div class="card-header">
             <h5>List Anggota Nonaktif</h5>
         </div>
@@ -62,7 +65,6 @@
                             $no = 0;
                         @endphp
                         @foreach ($userb as $ub)
-                            {{-- @if ($ub->profile->status_akun == 'tidak aktif') --}}
                             <tr>
                                 <td>{{ $no }}</td>
                                 <td>{{ $ub->user->nama_depan . ' ' . $ub->user->nama_belakang }}</td>
@@ -72,7 +74,6 @@
                                         data-id="{{ $ub->id }}" data-toggle="modal"><i
                                             class="fas fa-eye"></i></button> </td>
                             </tr>
-                            {{-- @endif --}}
 
                             @php
                                 $no++;
@@ -82,7 +83,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
     <div class="modal fade" id="modal-detailAnggota" tabindex="-1" aria-labelledby="exampleModalLabel"

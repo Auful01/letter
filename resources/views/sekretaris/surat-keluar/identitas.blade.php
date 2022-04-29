@@ -6,7 +6,7 @@
                 <label for="">NIK</label>
             </div>
             <div class="col-md-9">
-            <input type="text" name="nik" id="nik" class="form-control nik">
+            <input type="text" name="nik" id="nik" class="form-control nik" value="">
             </div>
         </div>
         <div class="row mb-4">
@@ -25,7 +25,7 @@
                 <input type="text" name="tempat" id="tempat" class="form-control tempat">
             </div>
             <div class="col-md-5">
-                <input type="date" name="tgl-lahir" id="tgl-lahir" class="form-control tgl-lahir">
+                <input type="date" name="tgl-lahir" id="tgl-lahir" class="form-control tgl_lahir">
             </div>
         </div>
 

@@ -23,68 +23,81 @@
 
 </head>
 
+<style>
+    body{
+        background: #4e73df
+    }
+</style>
+
 <body id="page-top">
 
 
     <div class="container">
-        <div class="row d-flex justify-content-center">
+        <div class="row ">
 
-            <div class="card" style="margin-top: 10%">
-                <div class="card-header">
-                    <h3>Login</h3>
-                    <p>Sign in to your account to continue</p>
-                </div>
+            <div class="card border-0 shadow" style="margin-top: 20%; width: 100%">
+                {{-- <div class="card-header"> --}}
+
+                {{-- </div> --}}
                 <div class="card-body">
-                    <form method="POST" class="p-4" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3 form-group">
-                            <label for="username" class=" text-md-end">{{ __('username Address') }}</label>
-
-                            {{-- <div class="col-md-6"> --}}
-                            <input id="text" type="username" class="form-control @error('username') is-invalid @enderror"
-                                name="username" value="{{ old('username') }}" required autocomplete="username"
-                                autofocus>
-
-                            @error('username')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            {{-- </div> --}}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <img src="{{asset('img/login.png')}}" class="img-fluid mt-4 " alt="" style="max-height: 250px">
+                            </div>
                         </div>
+                        <div class="col-md-8">
+                            <h3>Login</h3>
+                            <p>Sign in to your account to continue</p>
+                            <form method="POST" class="p-4" action="{{ route('login') }}">
+                                @csrf
 
-                        <div class="row d-flex justify-content-between mb-3 form-group">
-                            <label for="password " class=" text-md-end">{{ __('Password') }}</label>
-                            <a class="btn" id="show-pw"><small>Show Password</small></a>
+                            <div class="row mb-3 form-group">
+                                <label for="username" class=" text-md-end">{{ __('username Address') }}</label>
 
-                            {{-- <div class="col-md-6"> --}}
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
+                                {{-- <div class="col-md-6"> --}}
+                                <input id="text" type="username" class="form-control @error('username') is-invalid @enderror"
+                                    name="username" value="{{ old('username') }}" required autocomplete="username"
+                                    autofocus>
 
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            {{-- </div> --}}
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                {{-- </div> --}}
+                            </div>
+
+                            <div class="row d-flex justify-content-between mb-3 form-group">
+                                <label for="password " class=" text-md-end">{{ __('Password') }}</label>
+                                <a class="btn" id="show-pw"><small>Show Password</small></a>
+
+                                {{-- <div class="col-md-6"> --}}
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password" required
+                                    autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                {{-- </div> --}}
+                            </div>
+
+
+                            <div class="row mb-0">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+                            </div>
+                            </form>
                         </div>
+                    </div>
 
-
-                        <div class="row mb-0">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Login') }}
-                            </button>
-
-
-                        </div>
                 </div>
-                </form>
-
             </div>
         </div>
-    </div>
     </div>
 
     @include('layout.js')

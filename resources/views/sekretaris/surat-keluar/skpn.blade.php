@@ -215,7 +215,7 @@
                 type : 'GET',
                 success : function (data) {
                     console.log(data == '' ? true : false);
-                    data == '' ? $('#nomer_surat').val(1) : $('#nomer_surat').val(parseInt(data.nomer_surat) + 1)
+                    data == '' ? $('#nomer_surat').val(1) : $('#nomer_surat').val(parseInt(data.nomor_surat) + 1)
                 }
             })
 

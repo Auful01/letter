@@ -61,14 +61,7 @@
                                 <textarea  class="form-control" name="tujuan" id="tujuan" cols="30" rows="3"></textarea>
                             </div>
                         </div>
-                        {{-- <div class="row mb-4">
-                            <div class="col-md-3  text-right">
-                                <label for="">Tanggal Surat Keterangan RT/RW</label>
-                            </div>
-                            <div class="col">
-                                <input type="date" class="form-control" id="tgl_sk_rtrw">
-                            </div>
-                        </div> --}}
+
                     </div>
 
                 </div>
