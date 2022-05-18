@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <button class="btn btn-sm btn-primary" id="save-skbm"> <i class="fas fa-check"></i> Simpan</button>
+                <button class="btn btn-sm btn-primary" id="save-sktm"> <i class="fas fa-check"></i> Simpan</button>
                 <button class="btn btn-sm btn-danger"> <i class="fas fa-redo"></i> Kembali</button>
             </div>
         </div>
@@ -108,7 +108,7 @@
             }
         })
 
-        $('#save-skbm').on('click', function() {
+        $('#save-sktm').on('click', function() {
             var fd = new FormData();
             var identity = getIdentity()
             var noSurat = $('#nomer_surat').val()
@@ -169,7 +169,7 @@
                 type : 'GET',
                 success : function (data) {
                     console.log(data);
-                    data == null ? $('#nomer_surat').val(1) : $('#nomer_surat').val(parseInt(data.nomer_surat) + 1)
+                    data == '' ? $('#nomer_surat').val(1) : $('#nomer_surat').val(parseInt(data.nomor_surat) + 1)
                 }
             })
 

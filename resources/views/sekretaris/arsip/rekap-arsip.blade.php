@@ -309,7 +309,7 @@
 
         $('body').on('click', '.detail-arsip', function() {
             var id = $(this).data('id')
-            $('#modal-detail-arsip').modal('show')
+            $('#modal-detail-arsip').appendTo('body').modal('show')
             console.log(id);
             $.ajax({
                 url: 'detail-arsip',
@@ -371,7 +371,7 @@
             var url = `{{ asset('storage/file/${file}') }}`
 
             window.open(url, '_blank')
-            // $('#embed-modal').modal('show')
+            // $('#embed-modal').appendTo('body').modal('show')
             // $('iframe').attr('src', url)
         })
 

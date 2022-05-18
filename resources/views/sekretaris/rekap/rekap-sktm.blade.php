@@ -338,7 +338,7 @@
 
         $('body').on('click', '.detail-surat', function() {
             var id = $(this).data('id')
-            $('#modal-detail-surat').modal('show')
+            $('#modal-detail-surat').appendTo('body').modal('show')
             console.log('id');
             $.ajax({
                 url: 'detail-surat',

@@ -4,6 +4,7 @@ use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\UserController;
+use App\Models\Identitas;
 use App\Models\Memo;
 use App\Models\Sktm;
 use App\Models\User;
@@ -28,7 +29,7 @@ Route::get('kategori-surat', [SuratController::class, 'loadKategori'])->name('ka
 Route::get('dashboard', function () {
     $user = User::all()->count();
     $sktmNow = Sktm::with('user')->where('created_at', '=', date("Y-m-d H:i:s"))->get()->count();
-    $sktm = Sktm::all()->count();
+    $sktm = Identitas::all()->count();
     $memo = Memo::all()->count();
     // return $user;
     return view('sekretaris.dashboard', ['user' => $user, 'sktm' => $sktm, 'sktmNow' => $sktmNow, 'memo' => $memo]);
@@ -114,6 +115,9 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('find-sk', [SuratController::class, 'findSk']);
     Route::get('find-skpn', [SuratController::class, 'findSkpn']);
     Route::get('find-skpm', [SuratController::class, 'findSkpm']);
+    Route::get('find-umkm', [SuratController::class, 'findUmkm']);
+    Route::get('find-sktm', [SuratController::class, 'findSktm']);
+    Route::get('find-skn', [SuratController::class, 'findSkn']);
 
     // PRINT SURAT
     Route::get('print-skbm', [SuratController::class, 'printSkbm']);
@@ -125,6 +129,7 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('print-skpn', [SuratController::class, 'printSkpn']);
     Route::get('print-sk', [SuratController::class, 'printSk']);
     Route::get('print-skpm', [SuratController::class, 'printSkpm']);
+    Route::get('print-sktm', [SuratController::class, 'printSktm']);
 
     // DELETE SURAT
     Route::delete('hapus', [SuratController::class, 'hapus']);
@@ -139,6 +144,9 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::post('save-skpn', [SuratController::class, 'saveSkpn']); //FIXED
     Route::post('save-sk', [SuratController::class, 'saveSk']); //FIXED
     Route::post('save-skpm', [SuratController::class, 'saveSkpm']); //FIXED
+    Route::post('save-umkm', [SuratController::class, 'saveUmkm']); //FIXED
+    Route::post('save-sktm', [SuratController::class, 'saveSktm']); //FIXED
+    Route::post('save-skn', [SuratController::class, 'saveSkn']);
 
     // UpdATE SKBM
     Route::post('update-skbm', [SuratController::class, 'updateSkbm']);
@@ -150,6 +158,9 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::post('update-skpn', [SuratController::class, 'updateSkpn']);
     Route::post('update-sk', [SuratController::class, 'updateSk']);
     Route::post('update-skpm', [SuratController::class, 'updateSkpm']);
+    Route::post('update-sktm', [SuratController::class, 'updateSktm']);
+    Route::post('update-skn', [SuratController::class, 'updateSkn']);
+    Route::post('update-umkm', [SuratController::class, 'updateUmkm']);
 
     // GET CURRENT CATEGORY
     Route::get('find-category', [SuratController::class, 'findCategory']);
@@ -167,6 +178,8 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('get-last-sp', [SuratController::class, 'getLastSp']);
     Route::get('get-last-skpn', [SuratController::class, 'getLastSkpn']);
     Route::get('get-last-skpm', [SuratController::class, 'getLastSkpm']);
+    Route::get('get-last-umkm', [SuratController::class, 'getLastUmkm']);
+    Route::get('get-last-skn', [SuratController::class, 'getLastSkn']);
 
     // ARSIP
     Route::get('arsip-surat-keluar', function () {
@@ -208,6 +221,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('rekap-SKTM', [SuratController::class, 'loadSktm'])->name('rekap-sktm');
 
     Route::get('detail-user', [UserController::class, 'detailUser']);
+    Route::delete('hapus-user', [UserController::class, 'hapusUser']);
     Route::get('print-pdf/{id}', [SuratController::class, 'printPDF'])->name('print-pdf');
     Route::get('/', function () {
         return redirect()->route('dashboard');

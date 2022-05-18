@@ -30,7 +30,7 @@
                                 <td> <button class="btn btn-sm btn-primary detail-anggota" data-id="{{ $ua->id }}"
                                         title="Detail Anggota" data-toggle="modal"><i class="fas fa-eye"></i></button>
 
-                                        <button class="btn btn-sm btn-danger detail-anggota" data-id="{{ $ua->id }}"
+                                        <button class="btn btn-sm btn-danger hapus-anggota" data-id="{{ $ua->id }}"
                                             title="Detail Anggota" data-toggle="modal"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
@@ -156,7 +156,7 @@
             var id = $(this).data('id')
 
             console.log(id);
-            $('#modal-detailAnggota').modal('show');
+            $('#modal-detailAnggota').appendTo('body').modal('show');
 
             $.ajax({
                 url: 'detail-user',
@@ -193,6 +193,47 @@
             })
 
 
+        })
+
+        $('.hapus-anggota').on('click', function () {
+            var id = $(this).data('id')
+            console.log(id);
+            // $('#modal-hapus-anggota').appendTo('body').modal('show');
+
+            Swal.fire({
+                title: 'Anda Yakin?',
+                text: "Kamu akan menghapus user ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url : '/hapus-user',
+                        type : "DELETE",
+                        data : {
+                            '_token' : '{{ csrf_token() }}',
+                            'id' : id,
+                        },
+                        success : function (data) {
+                            Swal.fire({
+                                            title: 'Deleted!',
+                                            text: 'User telah dihapus',
+                                            icon: 'success',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+
+                            setTimeout(() => {
+                                window.location.reload()
+                            }, 1500);
+                        }
+                    })
+
+                }
+            })
         })
         $(document).ready(function() {
             $('#myTable').DataTable();

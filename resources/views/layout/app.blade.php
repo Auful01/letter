@@ -64,7 +64,6 @@
                     </div>
 
                     @yield('content')
-                    @yield('modal')
 
                 </div>
                 <!-- /.container-fluid -->

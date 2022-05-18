@@ -5,24 +5,33 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sktm extends Model
+class Umkm extends Model
 {
     use HasFactory;
 
-    protected $table = 'sktm';
+    protected $table = 'umkm';
     protected $fillable = [
         'identitas_id',
+        'domisili',
+        'nama',
+        'telepon',
+        'alamat',
+        'desa',
+        'kecamatan',
+        'kabupaten',
         'nomor_surat',
-        'perlu',
-        'berlaku_dari',
-        'berlaku_sampai',
-        'tujuan',
-        'sk_rtrw',
+        'nama_usaha',
+        'bidang',
+        'modal',
+        'sarana',
+        'alamat_usaha',
+        'kelurahan_usaha',
+        'kecamatan_usaha',
         'ttd'
     ];
 
     /**
-     * Get the identitas that owns the Sktm
+     * Get the identitas that owns the Umkm
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

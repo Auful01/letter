@@ -198,7 +198,7 @@
                 type : 'GET',
                 success : function (data) {
                     console.log(data == '' ? true : false);
-                    data == '' ? $('#nomor_surat').val(1) : $('#nomor_surat').val(parseInt(data.nomer_surat) + 1)
+                    data == '' ? $('#nomor_surat').val(1) : $('#nomor_surat').val(parseInt(data.nomor_surat) + 1)
                 }
             })
 

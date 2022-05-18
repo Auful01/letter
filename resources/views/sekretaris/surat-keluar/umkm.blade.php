@@ -4,13 +4,15 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
+                <input type="text" id="jenis_id" value="" hidden>
                 <div class="col-md-6">
                     <div class="row mb-4">
                         <div class="col-md-3 text-right">
                             <b>Domisili Pemohon</b>
                         </div>
                         <div class="col">
-                            <select name="" class="form-control" id="domisili"></select>
+                            {{-- <select name="" class="form-control" id="domisili"></select> --}}
+                            <input type="text" class="form-control" id="domisili">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -99,7 +101,7 @@
                             <b for="">Bidang usaha</b>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="bidang" id="nama_tempat" >
+                            <input type="text" class="form-control" name="bidang" id="bidang_usaha" >
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -125,7 +127,7 @@
                             <b for="">Alamat Usaha</b>
                         </div>
                         <div class="col">
-                            <textarea name="alamat" id="alamat" class="form-control" cols="30" rows="2"></textarea>
+                            <textarea name="alamat" id="alamat_usaha" class="form-control" cols="30" rows="2"></textarea>
                             {{-- <input type="text" class="form-control" name="alamat" id="alamat" > --}}
                         </div>
                     </div>
@@ -134,7 +136,7 @@
                             <b for="">Kelurahan</b>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="kelurahan">
+                            <input type="text" class="form-control" id="kelurahan_usaha">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -142,7 +144,7 @@
                             <b for="">Kecamatan</b>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="kecamatan">
+                            <input type="text" class="form-control" id="kecamatan_usaha">
                         </div>
                     </div>
                 </div>
@@ -158,15 +160,12 @@
                         <div class="col">
                             <select name="ttd" id="ttd" class="form-control">
                                 <option value="">-- Silahkan pilih nama --</option>
-                                {{-- <option value="auful">Muhammad Auful Kirom</option> --}}
-
                             </select>
-                            {{-- <input type="date" class="form-control" name="berlaku_dari" id=""> --}}
                         </div>
                     </div>
                 </div>
                 <div class="text-right">
-                    <button class="btn btn-sm btn-primary" id="save-skbm"> <i class="fas fa-check"></i> Simpan</button>
+                    <button class="btn btn-sm btn-primary" id="save-umkm"> <i class="fas fa-check"></i> Simpan</button>
                     <button class="btn btn-sm btn-danger"> <i class="fas fa-redo"></i> Kembali</button>
                 </div>
         </div>
@@ -177,5 +176,61 @@
 @section('script')
     <script>
         loadTtd()
+
+        $(document).ready(function () {
+            $('body #jenis_id').val(localStorage.getItem('surat_id'))
+
+            $.ajax({
+                url:'/get-last-umkm',
+                type : 'GET',
+                success : function(data){
+                    $('#nomer_surat').val(data.nomor_surat == null ? '1' : parseInt(data.nomor_surat) + 1)
+                }
+            })
+        })
+
+        $('#save-umkm').on('click', function() {
+            var data = {
+                _token: '{{ csrf_token() }}',
+                kategori_id : $('#jenis_id').val(),
+                domisili : $('#domisili').val(),
+                nama : $('#nama').val(),
+                telepon : $('#telepon').val(),
+                alamat : $('#alamat').val(),
+                desa : $('#kelurahan').val(),
+                kecamatan : $('#kecamatan').val(),
+                kabupaten : $('#kota').val(),
+                nomor_surat : $('#nomer_surat').val(),
+                nama_tempat : $('#nama_tempat').val(),
+                bidang_usaha : $('#bidang_usaha').val(),
+                modal : $('#modal').val(),
+                sarana : $('#sarana').val(),
+                alamat_usaha : $('#alamat_usaha').val(),
+                kelurahan_usaha : $('#kelurahan_usaha').val(),
+                kecamatan_usaha : $('#kecamatan_usaha').val(),
+                ttd : $('#ttd').find(':selected').val(),
+            }
+
+            $.ajax({
+                url:'/save-umkm',
+                type: 'POST',
+                data: data,
+                success: function(data) {
+                        Swal.fire({
+                            title: 'Berhasil',
+                            text: 'Data berhasil disimpan',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            // confirmButtonText: 'Ok'
+                        })
+
+                        setTimeout(function() {
+                            window.location.href = '/arsip-surat-keluar'
+                        }, 2000)
+                }
+            })
+        })
     </script>
 @endsection

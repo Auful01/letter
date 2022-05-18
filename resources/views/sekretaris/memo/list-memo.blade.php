@@ -55,7 +55,7 @@
 
         $('#detail-memo').on('click', function() {
             var id = $(this).data(id)
-            $('#modal-detail-memo').modal('show')
+            $('#modal-detail-memo').appendTo('body').modal('show')
 
             $.ajax({
                 url: 'detail-memo',

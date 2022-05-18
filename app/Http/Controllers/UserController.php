@@ -70,6 +70,12 @@ class UserController extends Controller
         return $user;
     }
 
+    public function hapusUser(Request $request)
+    {
+        $user = Profile::where('id', '=', $request->id)->delete();
+        return $user;
+    }
+
     public function profile()
     {
         $user = Profile::with('user', 'user.jabatan')->where('user_id', '=', Auth::user()->id)->first();

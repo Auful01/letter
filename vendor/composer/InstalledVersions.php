@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '122ace75851d6b87535c56359c03577081ad11c3',
+    'reference' => 'ca110011008fe7c63f122e4a50457ced120c6c26',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -96,12 +96,12 @@ private static $installed = array (
     ),
     'doctrine/dbal' => 
     array (
-      'pretty_version' => '3.3.2',
-      'version' => '3.3.2.0',
+      'pretty_version' => '3.3.6',
+      'version' => '3.3.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '35eae239ef515d55ebb24e9d4715cad09a4f58ed',
+      'reference' => '9e7f76dd1cde81c62574fdffa5a9c655c847ad21',
     ),
     'doctrine/deprecations' => 
     array (
@@ -521,7 +521,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '122ace75851d6b87535c56359c03577081ad11c3',
+      'reference' => 'ca110011008fe7c63f122e4a50457ced120c6c26',
     ),
     'laravel/sail' => 
     array (
