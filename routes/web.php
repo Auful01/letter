@@ -130,6 +130,8 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('print-sk', [SuratController::class, 'printSk']);
     Route::get('print-skpm', [SuratController::class, 'printSkpm']);
     Route::get('print-sktm', [SuratController::class, 'printSktm']);
+    Route::get('print-skn', [SuratController::class, 'printSkn']);
+    Route::get('print-umkm', [SuratController::class, 'printUmkm']);
 
     // DELETE SURAT
     Route::delete('hapus', [SuratController::class, 'hapus']);

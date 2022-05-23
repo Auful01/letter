@@ -846,7 +846,7 @@ class SuratController extends Controller
         // }
 
         $this->updateIdentity($request);
-        $data->nomor_surat = $request->nomer_surat;
+        $data->nomor_surat = $request->nomor_surat;
         $data->alamat = $request->alamat;
         $data->tujuan = $request->tujuan;
         $data->uraian = $request->uraian;
@@ -1024,7 +1024,7 @@ class SuratController extends Controller
     {
         // return $data;
         if ($request->ajax()) {
-            $data = DB::select('SELECT identitas.nomer_surat as nomer_surat ,kategori.nama_kategori as kategori, identitas.kategori_id as kategori_id, identitas.nomer_surat as nomer_surat,  identitas.nama as nama, identitas.created_at as created_at, identitas.nomer_surat as nomer_surat, identitas.ttd as ttd  FROM identitas INNER JOIN kategori ON kategori.id = identitas.kategori_id   ');
+            $data = DB::select('SELECT identitas.nomer_surat as nomer_surat ,kategori.nama_kategori as kategori, identitas.kategori_id as kategori_id, identitas.nomer_surat as nomer_surat,  identitas.nama as nama, identitas.created_at as created_at, identitas.nomer_surat as nomer_surat, identitas.ttd as ttd  FROM identitas INNER JOIN kategori ON kategori.id = identitas.kategori_id  ORDER BY identitas.created_at DESC');
 
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -1051,6 +1051,13 @@ class SuratController extends Controller
         $skbm = Skbm::with('identitas')->where('nomer_surat', '=', $request->nosurat)->firstOrFail();
         $ttd = User::with('jabatan')->where('id', '=', $skbm->ttd)->firstOrFail();
         return view('report', ['skbm' => $skbm, 'ttd' => $ttd]);
+    }
+
+    public function printUmkm(Request $request)
+    {
+        $umkm = Umkm::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
+        $ttd = User::with('jabatan')->where('id', '=', $umkm->ttd)->firstOrFail();
+        return view('report.report-umkm', ['umkm' => $umkm, 'ttd' => $ttd]);
     }
 
     public function printSktm(Request $request)
@@ -1088,7 +1095,7 @@ class SuratController extends Controller
 
         $skiu = Skiu::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
         $ttd = User::with('jabatan')->where('id', '=', $skiu->ttd)->firstOrFail();
-        return view('report.report-skiu', ['skbm' => $skiu, 'ttd' => $ttd]);
+        return view('report.report-skiu', ['skiu' => $skiu, 'ttd' => $ttd]);
     }
     public function printSp(Request $request)
     {
@@ -1106,13 +1113,21 @@ class SuratController extends Controller
     {
         $sk = Sk::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
         $ttd = User::where('id', '=', $sk->ttd)->firstOrFail();
-        return view('report', ['sk' => $sk, 'ttd' => $ttd]);
+        return view('report.report-sk', ['sk' => $sk, 'ttd' => $ttd]);
     }
+
+    public function printSkn(Request $request)
+    {
+        $skn = Skn::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
+        $ttd = User::where('id', '=', $skn->ttd)->firstOrFail();
+        return view('report.report-skn', ['skn' => $skn, 'ttd' => $ttd]);
+    }
+
     public function printSkpm(Request $request)
     {
         $skpm = Skpm::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
         $ttd = User::with('jabatan')->where('id', '=', $skpm->ttd)->firstOrFail();
-        return view('report', ['skpm' => $skpm, 'ttd' => $ttd]);
+        return view('report.report-skpm', ['skpm' => $skpm, 'ttd' => $ttd]);
     }
 
     public function hapus(Request $request)

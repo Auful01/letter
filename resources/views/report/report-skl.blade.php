@@ -662,7 +662,7 @@
                 <br>
                 <br>
 
-                <b>{{ $skbm->ttd }}</b>
+                <b>{{  $ttd->nama_depan . ' '. $ttd->nama_belakang }}</b>
             </div>
         </div>
     </div>

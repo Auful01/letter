@@ -576,10 +576,16 @@
             <tbody>
                 @foreach ($data as $d)
                     <tr>
-                        <td>{{$d->id}}</td>
+                        @php
+                            $no = 1;
+                        @endphp
+                        <td>{{$no}}</td>
                         <td>{{$d->nomer_surat}}</td>
                         <td>{{$d->nama}}</td>
                         <td>{{$d->created_at}}</td>
+                        @php
+                            $no++;
+                        @endphp
                     </tr>
                 @endforeach
             </tbody>

@@ -150,7 +150,6 @@
                     <div class="col">
                         <select name="ttd" id="" class="form-control ttd">
                             <option value="">-- Silahkan pilih nama --</option>
-                            <option value="auful">Muhammad Auful Kirom</option>
 
                         </select>
                         {{-- <input type="date" class="form-control" name="berlaku_dari" id=""> --}}
@@ -441,8 +440,6 @@
                     <div class="col">
                         <select name="ttd" id="" class="form-control ttd">
                             <option value="">-- Silahkan pilih nama --</option>
-                            <option value="auful">Muhammad Auful Kirom</option>
-
                         </select>
                         {{-- <input type="date" class="form-control" name="berlaku_dari" id=""> --}}
                     </div>
@@ -2093,7 +2090,7 @@
                         <label for="">Tanda tangan surat</label>
                     </div>
                     <div class="col">
-                        <select name="ttd" id="ttd" class="form-control ttd">
+                        <select name="ttd" id="" class="form-control ttd">
                             <option value="">-- Silahkan pilih nama --</option>
                         </select>
                     </div>
@@ -2384,6 +2381,7 @@
                                     'nosurat' : nosurat
                                 },
                                 success : function (data) {
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data.ttd)
 
                                     Swal.fire({
@@ -2413,6 +2411,7 @@
                                 },
                                 success : function (data) {
                                     // console.log(data);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data.ttd)
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2443,6 +2442,7 @@
                                 },
                                 success : function (data) {
                                     console.log(data);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data.ttd)
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2471,6 +2471,7 @@
                                 },
                                 success : function (data) {
                                     console.log(data);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data);
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2501,6 +2502,7 @@
                                 },
                                 success : function (data) {
                                     console.log(data);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data)
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2531,6 +2533,7 @@
                                 },
                                 success : function (data) {
                                     console.log(data);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data)
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2561,6 +2564,7 @@
                                 },
                                 success : function (data) {
                                     console.log(data.tgl_nikah);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data)
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2594,7 +2598,8 @@
                                     'nosurat' : nosurat
                                 },
                                 success : function (data) {
-                                    console.log(data.ttl_kuasa.split(', ')[1]);
+                                    console.log(data);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data)
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2618,8 +2623,8 @@
                                         $('.domisili').val(data.domisili_kuasa)
                                         $('.alamat_kuasa').val(data.alamat_kuasa)
                                         $('.kelurahan_kuasa').val(data.desa_kuasa)
-                                        $('.tempat_kuasa').val(data.ttl_kuasa.split(',')[0])
-                                        $('#tgl-lahir_kuasa').val(data.ttl_kuasa.split(', ')[1])
+                                        $('.tempat_kuasa').val(data.identitas.ttl.split(',')[0])
+                                        $('#tgl-lahir_kuasa').val(data.identitas.ttl.split(', ')[1])
                                         $('.kota_kuasa').val(data.kabupaten_kuasa)
                                         $('.kecamatan_kuasa').val(data.kecamatan_kuasa)
                                         $('.provinsi_kuasa').val(data.provinsi)
@@ -2639,6 +2644,7 @@
                                 },
                                 success : function (data) {
                                     console.log(data);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data);
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2672,6 +2678,7 @@
                                     'nosurat' : nosurat
                                 },
                                 success : function (data) {
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data.ttd);
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2710,6 +2717,7 @@
                                 },
                                 success : function (data) {
                                     console.log(data);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data.ttd);
                                     Swal.fire({
                                         text : 'Loading...',
@@ -2741,6 +2749,7 @@
                                     $('#edit-modal-skn').modal('show')
                                     console.log(data[0].ttl_pasangan.split(', ')[0]);
                                     console.log(data[0].ttd);
+                                    $('.ttd').empty()
                                     loadSelectedTtd(data[0].ttd);
                                     Swal.fire({
                                         text : 'Loading...',
@@ -3853,6 +3862,42 @@
                         console.log(true);
                             $.ajax({
                                 url : '/print-sktm',
+                                type : "GET",
+                                data : {
+                                    'nosurat' : nosurat
+                                },
+                                success : function (data) {
+                                    $('body').empty()
+                                    $('body').append(data)
+
+                                    setTimeout(() => {
+                                        window.print()
+                                    }, 100);
+                                }
+                            })
+                        break;
+                    case 'form-skn' :
+                        console.log(true);
+                            $.ajax({
+                                url : '/print-skn',
+                                type : "GET",
+                                data : {
+                                    'nosurat' : nosurat
+                                },
+                                success : function (data) {
+                                    $('body').empty()
+                                    $('body').append(data)
+
+                                    setTimeout(() => {
+                                        window.print()
+                                    }, 100);
+                                }
+                            })
+                        break;
+                    case 'form-umkm':
+                        console.log(true);
+                            $.ajax({
+                                url : '/print-umkm',
                                 type : "GET",
                                 data : {
                                     'nosurat' : nosurat

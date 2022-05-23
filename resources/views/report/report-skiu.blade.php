@@ -559,7 +559,7 @@
 </style>
 
 <body onload="window.print()">
-    @foreach ($skbm as $s)
+    @foreach ($skiu as $s)
 
     @endforeach
     <div class="container" style="margin-left: 4cm;margin-top: 3cm;margin-bottom: 3cm;margin-right: 3cm;">
@@ -595,55 +595,55 @@
             <li>
                 <div class="row">
                     <div class="col-md-3">Nama</div>
-                    <div class="col">: {{ $skbm->identitas->nama}}</div>
+                    <div class="col">: {{ $skiu->identitas->nama}}</div>
                 </div>
             </li>
             <li>
                 <div class="row">
                     <div class="col-md-3">NIK</div>
-                    <div class="col">: {{ $skbm->identitas->nik}}</div>
+                    <div class="col">: {{ $skiu->identitas->nik}}</div>
                 </div>
             </li>
             <li>
                 <div class="row">
                     <div class="col-md-3">Tempat/Tanggal Lahir</div>
-                    <div class="col">: {{ $skbm->identitas->ttl}}</div>
+                    <div class="col">: {{ $skiu->identitas->ttl}}</div>
                 </div>
             </li>
             <li>
                 <div class="row">
                     <div class="col-md-3">Jenis Kelamin</div>
-                    <div class="col">: {{ $skbm->identitas->kelamin}}</div>
+                    <div class="col">: {{ $skiu->identitas->kelamin}}</div>
                 </div>
             </li>
             <li>
                 <div class="row">
                     <div class="col-md-3">Agama</div>
-                    <div class="col">: {{ $skbm->identitas->agama}}</div>
+                    <div class="col">: {{ $skiu->identitas->agama}}</div>
                 </div>
             </li>
             <li>
                 <div class="row">
                     <div class="col-md-3">Pekerjaan</div>
-                    <div class="col">: {{ $skbm->identitas->pekerjaan}}</div>
+                    <div class="col">: {{ $skiu->identitas->pekerjaan}}</div>
                 </div>
             </li>
             <li>
                 <div class="row">
                     <div class="col-md-3">Status</div>
-                    <div class="col">: {{ $skbm->identitas->status_kawin}}</div>
+                    <div class="col">: {{ $skiu->identitas->status_kawin}}</div>
                 </div>
             </li>
             <li>
                 <div class="row">
                     <div class="col-md-3">Alamat</div>
-                    <div class="col">: {{ $skbm->identitas->alamat}}</div>
+                    <div class="col">: {{ $skiu->identitas->alamat}}</div>
                 </div>
             </li>
         </ul>
 
         <p>
-            Selanjutnya menerangkan bahwa orang tersebut benar-benar mempunyai {{$skbm->nama_usaha}} yang bertempat di {{$skbm->alamat_usaha}}. Yang ditujukan untuk {{$skbm->tujuan}}. Dalam keperluan {{$skbm->perlu}}.
+            Selanjutnya menerangkan bahwa orang tersebut benar-benar mempunyai {{$skiu->nama_usaha}} yang bertempat di {{$skiu->alamat_usaha}}. Yang ditujukan untuk {{$skiu->tujuan}}. Dalam keperluan {{$skiu->perlu}}.
         </p>
         <p>
             Demikian surat keterangan ini dibuat dengan sebenarnya untuk dipergunakan sebagaimana mestinya
@@ -662,7 +662,7 @@
                 <br>
                 <br>
 
-                <b>{{ $skbm->ttd }}</b>
+                <b>{{  $ttd->nama_depan . ' '. $ttd->nama_belakang }}</b>
             </div>
         </div>
     </div>
