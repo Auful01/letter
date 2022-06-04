@@ -9,6 +9,7 @@ use App\Models\Memo;
 use App\Models\Sktm;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,21 +27,26 @@ Auth::routes();
 Route::get('load-jabatan', [UserController::class, 'loadJabatan']);
 Route::get('load-kategori', [UserController::class, 'loadKategori']);
 Route::get('kategori-surat', [SuratController::class, 'loadKategori'])->name('kategori-surat');
+Route::get('load-profile', [UserController::class, 'loadProfile']);
+Route::post('update-profile', [UserController::class, 'updateProfile']);
 Route::get('dashboard', function () {
     $user = User::all()->count();
-    $sktmNow = Sktm::with('user')->where('created_at', '=', date("Y-m-d H:i:s"))->get()->count();
+    $sktmNow = DB::select('SELECT COUNT(id) as id FROM identitas WHERE DATE(created_at) = DATE(NOW())');
+    // $sktmNow = Identitas::where('created_at', '=', date('Y-m-d'))->count();
     $sktm = Identitas::all()->count();
     $memo = Memo::all()->count();
     // return $user;
-    return view('sekretaris.dashboard', ['user' => $user, 'sktm' => $sktm, 'sktmNow' => $sktmNow, 'memo' => $memo]);
+    return view('sekretaris.dashboard', ['user' => $user, 'sktm' => $sktm, 'memo' => $memo], compact('sktmNow'));
 })->name('dashboard');
+
+
 
 Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::post('store-sktm', [SuratController::class, 'store'])->name('store-sktm');
 
-    Route::get('input-surat', function () {
+    Route::get('buat-surat', function () {
         return view('sekretaris.input-surat');
-    })->name('input-surat');
+    })->name('buat-surat');
 
     Route::get('registrasi-anggota', function () {
         return view('sekretaris.keanggotaan.registrasi');
@@ -118,6 +124,7 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('find-umkm', [SuratController::class, 'findUmkm']);
     Route::get('find-sktm', [SuratController::class, 'findSktm']);
     Route::get('find-skn', [SuratController::class, 'findSkn']);
+    Route::get('find-skdu', [SuratController::class, 'findSkdu']);
 
     // PRINT SURAT
     Route::get('print-skbm', [SuratController::class, 'printSkbm']);
@@ -149,6 +156,8 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::post('save-umkm', [SuratController::class, 'saveUmkm']); //FIXED
     Route::post('save-sktm', [SuratController::class, 'saveSktm']); //FIXED
     Route::post('save-skn', [SuratController::class, 'saveSkn']);
+    Route::post('save-skdu', [SuratController::class, 'saveSkdu']);
+    Route::post('save-spm', [SuratController::class, 'saveSpm']);
 
     // UpdATE SKBM
     Route::post('update-skbm', [SuratController::class, 'updateSkbm']);
@@ -163,6 +172,7 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::post('update-sktm', [SuratController::class, 'updateSktm']);
     Route::post('update-skn', [SuratController::class, 'updateSkn']);
     Route::post('update-umkm', [SuratController::class, 'updateUmkm']);
+    Route::post('update-skdu', [SuratController::class, 'updateSkdu']);
 
     // GET CURRENT CATEGORY
     Route::get('find-category', [SuratController::class, 'findCategory']);
@@ -182,12 +192,15 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('get-last-skpm', [SuratController::class, 'getLastSkpm']);
     Route::get('get-last-umkm', [SuratController::class, 'getLastUmkm']);
     Route::get('get-last-skn', [SuratController::class, 'getLastSkn']);
+    Route::get('get-last-skdu', [SuratController::class, 'getLastSkdu']);
+    Route::get('get-last-spm', [SuratController::class, 'getLastSpm']);
 
     // ARSIP
     Route::get('arsip-surat-keluar', function () {
         return view('sekretaris.arsip-sk');
     })->name('arsip-surat-keluar');
 
+    Route::post('update-arsip', [ArsipController::class, 'updateArsip']);
 
     Route::post('register-anggota', [UserController::class, 'registerAnggota']);
 
@@ -195,6 +208,8 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('memo', function () {
         return view('sekretaris.memo.memo');
     })->name('memo');
+
+    Route::get('last-memo', [MemoController::class, 'getLastMemo']);
 
     Route::post('save-memo', [MemoController::class, 'store'])->name('save-memo');
 

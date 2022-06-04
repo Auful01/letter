@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ArsipController extends Controller
 {
@@ -21,7 +22,7 @@ class ArsipController extends Controller
         }
         Surat::create([
             'user_id' => Auth::user()->id,
-            'no_surat' => $request->nomer_surat,
+            'no_surat' => '002/L/' . $request->nomer_surat . '/V/2022',
             'perihal' => $request->perihal,
             'tgl_menerima' => $request->tgl_menerima,
             'tgl_surat' => $request->tgl_surat,
@@ -41,8 +42,33 @@ class ArsipController extends Controller
 
     public function detailArsip(Request $request)
     {
-        return Surat::find($request->id);
+        return Surat::with('user')->find($request->id);
     }
+
+    public function updateArsip(Request $request)
+    {
+        // return $request;
+        $surat = Surat::find($request->id);
+        $filename = $surat->file_surat;
+        if ($request->file('file')) {
+            Storage::delete('public/file/' . $surat->file_surat);
+            $filename = $request->file('file')->getClientOriginalName();
+            $request->file('file')->storeAs('file', $filename, 'public');
+        } else {
+            $filename = $surat->file_surat;
+        }
+
+        $surat->no_surat = $request->no_surat;
+        $surat->file_surat = $filename;
+        $surat->perihal = $request->perihal;
+        $surat->tgl_menerima = $request->tgl_menerima;
+        $surat->tgl_surat = $request->tgl_surat;
+        $surat->sifat_surat = $request->sifat_surat;
+        $surat->asal_instansi = $request->instansi;
+        $surat->save();
+        return $surat;
+    }
+
 
     public function selectedArsip(Request $request)
     {

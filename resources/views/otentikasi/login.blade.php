@@ -33,22 +33,26 @@
 
 
     <div class="container">
-        <div class="row ">
+        <div class="row d-flex justify-content-center ">
 
-            <div class="card border-0 shadow" style="margin-top: 20%; width: 100%">
+            <div class="col-md-8" style="margin-top: 2%; ">
+                <div class="text-center">
+                    <img src="{{asset('img/kop-bg.png')}}" class="img-fluid mt-4 " alt="" style="max-height: 250px">
+                    <h5 style="color: white; font-weight: 800">SELAMAT DATANG DI SMART LETTER SAVE</h5>
+                    <h5 style="color: white; font-weight: 800">DESA SIDODADI KABUPATEN BLITAR</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="card border-0 shadow" >
                 {{-- <div class="card-header"> --}}
 
                 {{-- </div> --}}
                 <div class="card-body">
+
+                    <h3>Login</h3>
+                    <p>Sign in to your account to continue</p>
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="text-center">
-                                <img src="{{asset('img/login.png')}}" class="img-fluid mt-4 " alt="" style="max-height: 250px">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h3>Login</h3>
-                            <p>Sign in to your account to continue</p>
                             <form method="POST" class="p-4" action="{{ route('login') }}">
                                 @csrf
 
@@ -91,7 +95,6 @@
                                     {{ __('Login') }}
                                 </button>
                             </div>
-                            </form>
                         </div>
                     </div>
 

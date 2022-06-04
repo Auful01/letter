@@ -109,7 +109,8 @@
                             <b>Domisili Penerima Kuasa</b>
                         </div>
                         <div class="col">
-                            <select name="" class="form-control" id="domisili_kuasa"></select>
+                            {{-- <select name="" class="form-control" id="domisili_kuasa"></select> --}}
+                            <input type="text" name="domisili_kuasa" id="domisili_kuasa" class="form-control">
                         </div>
                     </div>
                     <div class="row mb-4">

@@ -129,6 +129,19 @@
     <script>
 
 
+        $(document).ready(function() {
+            // $('#dataTable').DataTable();
+            $.ajax({
+                url : "/load-profile",
+                type : 'GET',
+                success : function(data){
+                    console.log(data);
+                     $('body #photo-profile').attr('src', `{{ asset( 'storage/profile/${data.foto}' ) }}`);
+
+                }
+            })
+        });
+
          function getIdentity() {
             var nik = $('#nik').val()
             var kategoriId = $('#jenis_id').val()

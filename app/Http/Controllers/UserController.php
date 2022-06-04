@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Alert;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -24,6 +25,36 @@ class UserController extends Controller
     {
         $kat = Kategori::all();
         return $kat;
+    }
+
+    public function loadProfile()
+    {
+        return Profile::with('user')->where('user_id', '=', Auth::user()->id)->first();
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $profile = Profile::with('user')->where('user_id', '=', Auth::user()->id)->first();
+        $user = User::find($profile->user_id);
+        $filename = $profile->foto;
+
+        if ($request->file('foto')) {
+            Storage::delete('public/profile/' . $filename);
+            $file = $request->file('foto');
+            $filename = $file->getClientOriginalName();
+            $request->file('foto')->storeAs('profile', $filename, 'public');
+        } else {
+            $filename = $profile->foto;
+        }
+        $nama_belakang = str_word_count($request->nama) < 2 ? ' ' : explode(' ', $request->nama, 2)[1];
+        $profile->foto = $filename;
+        $user->nama_depan = explode(' ', $request->nama)[0];
+        $user->nama_belakang = $nama_belakang;
+        $profile->alamat = $request->alamat;
+        $user->save();
+        return $profile->save();
+
+        // return Profile::with('user')->where('user_id', '=', Auth::user()->id)->update($request->all());
     }
 
     public function dataAnggota()

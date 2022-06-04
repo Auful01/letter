@@ -6,6 +6,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mb-3">
+                        <input type="text" id="jenis_id" value="" hidden>
                         <div class="card-header bg-warning">
                             Catatan!
                         </div>
@@ -21,9 +22,8 @@
                             <label for="">Domisili Pemohon</label>
                         </div>
                         <div class="col">
-                            <select name="" class="form-control" id="domisili">
-                                <option value="">-- Pilih Domisili Pemohon --</option>
-                            </select>
+                            <input type="text" id="domisili" class="form-control">
+
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -42,7 +42,7 @@
                            <input type="text" class="form-control" id="tempat" name="tempat">
                         </div>
                         <div class="col">
-                           <input type="date" class="form-control" id="tgl_lahir" name="lahir">
+                           <input type="date" class="form-control" id="tgl-lahir" name="lahir">
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                             <label for="">Kewarganegaraan</label>
                         </div>
                         <div class="col">
-                           <input type="text" class="form-control" id="warganegara" name="warganegara">
+                           <input type="text" class="form-control" id="kebangsaan" name="warganegara">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -101,7 +101,7 @@
                             <label for="">Kota/Kabupaten</label>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="kota" name="kota">
+                            <input type="text" class="form-control" id="kabupaten" name="kabupaten">
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                             <label for="">Nama</label>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="nama_mayit" id="nama_mayit" >
+                            <input type="text" class="form-control" name="nama_mati" id="nama_mayit" >
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                             <label for="">Tanggal Meninggal</label>
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" name="tgl_wafat" id="tgl_wafat" >
+                            <input type="date" class="form-control" name="tgl_mati" id="tgl_mati" >
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                     </div>
                 </div>
                 <div class="text-right">
-                    <button class="btn btn-sm btn-primary" id="save-skbm"> <i class="fas fa-check"></i> Simpan</button>
+                    <button class="btn btn-sm btn-primary" id="save-spm"> <i class="fas fa-check"></i> Simpan</button>
                     <button class="btn btn-sm btn-danger"> <i class="fas fa-redo"></i> Kembali</button>
                 </div>
         </div>
@@ -171,5 +171,65 @@
 @section('script')
     <script>
         loadTtd()
+
+        $(document).ready(function () {
+            $.ajax({
+                url : '/get-last-spm',
+                type : 'GET',
+                success : function (data) {
+                    console.log(data);
+                    data == '' ? $('#nomer_surat').val(1) : $('#nomer_surat').val(parseInt(data.nomer_surat) + 1)
+                }
+            })
+
+            $('body #jenis_id').val(localStorage.getItem('surat_id'))
+        //    console.log(localStorage.getItem('surat_id'));
+        })
+
+        $('#save-spm').on('click', function () {
+            var fd = new FormData();
+            var identity = getIdentity()
+            var noSurat = $('#nomer_surat').val()
+
+            fd.append('_token', '{{ csrf_token() }}')
+            fd.append('nama', identity.nama)
+            fd.append('ttl', identity.ttl)
+            fd.append('domisili', $('#domisili').val())
+            fd.append('kategori_id', identity.kategoriId)
+            fd.append('alamat', identity.alamat)
+            fd.append('agama', identity.agama)
+            fd.append('kebangsaan', identity.kebangsaan)
+            fd.append('agama', identity.agama)
+            fd.append('domisili', $('#domisili').val())
+            fd.append('kelurahan', $('#kelurahan').val())
+            fd.append('kecamatan', $('#kecamatan').val())
+            fd.append('kabupaten', $('#kabupaten').val())
+            fd.append('nomer_surat', $('#nomer_surat').val())
+            fd.append('nomor_surat', $('#nomer_surat').val())
+            fd.append('nama_mati', $('#nama_mati').val())
+            fd.append('tgl_mati', $('#tgl_mati').val())
+            fd.append('ttd', $('#ttd').val())
+
+            $.ajax({
+                url : '/save-spm',
+                type : 'POST',
+                data : fd,
+                contentType : false,
+                processData : false,
+                success : function (data) {
+                    Swal.fire({
+                        title : 'Success',
+                        text : 'Data saved!',
+                        icon : 'success',
+                        showConfirmButton : false,
+                        timer : 2000,
+                        timeProgressBar :  true
+                    })
+                    setTimeout(() => {
+                        window.open('{{route('arsip-surat-keluar')}}')
+                    }, 2000);
+                }
+            })
+        })
     </script>
 @endsection

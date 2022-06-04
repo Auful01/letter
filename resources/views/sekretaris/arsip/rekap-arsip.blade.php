@@ -108,8 +108,12 @@
                                 <td>{{ $s->perihal }}</td>
                                 <td>{{ date('d M Y', strtotime($s->created_at)) }}</td>
                                 <td>{{ date('d M Y', strtotime($s->created_at)) }}</td>
-                                <td> <button class="btn btn-sm btn-primary detail-arsip" data-id="{{ $s->id }}"
-                                        title="Detail Surat"><i class="fas fa-eye"></i></button> <button
+                                <td>
+                                    <button class="btn btn-sm btn-warning edit-arsip" data-id="{{ $s->id }}"
+                                        title="Detail Surat"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-sm btn-primary detail-arsip" data-id="{{ $s->id }}"
+                                        title="Detail Surat"><i class="fas fa-eye"></i></button>
+                                        <button
                                         class="btn btn-sm btn-danger hapus-arsip" data-id="{{ $s->id }}"><i
                                             class="fas fa-eraser"></i></button></td>
                             </tr>
@@ -192,6 +196,82 @@
         </div>
     </div>
 
+    {{-- Edit --}}
+    <div class="modal fade" id="modal-edit-arsip" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Surat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="" id="id">
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="">Nomer Surat Masuk</label>
+                            <input type="text" class="form-control" value="" id="no_surat" >
+                            {{-- <input type="text" class="form-control" value="002/L/409.52.06/V/2022" name="nomer_surat"
+                                id="nomer_surat" hidden> --}}
+                        </div>
+
+                        <div class="form-group col">
+                            <label for="">Perihal</label>
+                            <input type="text" class="form-control" placeholder="Perihal" name="perihal" id="perihal">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="">Tanggal Surat</label>
+                            <input type="date" class="form-control" name="tgl_surat" id="tgl_surat">
+                        </div>
+                        <div class="form-group col">
+                            <label for="">Tanggal Menerima</label>
+                            <input type="date" class="form-control" name="tgl_menerima" id="tgl_menerima">
+                        </div>
+                        <div class="form-group col">
+                            <label for="">Sifat Surat</label>
+                            <input type="text" class="form-control" name="sifat_surat" id="sifat_surat">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="">Asal Instansi</label>
+                            <input type="text" class="form-control" name="instansi" id="instansi">
+                        </div>
+
+                        <div class="form-group col">
+                            <label for="">Penginput</label>
+                            <input type="text" class="form-control" value="" id="penginput" disabled>
+                            {{-- <input type="text" class="form-control" value="{{Auth::user()->nama_depan}} {{Auth::user()->nama_belakang}}" name="penginput_masuk" id="penginput_masuk" hidden> --}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">File Surat Masuk</label>
+                            <br>
+                            {{-- <embed src="" class="embed" type=""> --}}
+                                {{-- <iframe src="" class="embed" frameborder="0"></iframe> --}}
+
+                            {{-- <button class="btn btn-danger print_surat"><i class="fas fa-print"></i></button>
+                            <a href="" class="btn btn-sm btn-primary file_surat" id="file_surat"><i class="fas fa-download"></i></a> --}}
+                            <input type="file" title="Coba" class="form-control" value="{{date('d M Y')}}" name="file_surat" id="file">
+                            <small id="file_surat"></small>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-sm btn-primary" id="update-arsip"> <i class="fas fa-check"></i> Simpan</button>
+                        <button class="btn btn-sm btn-danger tutup"> <i class="fas fa-times"></i> Batal</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
@@ -199,11 +279,17 @@
             $('#table-sktm').DataTable();
         });
 
+        $('.tutup').on('click', function (params) {
+            $('.modal').modal('hide');
+        })
+
         $(document).ready(function() {
             $('body #tanggal').prepend("<option value='' selected='selected'>Tanggal</option>")
             $('body #bulan').prepend("<option value='' selected='selected'>Bulan</option>")
             $('body #tahun').prepend("<option value='' selected='selected'>Tahun</option>")
         })
+
+
 
         $(document).ready(function() {
             const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -319,25 +405,6 @@
                 },
                 success: function(data) {
                     console.log(data);
-                    //         const monthNames = ["January", "February", "March", "April", "May", "June",
-                    //     "July", "August", "September", "October", "November", "December"
-                    // ];
-                    //         var buat = new Date(data.tanggal_pembuatan)
-                    //         var d = buat.getDate()
-                    //         var m = buat.getMonth()
-                    //         var y = buat.getFullYear()
-                    //         if (d < 10) {
-                    //             d = '0' + d;
-                    //         }
-
-                    //         var tgl = d + ' ' + monthNames[m].substring('0','3') + ' ' + y
-                    // var tgl = `date('d M Y', strtotime(`+buat+`))`
-                    // console.log(`{{ date('d M Y', strtotime('2022-02-10')) }}`);
-                    // console.log(`{{ date('d M Y', strtotime(`+buat+`)) }}`);
-                    // // console.log(`"{{ date('d M Y', strtotime('"`+ buat +"')) }}"`);
-                    // console.log(buat);
-                    // console.log(`{{ date('d M Y', strtotime('22-10-2022')) }}`);
-
                     $('body #no_surat').val(data.no_surat).prop('disabled', true)
                     $('body #perihal').val(data.perihal).prop('disabled', true)
                     $('body #tgl_surat').val(data.tgl_surat).prop('disabled', true)
@@ -350,21 +417,90 @@
                     $('body .embed').attr('src',
                         `{{ asset('storage/file/${data.file_surat}') }}`)
                     localStorage.setItem('file', data.file_surat)
-                    $('body #penginput').val(data.user_id).prop('disabled', true)
-                    // $('body #jenis_kelamin').val(data.jenis_kelamin).prop('selected',true).prop('disabled',true)
-                    // $('body #agama').val(data.agama).prop('selected', true).prop('disabled',true)
-                    // $('body #ttl').val(data.ttl).prop('disabled',true)
-                    // $('body #nik').val(data.nik).prop('disabled',true)
-                    // $('body #ktp').val(data.ktp).prop('disabled',true)
-                    // $('body #pekerjaan').val(data.pekerjaan).prop('disabled',true)
-                    // $('body #pendidikan').val(data.pendidikan).prop('disabled',true)
-                    // $('body #status').val(data.status).prop('selected', true).prop('disabled',true)
-                    // $('body #alamat').val(data.alamat).prop('disabled',true)
-                    // $('body #keperluan').val(data.keperluan).prop('disabled',true)
-                    // $('body #keterangan').val(data.keterangan).prop('disabled',true)
+                    $('body #penginput').val(data.user.nama_depan + ' ' + data.user.nama_belakang).prop('disabled', true)
+
                 }
             })
         })
+
+        $('body').on('click', '.edit-arsip', function() {
+            var id = $(this).data('id')
+            $('#modal-edit-arsip').appendTo('body').modal('show')
+            console.log(id);
+            $.ajax({
+                url: 'detail-arsip',
+                type: 'GET',
+                data: {
+                    'id': id
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('body #id').val(data.id).prop('hidden', true)
+                    $('body #no_surat').val(data.no_surat)
+                    $('body #perihal').val(data.perihal)
+                    $('body #tgl_surat').val(data.tgl_surat)
+                    $('body #sifat_surat').val(data.sifat_surat)
+                    $('body #tgl_menerima').val(data.tgl_menerima)
+                    $('body #instansi').val(data.asal_instansi)
+                    $('body #file_surat').append(data.file_surat)
+                    $('body .file_surat').attr('href',
+                        `{{ asset('storage/file/${data.file_surat}') }}`)
+                    $('body .embed').attr('src',
+                        `{{ asset('storage/file/${data.file_surat}') }}`)
+                    localStorage.setItem('file', data.file_surat)
+                    $('body #penginput').val(data.user.nama_depan + ' ' + data.user.nama_belakang).prop('disabled', true)
+
+                }
+            })
+        })
+
+        $('#update-arsip').on('click', function() {
+            var fd = new FormData();
+            var modal = '#modal-edit-arsip'
+            var id = $(modal).find('#id').val()
+            var no_surat = $('body #no_surat').val()
+            var perihal = $(modal).find('#perihal').val()
+            var tgl_surat = $(modal).find('#tgl_surat').val()
+            var sifat_surat = $(modal).find('#sifat_surat').val()
+            var tgl_menerima = $(modal).find('#tgl_menerima').val()
+            var instansi = $(modal).find('#instansi').val()
+            var file =  $(modal).find('#file')[0].files[0]
+            var penginput = $(modal).find('#penginput').val()
+
+            fd.append('_token', '{{ csrf_token() }}')
+            fd.append('id', id)
+            fd.append('no_surat', no_surat)
+            fd.append('perihal', perihal)
+            fd.append('tgl_surat', tgl_surat)
+            fd.append('sifat_surat', sifat_surat)
+            fd.append('tgl_menerima', tgl_menerima)
+            fd.append('instansi', instansi)
+            fd.append('file', file)
+            fd.append('penginput', penginput)
+
+            $.ajax({
+                url: 'update-arsip',
+                type: 'POST',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function() {
+                    Swal.fire({
+                        title: 'Updated!',
+                        text: 'Your file has been updated.',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1500);
+                }
+            })
+        })
+
+
 
         $('body').on('click', '.print_surat', function () {
             var file = localStorage.getItem('file')
@@ -412,7 +548,7 @@
                             $('<td>').append(tgl),
                             $('<td>').append(tgl),
                             $('<td>').append(
-                                '<button class="btn btn-sm btn-primary detail-arsip" data-id=' +
+                                ' <button class="btn btn-sm btn-primary detail-arsip" data-id=' +
                                 v.id +
                                 ' title="Detail Surat"><i class="fas fa-eye"></i></button>  <button class="btn btn-sm btn-danger hapus-arsip" data-id=' +
                                 v.id + '><i class="fas fa-eraser"></i></button>')

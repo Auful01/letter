@@ -571,6 +571,8 @@
                 <th>Nomor Surat</th>
                 <th>Nama Pemohon</th>
                 <th>Tgl Surat</th>
+                <th>TTD</th>
+                <th>Admin</th>
                 {{-- <th>Tanda Tangan</th> --}}
             </thead>
             <tbody>
@@ -583,6 +585,8 @@
                         <td>{{$d->nomer_surat}}</td>
                         <td>{{$d->nama}}</td>
                         <td>{{$d->created_at}}</td>
+                        <td>{{$d->nd . ' ' .  $d->nb}}</td>
+                        <td>{{ Auth::user()->nama .' '. Auth::user()->nama_belakang}}</td>
                         @php
                             $no++;
                         @endphp

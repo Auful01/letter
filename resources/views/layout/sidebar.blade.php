@@ -5,7 +5,7 @@
         {{-- <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div> --}}
-        <div class="sidebar-brand-text mx-3">SMART LETTERS SAVE </div>
+        <div class=" mx-3" style="font-size: 8pt"> <img src="{{asset('img/kop-bg.png')}}" style="width: 60px" alt=""> SMART LETTERS SAVE </div>
     </a>
 
     <!-- Divider -->
@@ -59,7 +59,7 @@
     @if (Auth::user()->jabatan->jabatan == 'Sekretaris')
 
         <li class="nav-item ">
-            <a class="nav-link" href="{{ route('input-surat') }}">
+            <a class="nav-link" href="{{ route('buat-surat') }}">
                 <i class="far fa-calendar-alt"></i>
                 <span>Buat Surat</span></a>
         </li>

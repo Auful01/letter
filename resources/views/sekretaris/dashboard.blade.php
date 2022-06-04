@@ -66,14 +66,17 @@
                 <div class="icon">
                     <i class="fas fa-clipboard-list " ></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('data-anggota')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <div class="col-lg-3 col-6">
 
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3 style="color: #fff">{{ $sktmNow }}</h3>
+                    @foreach ($sktmNow as $now)
+
+                    <h3 style="color: #fff">{{ $now->id }}</h3>
+                    @endforeach
                     <p style="color: #fff">SURAT (HARI INI)</p>
                 </div>
                 <div class="icon">
@@ -95,19 +98,7 @@
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-lg-3 col-6">
 
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3 style="color: #fff">####</h3>
-                    <p style="color: #fff">New Orders</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-envelope-open" ></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
 
         @if (Auth::user()->jabatan->jabatan == 'Kepala Desa')
             <div class="col-md-3  ">
@@ -130,8 +121,36 @@
                 </div>
             </div>
         @endif
-
-
-
     </div>
+        <h5>Hallo, Selamat Datang {{Auth::user()->nama_depan . ' '. Auth::user()->nama_belakang}}</h5>
+
+
+        <div class="alert alert-info alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <b><i class="fas fa-file-alt"></i>  &nbsp;MEMO</b>
+            <hr>
+            {{-- <strong>Coba</strong> --}}
+            <p id="last-memo"></p>
+            <small id="tgl-memo"></small>
+          </div>
+
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            url: "/last-memo",
+            method: "GET",
+            success: function(data){
+                // console.log(data);
+                var date = data.created_at
+                $("#last-memo").append(data.isi);
+                $("#tgl-memo").append(date.split('T')[0]);
+
+            }
+        });
+        })
+
+</script>
 @endsection

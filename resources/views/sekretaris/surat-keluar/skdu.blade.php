@@ -16,12 +16,13 @@
                             </ol>
                         </div>
                     </div>
+                    <input type="text" id="jenis_id" value="" hidden>
                     <div class="row mb-4">
                         <div class="col-md-3 text-right">
                             <b>Domisili Pemohon</b>
                         </div>
                         <div class="col">
-                            <select name="" class="form-control" id="domisili"></select>
+                            <input type="text" class="form-control" name="" id="domisili">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -29,7 +30,7 @@
                             <b>Nama</b>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" id="nama">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -37,10 +38,10 @@
                             <b>Tempat, Tanggal Lahir</b>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" id="tempat">
                         </div>
                         <div class="col-md-3">
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" id="tgl-lahir">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -120,7 +121,7 @@
                             <b for="">Kota/Kabupaten</b>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="kota">
+                            <input type="text" class="form-control" id="kabupaten">
                         </div>
                     </div>
                 </div>
@@ -154,7 +155,7 @@
                                 <b for="">Tanggal Surat</b>
                             </div>
                             <div class="col-md-4">
-                                <input type="data" class="form-control" name="tgl_surat" id="tgl_surat" >
+                                <input type="date" class="form-control" name="tgl_surat" id="tgl_surat" >
                             </div>
                         </div>
                         <div class="row mb-4">
@@ -162,8 +163,7 @@
                                 <b for="">Keperluan</b>
                             </div>
                             <div class="col-md-4">
-                                <textarea name="keperluan" class="form-control" id="keperluan" cols="30" rows="2" ></textarea>
-                                {{-- <input type="data" class="form-control" name="tgl_surat" id="tgl_surat" > --}}
+                                <textarea name="keperluan" class="form-control" id="perlu" cols="30" rows="2" ></textarea>
                             </div>
                         </div>
                     </div>
@@ -196,7 +196,7 @@
                                 <b for="">Alamat usaha</b>
                             </div>
                             <div class="col">
-                                <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="2" ></textarea>
+                                <textarea name="alamat" class="form-control" id="alamat_usaha" cols="30" rows="2" ></textarea>
                             </div>
                         </div>
                         <div class="row mb-4">
@@ -232,7 +232,7 @@
                     </div>
                 </div>
                 <div class="text-right">
-                    <button class="btn btn-sm btn-primary" id="save-skbm"> <i class="fas fa-check"></i> Simpan</button>
+                    <button class="btn btn-sm btn-primary" id="save-skdu"> <i class="fas fa-check"></i> Simpan</button>
                     <button class="btn btn-sm btn-danger"> <i class="fas fa-redo"></i> Kembali</button>
                 </div>
         </div>
@@ -265,39 +265,40 @@
             }
         })
 
-        $('#save-skbm').on('click', function() {
+        $('#save-skdu').on('click', function() {
             var fd = new FormData();
             var identity = getIdentity()
             var noSurat = $('#nomer_surat').val()
             var perlu = $('#perlu').val()
-            var berlaku = $('#berlaku').val()
-            var sampai = $('#sampai').val()
-            var tujuan = $('#tujuan').val()
             var file = $('#sk_rtrw')[0].files[0]
             var ttd = $('#ttd').val()
 
+
             fd.append('_token', '{{ csrf_token() }}')
-            fd.append('nik', identity.nik)
             fd.append('nama', identity.nama)
             fd.append('ttl', identity.ttl)
             fd.append('kelamin', identity.kelamin)
             fd.append('pekerjaan', identity.kerja == 'lain' ? identity.kerjaLain : identity.kerja)
-            fd.append('nkk', identity.nokk)
+            fd.append('domisili', $('#domisili').val())
             fd.append('kategori_id', identity.kategoriId)
             fd.append('alamat', identity.alamat)
             fd.append('agama', identity.agama)
-            fd.append('status_kawin', identity.statusKawin)
-            fd.append('pendidikan', identity.pendidikan)
             fd.append('nomer_surat', noSurat)
-            fd.append('perlu', perlu)
-            fd.append('berlaku', berlaku)
-            fd.append('sampai', sampai)
-            fd.append('tujuan',tujuan)
+            fd.append('perlu', $('#perlu').val())
+            fd.append('kelurahan', $('#kelurahan').val() )
+            fd.append('kecamatan', $('#kecamatan').val() )
+            fd.append('kabupaten', $('#kabupaten').val() )
+            fd.append('tanggal_surat', $('#tgl_surat').val() )
+            fd.append('nama_usaha', $('#nama_usaha').val() )
+            fd.append('bidang', $('#bidang').val() )
+            fd.append('alamat_usaha', $('#alamat_usaha').val() )
+            fd.append('rt', $('#rt').val() )
+            fd.append('rw', $('#rw').val() )
             fd.append('file',file)
             fd.append('ttd',ttd)
 
             $.ajax({
-                url : '/save-skbm',
+                url : '/save-skdu',
                 type : 'POST',
                 data : fd,
                 contentType : false,
@@ -322,11 +323,11 @@
 
         $(document).ready(function () {
             $.ajax({
-                url : '/get-last-skbm',
+                url : '/get-last-skdu',
                 type : 'GET',
                 success : function (data) {
                     console.log(data);
-                    data == null ? $('#nomer_surat').val(1) : $('#nomer_surat').val(parseInt(data.nomer_surat) + 1)
+                    data == '' ? $('#nomer_surat').val(1) : $('#nomer_surat').val(parseInt(data.nomer_surat) + 1)
                 }
             })
 

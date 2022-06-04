@@ -7,7 +7,7 @@
                 Kode Surat
             </div>
             <div class="col-md-4">
-                Nama Kategori
+                Nama Surat
             </div>
             <div class="col-md-2">
                 Aksi
@@ -35,7 +35,7 @@
                             <div class="card-body">
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-md-2">
-                                        ${v.id}
+                                        ${v.kode_kategori}
                                     </div>
                                     <div class="col-md-6" id="nama_kategori">
                                         ${v.nama_kategori}

@@ -557,6 +557,357 @@
     </div>
 </div>
 
+{{-- EDIT MODAL SKDU --}}
+<div class="modal fade" id="edit-modal-skdu" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit SKDU</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <input type="text" class="identitas_id"  value="" hidden>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card shadow border-0 mb-4">
+                        <div class="card-header alert-warning bg-warning">
+                            Catatan
+                        </div>
+                        <div class="card-body">
+                            <ol>
+                                <li>Untuk Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+                                <li>Untuk Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <input type="text" id="jenis_id" value="" hidden>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <b>Domisili Pemohon</b>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control domisili" name="" id="domisili">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <b>Nama</b>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control nama" id="nama">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <b>Tempat, Tanggal Lahir</b>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control tempat" id="tempat">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="date" class="form-control tgl-lahir" id="tgl-lahir">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <b>Jenis kelamin</b>
+                        </div>
+                        <div class="col">
+                            <select name="" class="form-control kelamin" id="kelamin">
+                                <option value="">-- Pilih Jenis Kelamin --</option>
+                                <option value="laki">Laki-laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <b>Agama</b>
+                        </div>
+                        <div class="col">
+                            <select name="" class="form-control agama" id="agama">
+                                <option value="">-- Pilih Agama --</option>
+                                <option value="islam">Islam</option>
+                                <option value="kristen">Kristen</option>
+                                <option value="hindu">Hindu</option>
+                                <option value="budha">Budha</option>
+                                <option value="konghucu">Konghucu</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <b for="">Pekerjaan</b>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="pekerjaan" class="form-control pekerjaan" id="pekerjaan">
+                                <option value="">-- Pilih Jenis pekerjaan --</option>
+                                <option value="swasta">Swasta</option>
+                                <option value="wirausaha">Wirausaha</option>
+                                <option value="pegawai negeri">Pegawai Negeri</option>
+                                <option value="tidak bekerja">Tidak bekerja</option>
+                                <option value="lain">Lain</option>
+                            </select>
+                            <input type="text" class="form-control mt-4 kerja-lain" id="kerja-lain" name="pekerjaan" hidden>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <b for="">Alamat</b>
+                        </div>
+                        <div class="col">
+                            <textarea name="alamat" id="alamat" cols="30" rows="2" class="form-control alamat"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <b for="">Kelurahan</b>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control kelurahan" id="kelurahan">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <b for="">Kecamatan</b>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control kecamatan" id="kecamatan">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <b for="">Kota/Kabupaten</b>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control kabupaten" id="kabupaten">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <h5 style="border-left: 4px solid rgb(145, 145, 145)">&nbsp;&nbsp;Keterangan</h5>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row mb-4">
+                            <div class="col-md-3  text-right">
+                                <b for="">Nomor</b>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control nomer_surat" name="nomor_surat" id="nomer_surat" >
+                                <small class="text-muted">*nomor surat bertambah otomatis</small>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3  text-right">
+                                <b for="">Surat Keterangan RT/RW</b>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="file" class="form-control sk_rtrw" name="sk_rtrw" id="sk_rtrw" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-4">
+                            <div class="col-md-3  text-right">
+                                <b for="">Tanggal Surat</b>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="date" class="form-control tgl_surat" name="tgl_surat" id="tgl_surat" >
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3  text-right">
+                                <b for="">Keperluan</b>
+                            </div>
+                            <div class="col-md-4">
+                                <textarea name="keperluan" class="form-control perlu" id="perlu" cols="30" rows="2" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 style="border-left: 4px solid rgb(145, 145, 145)">&nbsp;&nbsp;Keterangan Usaha</h5>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row mb-4">
+                            <div class="col-md-3  text-right">
+                                <b for="">Nama Usaha</b>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control nama_usaha" name="nama_usaha" id="nama_usaha" >
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3  text-right">
+                                <b for="">Bergerak dibidang</b>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control bidang" name="bidang" id="bidang" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-4">
+                            <div class="col-md-3  text-right">
+                                <b for="">Alamat usaha</b>
+                            </div>
+                            <div class="col">
+                                <textarea name="alamat" class="form-control alamat_usaha" id="alamat_usaha" cols="30" rows="2" ></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3  text-right">
+                                <b for="">RT/RW</b>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control rt" name="rt" id="rt">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control rw" name="rw" id="rw">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 style="border-left: 4px solid rgb(145, 145, 145)">&nbsp;&nbsp;Tanda tangan surat</h5>
+                <hr>
+                <div class="col-md-6">
+                    <div class="row">
+
+                        <div class="col-md-3  text-right">
+                            <b for="">Tanda tangan surat</b>
+                        </div>
+                        <div class="col">
+                            <select name="ttd" id="ttd" class="form-control">
+                                <option value="">-- Silahkan pilih nama --</option>
+                                {{-- <option value="auful">Muhammad Auful Kirom</option> --}}
+
+                            </select>
+                            {{-- <input type="date" class="form-control" name="berlaku_dari" id=""> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-sm btn-primary" id="update-skdu"> <i class="fas fa-check"></i> Simpan</button>
+                    <button class="btn btn-sm btn-danger"> <i class="fas fa-redo"></i> Kembali</button>
+                </div>
+
+      </div>
+    </div>
+</div>
+
+  {{-- EDIT skck --}}
+<div class="modal fade" id="edit-modal-skck" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <input type="text" class="identitas_id"  value="" hidden>
+            @include('sekretaris.surat-keluar.identitas')
+            <h5 style="border-left: 4px solid rgb(145, 145, 145)">&nbsp;&nbsp;Keterangan</h5>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">Nomor</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control nomer_surat" name="nomor_surat"  id="" >
+                            <small class="text-muted">*nomor surat bertambah otomatis</small>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">keperluan</label>
+                        </div>
+                        <div class="col">
+                            <textarea name="perlu" class="form-control perlu" id="" cols="30" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">Berlaku</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="date" class="form-control berlaku" name="berlaku_dari" id="">
+                        </div>
+                        <div class="col-md-1  text-right">
+                            <label for="">Sampai</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="date" class="form-control sampai" name="berlaku_sampai" id="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">Tujuan</label>
+                        </div>
+                        <div class="col">
+                            <textarea name="tujuan" class="form-control tujuan" id="" cols="30" rows="2"></textarea>
+                            {{-- <input type="date" class="form-control" name="berlaku_dari" id=""> --}}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">Surat Keterangan RT/RW</label>
+                        </div>
+                        <div class="col">
+                            <input type="file" class="form-control sk_rtrw" id="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h5 style="border-left: 4px solid rgb(145, 145, 145)">&nbsp;&nbsp;Tanda tangan surat</h5>
+            <hr>
+            <div class="col-md-6">
+                <div class="row">
+
+                    <div class="col-md-3  text-right">
+                        <label for="">Tanda tangan surat</label>
+                    </div>
+                    <div class="col">
+                        <select name="ttd" id="" class="form-control ttd">
+                            <option value="">-- Silahkan pilih nama --</option>
+
+                        </select>
+                        <small class="text-info"><i class="fas fa-info-circle"></i> surat ini mendukung ttd elektor</small>
+                        {{-- <input type="date" class="form-control" name="berlaku_dari" id=""> --}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button class="btn btn-sm btn-primary" id="update-skck"> <i class="fas fa-check"></i> Simpan</button>
+                <button class="btn btn-sm btn-danger"> <i class="fas fa-redo"></i> Kembali</button>
+            </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
 {{-- MODAL SKIK --}}
 <div class="modal fade" id="edit-modal-skik" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -2818,6 +3169,52 @@
                                 }
                             })
                             break
+                        case 'form-skdu':
+                            $.ajax({
+                                url : '/find-skdu',
+                                type : "GET",
+                                data : {
+                                    'nosurat' : nosurat
+                                },
+
+                                success : function (data) {
+                                    $('#edit-modal-skdu').modal('show')
+                                    // console.log(data[0].ttl_pasangan.split(', ')[0]);
+                                    console.log(data.identitas.ttl.split(', ')[0]);
+                                    console.log(data);
+                                    $('.ttd').empty()
+                                    loadSelectedTtd(data.ttd);
+                                    Swal.fire({
+                                        text : 'Loading...',
+                                        timer : 1000,
+                                        showConfirmButton : false,
+                                    })
+                                    setTimeout(() => {
+                                        $('.identitas_id').val(data.identitas_id)
+                                        $('.domisili').val(data.domisili)
+                                        $('.nama').val(data.identitas.nama)
+                                        $('.kelamin').val(data.identitas.kelamin)
+                                        $('.tempat').val(data.identitas.ttl.split(', ')[0])
+                                        $('.tgl-lahir').val(data.identitas.ttl.split(', ')[1])
+                                        $('.agama').val(data.identitas.agama)
+                                        $('.pekerjaan').val(data.identitas.pekerjaan)
+                                        $('.alamat').val(data.alamat)
+                                        $('.kelurahan').val(data.kelurahan)
+                                        $('.kecamatan').val(data.kecamatan)
+                                        $('.kabupaten').val(data.kabupaten)
+                                        $('.nomer_surat').val(data.nomor_surat)
+                                        $('.tgl_surat').val(data.tanggal_surat)
+                                        $('.perlu').val(data.perlu)
+                                        $('.nama_usaha').val(data.nama_usaha)
+                                        $('.alamat_usaha').val(data.alamat_usaha)
+                                        $('.bidang').val(data.bidang)
+                                        $('.rt').val(data.rtrw.split('/')[0])
+                                        $('.rw').val(data.rtrw.split('/')[1])
+                                    })
+                                }
+                            })
+                        break
+
                     default:
                         break;
                 }
@@ -2861,6 +3258,89 @@
             // console.log(fd);
             $.ajax({
                 url : '/update-skbm',
+                type : 'POST',
+                data : fd,
+                contentType : false,
+                processData : false,
+                success : function (data) {
+                    // alert('success')
+                    console.log(data);
+                    Swal.fire({
+                        title : 'Success',
+                        text : 'Data saved!',
+                        icon : 'success',
+                        showConfirmButton : false,
+                        timer : 2000,
+                        timerProgressBar :  true
+                    })
+
+                    setTimeout(() => {
+                        table.ajax.reload()
+                        $('.modal').modal('hide')
+                    }, 2000);
+                },
+                error : function (err) {
+                    console.log(err);
+                    Swal.fire({
+                        title : 'Error',
+                        text : 'Data not saved!',
+                        icon : 'error',
+                        showConfirmButton : false,
+                        timer : 2000,
+                        timeProgressBar :  true
+                    })
+                }
+            })
+    })
+
+    $('body').on('click', '#update-skdu', function () {
+        var data = '#edit-modal-skdu'
+        var identity = new sendIdentity(data)
+        // console.log(si.nik);
+        var fd = new FormData()
+        var perlu = $(data).find('#perlu').val()
+        var domisili = $(data).find('#domisili').val()
+        var nomer_surat = $(data).find('#nomer_surat').val()
+        var tgl_surat = $(data).find('#tgl_surat').val()
+        var kelurahan = $(data).find('#kelurahan').val()
+        var kecamatan = $(data).find('#kecamatan').val()
+        var kabupaten = $(data).find('#kabupaten').val()
+        var nama_usaha = $(data).find('#nama_usaha').val()
+        var alamat_usaha = $(data).find('#alamat_usaha').val()
+        var bidang = $(data).find('#bidang').val()
+        var ttd = $(data).find('#ttd').val()
+        var rt = $(data).find('#rt').val()
+        var rw = $(data).find('#rw').val()
+        var file = $(data).find('#sk_rtrw')[0].files[0]
+        // var ttd= $('#ttd').val()
+
+            // fd.append('_token', '{{ csrf_token() }}')
+            fd.append('_token', '{{ csrf_token() }}')
+            fd.append('nama', identity.nama)
+            fd.append('ttl', identity.ttl)
+            fd.append('kelamin', identity.kelamin)
+            fd.append('pekerjaan', identity.kerja == 'lain' ? identity.kerjaLain : identity.pekerjaan)
+            fd.append('alamat', identity.alamat)
+            fd.append('agama', identity.agama)
+            fd.append('pendidikan', identity.pendidikan)
+            fd.append('nomer_surat', identity.nomer_surat)
+            fd.append('id', identity.identitas_id)
+            fd.append('perlu', perlu)
+            fd.append('domisili', domisili)
+            fd.append('nomer_surat', nomer_surat)
+            fd.append('tgl_surat', tgl_surat)
+            fd.append('kelurahan', kelurahan)
+            fd.append('kecamatan', kecamatan)
+            fd.append('kabupaten', kabupaten)
+            fd.append('nama_usaha', nama_usaha)
+            fd.append('alamat_usaha', alamat_usaha)
+            fd.append('bidang', bidang)
+            fd.append('rtrw', rt + '/' + rw)
+            fd.append('ttd',ttd)
+            fd.append('file',file)
+
+            $.ajax({
+                url : '/update-skdu',
                 type : 'POST',
                 data : fd,
                 contentType : false,
@@ -3342,8 +3822,6 @@
         var file = $(data).find('.sk_rtrw')[0].files[0]
         var nama_usaha = $(data).find('.nama_usaha').val()
         var alamat_usaha = $(data).find('.alamat_usaha').val()
-        // var ttd= $('.ttd').val()
-        // var keterangan = $('.keterangan').val()
 
         fd.append('_token', '{{ csrf_token() }}')
         fd.append('nik', identity.nik)

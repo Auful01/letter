@@ -12,6 +12,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Lengkap</th>
+                            <th>Foto</th>
                             <th>Username</th>
                             <th>Jabatan</th>
                             <th>Action</th>
@@ -25,6 +26,7 @@
                             <tr>
                                 <td>{{ $no }}</td>
                                 <td>{{ $ua->user->nama_depan . ' ' . $ua->user->nama_belakang }}</td>
+                                <td><img src="{{ asset('storage/profile/'.$ua->foto . '')}}" style="height: 80px" alt=""></td>
                                 <td>{{ $ua->user->username }}</td>
                                 <td>{{ $ua->user->jabatan->jabatan }}</td>
                                 <td> <button class="btn btn-sm btn-primary detail-anggota" data-id="{{ $ua->id }}"
@@ -97,6 +99,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="row d-flex justify-content-center">
+                        <img src="" id="p-profile" style="height: 200px" alt="">
+                    </div>
                     <div class="row">
                         <div class="col form-group">
                             <label for="">Nama Lengkap</label>
@@ -144,7 +149,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                 </div>
             </div>
         </div>
@@ -179,6 +184,8 @@
 
                     var tgl = d + ' ' + monthNames[m].substring('0', '3') + ' ' + y
                     console.log(data);
+                    var foto = data[0].foto
+                    $('#p-profile').attr('src', `{{asset('storage/profile/${foto}')}}`)
                     $('#nama_lengkap').val(data[0].user.nama_depan + ' ' + data[0].user.nama_belakang)
                         .prop('disabled', true)
                     $('#username').val(data[0].user.username).prop('disabled', true)

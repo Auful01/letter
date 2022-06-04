@@ -8,6 +8,7 @@ use App\Models\Ortu;
 use App\Models\Sk;
 use App\Models\Skbm;
 use App\Models\Skck;
+use App\Models\Skdu;
 use App\Models\Skik;
 use App\Models\Skiu;
 use App\Models\Skl;
@@ -16,6 +17,7 @@ use App\Models\Skpm;
 use App\Models\Skpn;
 use App\Models\Sktm;
 use App\Models\Sp;
+use App\Models\Spm;
 use App\Models\Surat;
 use App\Models\Umkm;
 use App\Models\User;
@@ -205,6 +207,19 @@ class SuratController extends Controller
         return $skn;
     }
 
+    public function getLastSkdu()
+    {
+        $skn = Skdu::all()->last();
+        return $skn;
+    }
+
+    public function getLastSpm()
+    {
+        $spm = Spm::all()->last();
+        return $spm;
+    }
+
+
     // SAVE N UPDATE LETTERS
     public function saveSkbm(Request $request)
     {
@@ -355,6 +370,35 @@ class SuratController extends Controller
         $umkm->kecamatan_usaha = $request->kecamatan_usaha;
         $umkm->ttd = $request->ttd;
         return $umkm->save();
+    }
+
+    public function updateSkdu(Request $request)
+    {
+        $skdu = Skdu::with('identitas')->where('identitas_id', '=', $request->id)->first();
+        $filename = $skdu->sk_rtrw;
+
+        if ($request->file('file')) {
+            Storage::delete('public/sk_rtrw/' . $request->sk_rtrw);
+            $filename = $request->file('file')->getClientOriginalName();
+            $request->file('file')->storeAs('sk_rtrw', $filename, 'public');
+        }
+
+        $this->updateIdentity($request);
+        $skdu->nomor_surat = $request->nomer_surat;
+        $skdu->perlu = $request->perlu;
+        $skdu->sk_rtrw = $filename;
+        $skdu->domisili = $request->domisili;
+        $skdu->nomor_surat = $request->nomer_surat;
+        $skdu->tanggal_surat = $request->tgl_surat;
+        $skdu->kelurahan = $request->kelurahan;
+        $skdu->kecamatan = $request->kecamatan;
+        $skdu->kabupaten = $request->kabupaten;
+        $skdu->nama_usaha = $request->nama_usaha;
+        $skdu->bidang = $request->bidang;
+        $skdu->alamat_usaha = $request->alamat_usaha;
+        $skdu->rtrw = $request->rtrw;
+        $skdu->ttd = $request->ttd;
+        return $skdu->save();
     }
 
     public function updateSkn(Request $request)
@@ -832,6 +876,63 @@ class SuratController extends Controller
         }
     }
 
+    public function saveSkdu(Request $request)
+    {
+        $data = Identitas::create($request->all());
+
+        if ($request->file('file')) {
+            $filename = $request->file('file')->getClientOriginalName();
+            $request->file('file')->storeAs('sk_rtrw', $filename, 'public');
+        }
+
+        $skdu = Skdu::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'alamat' => $request->alamat,
+            'domisili' => $request->domisili,
+            'kelurahan' => $request->kelurahan,
+            'kecamatan' => $request->kecamatan,
+            'kabupaten' => $request->kabupaten,
+            'tanggal_surat' => $request->tanggal_surat,
+            'perlu' => $request->perlu,
+            'sk_rtrw' => $filename,
+            'nama_usaha' => $request->nama_usaha,
+            'bidang' => $request->bidang,
+            'alamat_usaha' => $request->alamat_usaha,
+            'rtrw' => $request->rt . '/' . $request->rw,
+            'ttd' => $request->ttd
+        ]);
+
+        if ($skdu) {
+            return $skdu;
+        } else {
+            return Identitas::where('id', $data->id)->delete();
+        }
+    }
+
+    public function saveSpm(Request $request)
+    {
+        $data = Identitas::create($request->all());
+
+        $spm = Spm::create([
+            'identitas_id' => $data->id,
+            'nomor_surat' => $request->nomer_surat,
+            'domisili' => $request->domisili,
+            'kelurahan' => $request->kelurahan,
+            'kecamatan' => $request->kecamatan,
+            'kabupaten' => $request->kabupaten,
+            'nama_mati' => $request->nama_mati,
+            'tgl_mati' => $request->tgl_mati,
+            'ttd' => $request->ttd
+        ]);
+
+        if ($spm) {
+            return $spm;
+        } else {
+            return Identitas::where('id', $data->id)->delete();
+        }
+    }
+
     public function updateSk(Request $request)
     {
         // return $request;
@@ -934,7 +1035,7 @@ class SuratController extends Controller
     public function reportPrint(Request $request)
     {
         // return $request;
-        $data = DB::select('SELECT * FROM identitas WHERE kategori_id = ' . $request->kategoriSurat . ' AND DATE_FORMAT(created_at,"%Y-%m-%d") BETWEEN "' . $request->dari . '" AND "' . $request->sampai . '"');
+        $data = DB::select('SELECT identitas.* , users.nama_depan as nd, users.nama_belakang as nb FROM identitas JOIN users ON identitas.ttd = users.id WHERE kategori_id = ' . $request->kategoriSurat . ' AND DATE_FORMAT(identitas.created_at,"%Y-%m-%d") BETWEEN "' . $request->dari . '" AND "' . $request->sampai . '"');
         // return $data;
         return view('report-all', ['data' => $data, 'dari' => $request->dari, 'sampai' => $request->sampai]);
     }
@@ -1012,6 +1113,12 @@ class SuratController extends Controller
         // $ibu = Ortu::with('skn')->where('skn_id', '=', $data->id)->where('id', '=', $data->id % 2 == 0)->firstOrFail();
 
         return [$data, $ayah];
+    }
+
+    public function findSkdu(Request $request)
+    {
+        $data = Skdu::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
+        return $data;
     }
 
     public function findCategory(Request $request)

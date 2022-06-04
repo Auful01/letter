@@ -11,9 +11,9 @@
                 <div class="row">
                     <div class="form-group col">
                         <label for="">Nomer Surat Masuk</label>
-                        <input type="text" class="form-control" value="002/L/409.52.06/V/2022" id="" disabled>
-                        <input type="text" class="form-control" value="002/L/409.52.06/V/2022" name="nomer_surat"
-                            id="nomer_surat" hidden>
+                        <input type="text" class="form-control"  name="nomer_surat" id="nomer_surat" >
+                        {{-- <input type="text" class="form-control" value="002/L/409.52.06/V/2022" name="nomer_surat"
+                            id="nomer_surat" hidden> --}}
                     </div>
 
                     <div class="form-group col">
@@ -47,7 +47,7 @@
                         <input type="file" class="form-control" value="{{ date('d M Y') }}" name="file_surat" required>
                     </div>
                     <div class="form-group col">
-                        <label for="">Penginput</label>
+                        <label for="">Admin</label>
                         <input type="text" class="form-control"
                             value="{{ Auth::user()->nama_depan }} {{ Auth::user()->nama_belakang }}" id="" disabled>
                         <input type="text" class="form-control"
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit" id="submit-arsip">
-                    Buat Surat
+                   Arsipkan File
                 </button>
             </form>
         </div>
