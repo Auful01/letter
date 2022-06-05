@@ -15,9 +15,16 @@
                         <input type="text" class="form-control" id="nama-belakang" name="nama_belakang"
                             placeholder="Nama Belakang">
                     </div>
+                </div>
+                <div class="row">
                     <div class="form-group col">
                         <label for="">Username</label>
                         <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group col">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        <button class="btn btn-sm btn-link" type="button" id="tampil-pw"><small>Tampilkan Password</small></button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -77,6 +84,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
+        $('#tampil-pw').on('click', function () {
+            if ($('#password').attr('type') == 'password') {
+                $('#password').attr('type', 'text');
+            } else {
+                $('#password').attr('type', 'password');
+            }
+        })
         $('#submit-register').on('click', function() {
             var namdep = $('#nama-depan').val()
             var nambel = $('#nama-belakang').val()
@@ -88,6 +102,7 @@
             var email = $('#email').val()
             var status = $('#status').find(":selected").val()
             var foto = $('#foto')[0].files;
+            var password = $('#password').val()
             var fd = new FormData()
             fd.append('_token', '{{ csrf_token() }}')
             fd.append('nama_depan', namdep)
@@ -99,6 +114,7 @@
             fd.append('phone', phone)
             fd.append('email', email)
             fd.append('status', status)
+            fd.append('password', password)
             fd.append('file', foto[0])
 
 

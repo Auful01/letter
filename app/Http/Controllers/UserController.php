@@ -66,13 +66,12 @@ class UserController extends Controller
 
     public function registerAnggota(Request $request)
     {
-        // return $request;
         $user = User::create([
             'nama_depan' => $request->nama_depan,
             'nama_belakang' => $request->nama_belakang,
             'username' => $request->username,
             'jabatan_id' => $request->jabatan,
-            'password' => Hash::make('12345678'),
+            'password' => $request->password == null || $request->password == '' ? Hash::make('12345678') : Hash::make($request->password),
         ]);
 
         $filename = $request->file('file')->getClientOriginalName();

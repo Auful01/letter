@@ -42,8 +42,8 @@ class RegisterController extends Controller
             return '/dashboard';
         } else if (auth()->user()->jabatan_id == 2) {
             return '/dashboard';
-        } else if (auth()->user()->jabatan_id == 2) {
-            return '/dashboard';
+        } else if (auth()->user()->jabatan_id == 3) {
+            return '/';
         }
     }
 
