@@ -161,7 +161,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <input type="text" name="" id="memo_id">
+            <input type="text" name="" id="memo_id" hidden>
             <div class="form-group">
                 <label for="">Memo</label>
                 <textarea name="memo" id="memo_isi" cols="30" rows="10" class="form-control"></textarea>
@@ -287,7 +287,7 @@
             processing: true,
             serverSide: true,
             ajax: '/all-memo',
-            order: [[2,'desc']],
+            order: [[0,'desc']],
             columns: [
                 { data: 'DT_RowIndex',
                 name: 'DT_RowIndex'
