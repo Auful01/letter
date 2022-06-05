@@ -130,7 +130,7 @@
                             <label for="">Nama</label>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="nama_mati" id="nama_mayit" >
+                            <input type="text" class="form-control" name="nama_mati" id="nama_mati" >
                         </div>
                     </div>
                 </div>

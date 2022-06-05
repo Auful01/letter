@@ -111,6 +111,7 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
 
     // REPORT PRINT
     Route::get('report-print', [SuratController::class, 'reportPrint'])->name('report-print');
+    Route::get('report-arsip', [SuratController::class, 'reportArsip'])->name('report-arsip');
     // FIND SURAT
     Route::get('find-skbm', [SuratController::class, 'findSkbm']);
     Route::get('find-skl', [SuratController::class, 'findSkl']);
@@ -125,6 +126,7 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('find-sktm', [SuratController::class, 'findSktm']);
     Route::get('find-skn', [SuratController::class, 'findSkn']);
     Route::get('find-skdu', [SuratController::class, 'findSkdu']);
+    Route::get('find-spm', [SuratController::class, 'findSpm']);
 
     // PRINT SURAT
     Route::get('print-skbm', [SuratController::class, 'printSkbm']);
@@ -139,6 +141,8 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('print-sktm', [SuratController::class, 'printSktm']);
     Route::get('print-skn', [SuratController::class, 'printSkn']);
     Route::get('print-umkm', [SuratController::class, 'printUmkm']);
+    Route::get('print-skdu', [SuratController::class, 'printSkdu']);
+    Route::get('print-spm', [SuratController::class, 'printSpm']);
 
     // DELETE SURAT
     Route::delete('hapus', [SuratController::class, 'hapus']);
@@ -173,6 +177,7 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::post('update-skn', [SuratController::class, 'updateSkn']);
     Route::post('update-umkm', [SuratController::class, 'updateUmkm']);
     Route::post('update-skdu', [SuratController::class, 'updateSkdu']);
+    Route::post('update-spm', [SuratController::class, 'updateSpm']);
 
     // GET CURRENT CATEGORY
     Route::get('find-category', [SuratController::class, 'findCategory']);

@@ -933,6 +933,30 @@ class SuratController extends Controller
         }
     }
 
+    public function updateSpm(Request $request)
+    {
+        // return $request;
+        $this->updateIdentity($request);
+        $data = Identitas::find($request->id);
+        Spm::where('identitas_id', $data->id)->update([
+            'nomor_surat' => $request->nomer_surat,
+            'domisili' => $request->domisili,
+            'kelurahan' => $request->kelurahan,
+            'kecamatan' => $request->kecamatan,
+            'kabupaten' => $request->kabupaten,
+            'nama_mati' => $request->nama_mati,
+            'tgl_mati' => $request->tgl_mati,
+            'ttd' => $request->ttd
+        ]);
+
+        // if ($spm) {
+        //     return $spm;
+        // } else {
+        //     return Identitas::where('id', $data->id)->delete();
+        // }
+    }
+
+
     public function updateSk(Request $request)
     {
         // return $request;
@@ -1034,10 +1058,14 @@ class SuratController extends Controller
 
     public function reportPrint(Request $request)
     {
-        // return $request;
         $data = DB::select('SELECT identitas.* , users.nama_depan as nd, users.nama_belakang as nb FROM identitas JOIN users ON identitas.ttd = users.id WHERE kategori_id = ' . $request->kategoriSurat . ' AND DATE_FORMAT(identitas.created_at,"%Y-%m-%d") BETWEEN "' . $request->dari . '" AND "' . $request->sampai . '"');
-        // return $data;
         return view('report-all', ['data' => $data, 'dari' => $request->dari, 'sampai' => $request->sampai]);
+    }
+
+    public function reportArsip(Request $request)
+    {
+        $data = DB::select('SELECT surat_masuk.*, users.nama_depan as nd, users.nama_belakang as nb  FROM surat_masuk JOIN users ON users.id = surat_masuk.user_id WHERE DATE_FORMAT(surat_masuk.created_at,"%Y-%m-%d") BETWEEN "' . $request->dari . '" AND "' . $request->sampai . '"');
+        return view('report-arsip', ['data' => $data, 'dari' => $request->dari, 'sampai' => $request->sampai]);
     }
 
     public function findSkbm(Request $request)
@@ -1118,6 +1146,12 @@ class SuratController extends Controller
     public function findSkdu(Request $request)
     {
         $data = Skdu::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
+        return $data;
+    }
+
+    public function findSpm(Request $request)
+    {
+        $data = Spm::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
         return $data;
     }
 
@@ -1210,6 +1244,21 @@ class SuratController extends Controller
         $ttd = User::with('jabatan')->where('id', '=', $sp->ttd)->firstOrFail();
         return view('report.report-sp', ['sp' => $sp, 'ttd' => $ttd]);
     }
+
+    public function printSpm(Request $request)
+    {
+        $spm = Spm::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
+        $ttd = User::with('jabatan')->where('id', '=', $spm->ttd)->firstOrFail();
+        return view('report.report-spm', ['spm' => $spm, 'ttd' => $ttd]);
+    }
+
+    public function printSkdu(Request $request)
+    {
+        $skdu = Skdu::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();
+        $ttd = User::with('jabatan')->where('id', '=', $skdu->ttd)->firstOrFail();
+        return view('report.report-skdu', ['skdu' => $skdu, 'ttd' => $ttd]);
+    }
+
     public function printSkpn(Request $request)
     {
         $skpn = Skpn::with('identitas')->where('nomor_surat', '=', $request->nosurat)->firstOrFail();

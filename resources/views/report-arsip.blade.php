@@ -555,116 +555,47 @@
     .bg-success {
         background-color: #28a745 !important;
     }
-    /*  */
+
 </style>
 
 <body onload="window.print()">
-    @foreach ($skdu as $s)
 
-    @endforeach
-    <div class="container" style="margin-left: 4cm;margin-top: 3cm;margin-bottom: 3cm;margin-right: 3cm;">
-        <div class="row">
-
-            <div class="col-md-1">
-                <img src="{{asset('img/kop.jpg')}}" style="max-height: 200px"  alt="">
-            </div>
-            <div class="col">
-                <div class="text-center">
-                    {{-- <div class="row"> --}}
-                        <h4>PEMERINTAH KABUPATEN BLITAR</h4>
-                        <h4>KECAMATAN GARUM</h4>
-                        <h4>DESA SIDODADI</h4>
-                        <p>Jln. Raya Sidodadi No.01 Sidodadi-Garum-Blitar</p>
-                        <p>Kode Pos : 66162</p>
-                    {{-- </div> --}}
-                </div>
-            </div>
-        </div>
-        <hr style="border-bottom: 3px solid #000">
+    <div class="container">
         <div class="text-center">
-            <h1 style="text-decoration: underline; font-weight: bold">SURAT KETERANGAN</h1>
-            <p>No: 474/ &nbsp;&nbsp;&nbsp; /409.10.4/2022</p>
+            <h3>LAPORAN SURAT KELURAHAN</h3>
+            <p>Dari tanggal {{ date('d-M-Y', strtotime($dari)) }} sampai {{ date('d-M-Y', strtotime($sampai))  }}</p>
         </div>
-        <br>
-        <div>
-            <p>Yang bertanda tangan di bawah Kepala Desa Sidodadi Kecamatan Garum Kabupaten Blitar,
-                menerangkan bahwa :
-            </p>
-        </div>
-        <ul style="list-style: none">
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Nama</div>
-                    <div class="col">: {{ $skdu->identitas->nama}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">NIK</div>
-                    <div class="col">: {{ $skdu->identitas->nik}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Tempat/Tanggal Lahir</div>
-                    <div class="col">: {{ $skdu->identitas->ttl}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Jenis Kelamin</div>
-                    <div class="col">: {{ $skdu->identitas->kelamin}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Agama</div>
-                    <div class="col">: {{ $skdu->identitas->agama}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Pekerjaan</div>
-                    <div class="col">: {{ $skdu->identitas->pekerjaan}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Status</div>
-                    <div class="col">: {{ $skdu->identitas->status_kawin}}</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-md-3">Alamat</div>
-                    <div class="col">: {{ $skdu->identitas->alamat}}</div>
-                </div>
-            </li>
-        </ul>
-
-        <p>
-            Selanjutnya menerangkan bahwa orang tersebut benar-benar mempunyai {{$skdu->nama_usaha}} yang bertempat di {{$skdu->alamat_usaha}}. Yang ditujukan untuk {{$skdu->tujuan}}. Dalam keperluan {{$skdu->perlu}}.
-        </p>
-        <p>
-            Demikian surat keterangan ini dibuat dengan sebenarnya untuk dipergunakan sebagaimana mestinya
-        </p>
-        <br>
-
-
-        <div class="row d-flex justify-content-right">
-            <div class="col-md-8">
-
-            </div>
-            <div class="col-md-4">
-                <p>Sidodadi, {{ date("Y M d") }}</p>
-                <p> Kepala Desa Sidodadi</p>
-
-                <br>
-                <br>
-
-                <b>{{  $ttd->nama_depan . ' '. $ttd->nama_belakang }}</b>
-            </div>
-        </div>
+        <table class="table">
+            <thead>
+                <th>No</th>
+                <th>Nomor Surat</th>
+                <th>Asal instansi</th>
+                <th>Perihal</th>
+                <th>Tanggal Surat</th>
+                <th>Tanggal Terima</th>
+                <th>Admin</th>
+                {{-- <th>Tanda Tangan</th> --}}
+            </thead>
+            <tbody>
+                @foreach ($data as $d)
+                    <tr>
+                        @php
+                            $no = 1;
+                        @endphp
+                        <td>{{$no}}</td>
+                        <td>{{$d->no_surat}}</td>
+                        <td>{{$d->asal_instansi}}</td>
+                        <td>{{$d->perihal}}</td>
+                        <td>{{$d->tgl_surat}}</td>
+                        <td>{{$d->tgl_menerima}}</td>
+                        <td>{{$d->nd . ' ' .  $d->nb}}</td>
+                        @php
+                            $no++;
+                        @endphp
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
 

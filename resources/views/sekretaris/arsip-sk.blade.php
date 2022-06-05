@@ -801,10 +801,188 @@
                     <button class="btn btn-sm btn-primary" id="update-skdu"> <i class="fas fa-check"></i> Simpan</button>
                     <button class="btn btn-sm btn-danger"> <i class="fas fa-redo"></i> Kembali</button>
                 </div>
-
+        </div>
       </div>
     </div>
 </div>
+
+{{-- EDIT MODAL SPM --}}
+<div class="modal fade" id="edit-modal-spm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit SPM</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        {{-- <input type="text" id="jenis_id" value="" hidden> --}}
+                        <input type="text" class="identitas_id"  value="" hidden>
+                        <div class="card-header bg-warning">
+                            Catatan!
+                        </div>
+                        <div class="card-body">
+                            <ol>
+                                <li>coba</li>
+                                <li>coba</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">Domisili Pemohon</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="domisili" class="form-control domisili">
+
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">Nama Pemohon</label>
+                        </div>
+                        <div class="col">
+                           <input type="text" class="form-control nama" id="nama" name="nama">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <label for="">Tempat, Tanggal Lahir</label>
+                        </div>
+                        <div class="col">
+                           <input type="text" class="form-control tempat" id="tempat" name="tempat">
+                        </div>
+                        <div class="col">
+                           <input type="date" class="form-control tgl_lahir" id="tgl-lahir" name="lahir">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <label for="">Kewarganegaraan</label>
+                        </div>
+                        <div class="col">
+                           <input type="text" class="form-control kebangsaan" id="kebangsaan" name="warganegara">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <label for="">Agama</label>
+                        </div>
+                        <div class="col">
+                            <select class="form-control agama" name="agama" id="agama" >
+                                <option value="">-- Pilih Agama --</option>
+                                <option value="islam">Islam</option>
+                                <option value="kristen">Kristen</option>
+                                <option value="hindu">Hindu</option>
+                                <option value="budha">Budha</option>
+                                <option value="konghucu">Konghucu</option>
+                            </select>
+                           {{-- <input type="text" class="form-control" id="warganegara" name="warganegara"> --}}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <label for="">Alamat</label>
+                        </div>
+                        <div class="col">
+                            <textarea name="alamat" class="form-control alamat" id="alamat" cols="30" rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <label for="">Kelurahan</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control kelurahan" id="kelurahan" name="kelurahan">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <label for="">Kecamatan</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control kecamatan" id="kecamatan" name="kecamatan">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-right">
+                            <label for="">Kota/Kabupaten</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control kabupaten" id="kabupaten" name="kabupaten">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h5 style="border-left: 4px solid rgb(145, 145, 145)">&nbsp;&nbsp;Keterangan</h5>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">Nomor</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control nomer_surat" name="nomor_surat" id="nomer_surat" >
+                            <small class="text-muted">*nomor surat bertambah otomatis</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h5 style="border-left: 4px solid rgb(145, 145, 145)">&nbsp;&nbsp;Keterangan Kematian</h5>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">Nama</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control nama_mati" name="nama_mati" id="nama_mati" >
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row mb-4">
+                        <div class="col-md-3  text-right">
+                            <label for="">Tanggal Meninggal</label>
+                        </div>
+                        <div class="col">
+                            <input type="date" class="form-control tgl_mati" name="tgl_mati" id="tgl_mati" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h5 style="border-left: 4px solid rgb(145, 145, 145)">&nbsp;&nbsp;Tanda tangan surat</h5>
+                <hr>
+                <div class="col-md-6">
+                    <div class="row">
+
+                        <div class="col-md-3  text-right">
+                            <label for="">Tanda tangan surat</label>
+                        </div>
+                        <div class="col">
+                            <select name="ttd" id="ttd" class="form-control ttd">
+                                <option value="">-- Silahkan pilih nama --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-sm btn-primary" id="update-spm"> <i class="fas fa-check"></i> Simpan</button>
+                    <button class="btn btn-sm btn-danger"> <i class="fas fa-redo"></i> Kembali</button>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   {{-- EDIT skck --}}
 <div class="modal fade" id="edit-modal-skck" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1663,7 +1841,6 @@
 
                         </select>
                         <small class="text-info"><i class="fas fa-info-circle"></i> surat ini mendukung ttd elektor</small>
-                        {{-- <input type="date" class="form-control" name="berlaku_dari" id=""> --}}
                     </div>
                 </div>
             </div>
@@ -2650,6 +2827,7 @@
         $('.nomer_surat').val(data.identitas.nomer_surat)
         $('.nomor_surat').val(data.identitas.nomer_surat)
         $('.ttd').val(data.identitas.ttd).prop('selected',true)
+        $('.kebangsaan').val(data.identitas.kebangsaan)
     }
 
     $('.nama').on('keyup', function () {
@@ -2675,6 +2853,7 @@
         var noSurat = $(data).find('.nomer_surat').val()
         // var noSurat = $('#nomer_surat').val()
         var ttd = $(data).find('.ttd').val()
+        var kebangsaan = $(data).find('.kebangsaan').val()
         // var ttl = $('')
 
         return {
@@ -2688,6 +2867,7 @@
             'kerjaLain' : kerjaLain,
             'nokk' : nkk,
             'alamat' : alamat,
+            'kebangsaan' : kebangsaan,
             'agama' : agama,
             'status_kawin' : status_kawin,
             'pendidikan' : pendidikan,
@@ -3213,8 +3393,41 @@
                                     })
                                 }
                             })
-                        break
+                            break
+                        case 'form-spm':
+                            $.ajax({
+                                url : '/find-spm',
+                                type : "GET",
+                                data : {
+                                    'nosurat' : nosurat
+                                },
 
+                                success: function (data) {
+                                    $('#edit-modal-spm').modal('show')
+                                    $('.ttd').empty()
+                                    loadSelectedTtd(data.ttd);
+                                    Swal.fire({
+                                        text : 'Loading...',
+                                        timer : 1000,
+                                        showConfirmButton : false,
+                                    })
+                                    setTimeout(() => {
+                                        console.log(data);
+                                        getIdentity(data)
+                                        $('.identitas_id').val(data.identitas_id)
+                                        $('.kelurahan').val(data.kelurahan)
+                                        $('.kecamatan').val(data.kecamatan)
+                                        $('.kabupaten').val(data.kabupaten)
+                                        $('.nama_mati').val(data.nama_mati)
+                                        $('.tgl_mati').val(data.tgl_mati)
+                                        $('.ttd').val(data.ttd)
+                                        // $('.tempat').val(data.identitas.ttl.split(', ')[0])
+                                        // $('.tgl-lahir').val(data.identitas.ttl.split(', ')[1])
+                                        $('.domisili').val(data.domisili)
+
+                                    })
+                                }
+                            })
                     default:
                         break;
                 }
@@ -3947,6 +4160,69 @@
             })
     })
 
+    $('body').on('click', '#update-spm', function () {
+        var data = '#edit-modal-spm'
+        var identity = new sendIdentity(data)
+        var fd = new FormData()
+        var domisili = $(data).find('.domisili').val()
+        var kelurahan = $(data).find('.kelurahan').val()
+        var kecamatan = $(data).find('.kecamatan').val()
+        var kabupaten = $(data).find('.kabupaten').val()
+        var nama_mati = $(data).find('.nama_mati').val()
+        var tgl_mati = $(data).find('.tgl_mati').val()
+        var ttd = $(data).find('.ttd').val()
+
+        fd.append('_token', '{{ csrf_token() }}')
+        fd.append('nama', identity.nama)
+        fd.append('ttl', identity.ttl)
+        fd.append('alamat', identity.alamat)
+        fd.append('agama', identity.agama)
+        fd.append('kebangsaan', identity.kebangsaan)
+        fd.append('nomer_surat', identity.nomer_surat)
+        fd.append('domisili', domisili)
+        fd.append('kelurahan', kelurahan)
+        fd.append('kecamatan', kecamatan)
+        fd.append('kabupaten', kabupaten)
+        fd.append('nama_mati', nama_mati)
+        fd.append('tgl_mati', tgl_mati)
+        fd.append('ttd', ttd)
+        fd.append('id', identity.identitas_id)
+
+            $.ajax({
+                url : '/update-spm',
+                type : 'POST',
+                data : fd,
+                contentType : false,
+                processData : false,
+                success : function (data) {
+                    // alert('success')
+                    console.log(data);
+                    Swal.fire({
+                        title : 'Success',
+                        text : 'Data saved!',
+                        icon : 'success',
+                        showConfirmButton : false,
+                        timer : 2000,
+                        timerProgressBar :  true
+                    })
+                    setTimeout(() => {
+                        table.ajax.reload()
+                        $('.modal').modal('hide')
+                    }, 2000);
+                }, error : function () {
+                    Swal.fire({
+                        title : 'Error',
+                        text : 'Data not saved!',
+                        icon : 'error',
+                        showConfirmButton : false,
+                        timer : 2000,
+                        timeProgressBar :  true
+                    })
+                }
+            })
+    })
+
+
     // UPDATE SKPN
     $('body').on('click', '#update-skpn', function () {
         var data = '#edit-modal-skpn'
@@ -4376,6 +4652,42 @@
                         console.log(true);
                             $.ajax({
                                 url : '/print-umkm',
+                                type : "GET",
+                                data : {
+                                    'nosurat' : nosurat
+                                },
+                                success : function (data) {
+                                    $('body').empty()
+                                    $('body').append(data)
+
+                                    setTimeout(() => {
+                                        window.print()
+                                    }, 100);
+                                }
+                            })
+                        break;
+                    case 'form-skdu':
+                        console.log(true);
+                            $.ajax({
+                                url : '/print-skdu',
+                                type : "GET",
+                                data : {
+                                    'nosurat' : nosurat
+                                },
+                                success : function (data) {
+                                    $('body').empty()
+                                    $('body').append(data)
+
+                                    setTimeout(() => {
+                                        window.print()
+                                    }, 100);
+                                }
+                            })
+                        break;
+                    case 'form-spm':
+                        console.log(true);
+                            $.ajax({
+                                url : '/print-spm',
                                 type : "GET",
                                 data : {
                                     'nosurat' : nosurat

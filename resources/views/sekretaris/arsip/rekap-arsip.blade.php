@@ -80,6 +80,10 @@
         <div class="col-md-2">
             <button class="btn btn-primary" id="cek-arsip">Cek Arsip Dokumen</button>
         </div>
+        <div class="col"></div>
+        <div class="col-md-2 text-right">
+            <button class="btn btn-primary" id="print-arsip">Print Arsip Dokumen</button>
+        </div>
 
 
     </div>
@@ -129,148 +133,7 @@
 
 
 
-    {{-- Modal --}}
-    <div class="modal fade" id="modal-detail-arsip" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Detail Surat</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="form-group col">
-                            <label for="">Nomer Surat Masuk</label>
-                            <input type="text" class="form-control" value="" id="no_surat" disabled>
-                            <input type="text" class="form-control" value="002/L/409.52.06/V/2022" name="nomer_surat"
-                                id="nomer_surat" hidden>
-                        </div>
 
-                        <div class="form-group col">
-                            <label for="">Perihal</label>
-                            <input type="text" class="form-control" placeholder="Perihal" name="perihal" id="perihal">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label for="">Tanggal Surat</label>
-                            <input type="date" class="form-control" name="tgl_surat" id="tgl_surat">
-                        </div>
-                        <div class="form-group col">
-                            <label for="">Tanggal Menerima</label>
-                            <input type="date" class="form-control" name="tgl_menerima" id="tgl_menerima">
-                        </div>
-                        <div class="form-group col">
-                            <label for="">Sifat Surat</label>
-                            <input type="text" class="form-control" name="sifat_surat" id="sifat_surat">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label for="">Asal Instansi</label>
-                            <input type="text" class="form-control" name="instansi" id="instansi">
-                        </div>
-
-                        <div class="form-group col">
-                            <label for="">Penginput</label>
-                            <input type="text" class="form-control" value="" id="penginput" disabled>
-                            {{-- <input type="text" class="form-control" value="{{Auth::user()->nama_depan}} {{Auth::user()->nama_belakang}}" name="penginput_masuk" id="penginput_masuk" hidden> --}}
-                        </div>
-                    </div>
-                    <div class="form-group col">
-                        <label for="">File Surat Masuk</label>
-                        <br>
-                        {{-- <embed src="" class="embed" type=""> --}}
-                            {{-- <iframe src="" class="embed" frameborder="0"></iframe> --}}
-                        <button class="btn btn-danger print_surat"><i class="fas fa-print"></i></button>
-                        <a href="" class="btn btn-sm btn-primary file_surat" id="file_surat"><i class="fas fa-download"></i></a>
-                        {{-- <input type="file" class="form-control" value="{{date('d M Y')}}" name="file_surat"> --}}
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    {{-- Edit --}}
-    <div class="modal fade" id="modal-edit-arsip" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Surat</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" name="" id="id">
-                    <div class="row">
-                        <div class="form-group col">
-                            <label for="">Nomer Surat Masuk</label>
-                            <input type="text" class="form-control" value="" id="no_surat" >
-                            {{-- <input type="text" class="form-control" value="002/L/409.52.06/V/2022" name="nomer_surat"
-                                id="nomer_surat" hidden> --}}
-                        </div>
-
-                        <div class="form-group col">
-                            <label for="">Perihal</label>
-                            <input type="text" class="form-control" placeholder="Perihal" name="perihal" id="perihal">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label for="">Tanggal Surat</label>
-                            <input type="date" class="form-control" name="tgl_surat" id="tgl_surat">
-                        </div>
-                        <div class="form-group col">
-                            <label for="">Tanggal Menerima</label>
-                            <input type="date" class="form-control" name="tgl_menerima" id="tgl_menerima">
-                        </div>
-                        <div class="form-group col">
-                            <label for="">Sifat Surat</label>
-                            <input type="text" class="form-control" name="sifat_surat" id="sifat_surat">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label for="">Asal Instansi</label>
-                            <input type="text" class="form-control" name="instansi" id="instansi">
-                        </div>
-
-                        <div class="form-group col">
-                            <label for="">Penginput</label>
-                            <input type="text" class="form-control" value="" id="penginput" disabled>
-                            {{-- <input type="text" class="form-control" value="{{Auth::user()->nama_depan}} {{Auth::user()->nama_belakang}}" name="penginput_masuk" id="penginput_masuk" hidden> --}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="">File Surat Masuk</label>
-                            <br>
-                            {{-- <embed src="" class="embed" type=""> --}}
-                                {{-- <iframe src="" class="embed" frameborder="0"></iframe> --}}
-
-                            {{-- <button class="btn btn-danger print_surat"><i class="fas fa-print"></i></button>
-                            <a href="" class="btn btn-sm btn-primary file_surat" id="file_surat"><i class="fas fa-download"></i></a> --}}
-                            <input type="file" title="Coba" class="form-control" value="{{date('d M Y')}}" name="file_surat" id="file">
-                            <small id="file_surat"></small>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <button class="btn btn-sm btn-primary" id="update-arsip"> <i class="fas fa-check"></i> Simpan</button>
-                        <button class="btn btn-sm btn-danger tutup"> <i class="fas fa-times"></i> Batal</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -289,7 +152,23 @@
             $('body #tahun').prepend("<option value='' selected='selected'>Tahun</option>")
         })
 
+        $('#print-arsip').on('click', function () {
+            $('#filter-arsip').modal('show')
+            console.log('coba');
 
+            $.ajax({
+                url : '/load-kategori',
+                type : 'GET',
+                success : function (data) {
+                    $('#kategoriSurat').append($('<option>').text('-- Choose One -- '))
+                    $.each(data, function (k,v) {
+                        $('#kategoriSurat').append(
+                            $('<option>').val(v.id).text(v.nama_kategori)
+                        )
+                    })
+                }
+            })
+        })
 
         $(document).ready(function() {
             const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -434,6 +313,7 @@
                     'id': id
                 },
                 success: function(data) {
+                    $('body #nama_file').empty()
                     console.log(data);
                     $('body #id').val(data.id).prop('hidden', true)
                     $('body #no_surat').val(data.no_surat)
@@ -442,7 +322,7 @@
                     $('body #sifat_surat').val(data.sifat_surat)
                     $('body #tgl_menerima').val(data.tgl_menerima)
                     $('body #instansi').val(data.asal_instansi)
-                    $('body #file_surat').append(data.file_surat)
+                    $('body #nama_file').append(data.file_surat)
                     $('body .file_surat').attr('href',
                         `{{ asset('storage/file/${data.file_surat}') }}`)
                     $('body .embed').attr('src',
@@ -548,7 +428,7 @@
                             $('<td>').append(tgl),
                             $('<td>').append(tgl),
                             $('<td>').append(
-                                ' <button class="btn btn-sm btn-primary detail-arsip" data-id=' +
+                                ' <button class="btn btn-sm btn-warning edit-arsip" data-id="' + v.id + '" title="Detail Surat"><i class="fas fa-pencil-alt"></i></button> <button class="btn btn-sm btn-primary detail-arsip" data-id=' +
                                 v.id +
                                 ' title="Detail Surat"><i class="fas fa-eye"></i></button>  <button class="btn btn-sm btn-danger hapus-arsip" data-id=' +
                                 v.id + '><i class="fas fa-eraser"></i></button>')
@@ -597,4 +477,179 @@
       </div>
     </div>
   </div>
+
+   {{-- Modal --}}
+   <div class="modal fade" id="modal-detail-arsip" tabindex="-1" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog modal-xl modal-dialog-centered">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Detail Surat</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+               </button>
+           </div>
+           <div class="modal-body">
+               <div class="row">
+                   <div class="form-group col">
+                       <label for="">Nomer Surat Masuk</label>
+                       <input type="text" class="form-control" value="" id="no_surat" disabled>
+                       <input type="text" class="form-control" value="002/L/409.52.06/V/2022" name="nomer_surat"
+                           id="nomer_surat" hidden>
+                   </div>
+
+                   <div class="form-group col">
+                       <label for="">Perihal</label>
+                       <input type="text" class="form-control" placeholder="Perihal" name="perihal" id="perihal">
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="form-group col">
+                       <label for="">Tanggal Surat</label>
+                       <input type="date" class="form-control" name="tgl_surat" id="tgl_surat">
+                   </div>
+                   <div class="form-group col">
+                       <label for="">Tanggal Menerima</label>
+                       <input type="date" class="form-control" name="tgl_menerima" id="tgl_menerima">
+                   </div>
+                   <div class="form-group col">
+                       <label for="">Sifat Surat</label>
+                       <input type="text" class="form-control" name="sifat_surat" id="sifat_surat">
+                   </div>
+               </div>
+               <hr>
+               <div class="row">
+                   <div class="form-group col">
+                       <label for="">Asal Instansi</label>
+                       <input type="text" class="form-control" name="instansi" id="instansi">
+                   </div>
+
+                   <div class="form-group col">
+                       <label for="">Penginput</label>
+                       <input type="text" class="form-control" value="" id="penginput" disabled>
+                       {{-- <input type="text" class="form-control" value="{{Auth::user()->nama_depan}} {{Auth::user()->nama_belakang}}" name="penginput_masuk" id="penginput_masuk" hidden> --}}
+                   </div>
+               </div>
+               <div class="form-group col">
+                   <label for="">File Surat Masuk</label>
+                   <br>
+                   {{-- <embed src="" class="embed" type=""> --}}
+                       {{-- <iframe src="" class="embed" frameborder="0"></iframe> --}}
+                   <button class="btn btn-danger print_surat"><i class="fas fa-print"></i></button>
+                   <a href="" class="btn btn-sm btn-primary file_surat" id="file_surat"><i class="fas fa-download"></i></a>
+                   {{-- <input type="file" class="form-control" value="{{date('d M Y')}}" name="file_surat"> --}}
+               </div>
+           </div>
+
+       </div>
+   </div>
+</div>
+
+{{-- Filter Arsip --}}
+<div class="modal fade" id="filter-arsip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog  modal-xl">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Filter Arsip</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+           <form action="{{ route('report-arsip')}}">
+               <div class="mb-2 row">
+                   <div class="col-md-2 text-right">Dari Tanggal</div>
+                   <div class="col-md-4"><input type="date" class="form-control" name="dari" id="dari"></div>
+                   <div class="col-md-2 text-right">Sampai Tanggal</div>
+                   <div class="col-md-4"><input type="date" class="form-control" name="sampai" id="sampai"></div>
+               </div>
+
+               <div class="text-right">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary" id="print-report">Print</button>
+               </div>
+           </form>
+       </div>
+
+     </div>
+   </div>
+</div>
+
+
+{{-- Edit --}}
+<div class="modal fade" id="modal-edit-arsip" tabindex="-1" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog modal-xl modal-dialog-centered">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Edit Surat</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+               </button>
+           </div>
+           <div class="modal-body">
+               <input type="text" name="" id="id">
+               <div class="row">
+                   <div class="form-group col">
+                       <label for="">Nomer Surat Masuk</label>
+                       <input type="text" class="form-control" value="" id="no_surat" >
+                       {{-- <input type="text" class="form-control" value="002/L/409.52.06/V/2022" name="nomer_surat"
+                           id="nomer_surat" hidden> --}}
+                   </div>
+
+                   <div class="form-group col">
+                       <label for="">Perihal</label>
+                       <input type="text" class="form-control" placeholder="Perihal" name="perihal" id="perihal">
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="form-group col">
+                       <label for="">Tanggal Surat</label>
+                       <input type="date" class="form-control" name="tgl_surat" id="tgl_surat">
+                   </div>
+                   <div class="form-group col">
+                       <label for="">Tanggal Menerima</label>
+                       <input type="date" class="form-control" name="tgl_menerima" id="tgl_menerima">
+                   </div>
+                   <div class="form-group col">
+                       <label for="">Sifat Surat</label>
+                       <input type="text" class="form-control" name="sifat_surat" id="sifat_surat">
+                   </div>
+               </div>
+               <hr>
+               <div class="row">
+                   <div class="form-group col">
+                       <label for="">Asal Instansi</label>
+                       <input type="text" class="form-control" name="instansi" id="instansi">
+                   </div>
+
+                   <div class="form-group col">
+                       <label for="">Penginput</label>
+                       <input type="text" class="form-control" value="" id="penginput" disabled>
+                       {{-- <input type="text" class="form-control" value="{{Auth::user()->nama_depan}} {{Auth::user()->nama_belakang}}" name="penginput_masuk" id="penginput_masuk" hidden> --}}
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="form-group col-md-6">
+                       <label for="">File Surat Masuk</label>
+                       <br>
+                       {{-- <embed src="" class="embed" type=""> --}}
+                           {{-- <iframe src="" class="embed" frameborder="0"></iframe> --}}
+
+                       {{-- <button class="btn btn-danger print_surat"><i class="fas fa-print"></i></button>
+                       <a href="" class="btn btn-sm btn-primary file_surat" id="file_surat"><i class="fas fa-download"></i></a> --}}
+                       <input type="file" title="Coba" class="form-control" value="{{date('d M Y')}}" name="file_surat" id="file">
+                       <small id="nama_file"></small>
+                   </div>
+               </div>
+               <div class="text-right">
+                   <button class="btn btn-sm btn-primary" id="update-arsip"> <i class="fas fa-check"></i> Simpan</button>
+                   <button class="btn btn-sm btn-danger tutup"> <i class="fas fa-times"></i> Batal</button>
+               </div>
+           </div>
+
+       </div>
+   </div>
+</div>
+
 @endsection
