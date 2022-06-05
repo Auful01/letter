@@ -213,8 +213,12 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('memo', function () {
         return view('sekretaris.memo.memo');
     })->name('memo');
-
+    Route::get('detail-memo', [MemoController::class, 'detailMemo'])->name('detail-memo');
     Route::get('last-memo', [MemoController::class, 'getLastMemo']);
+    Route::get('all-memo', [MemoController::class, 'getAllMemo'])->name('all-memo');
+    Route::get('edit-memo', [MemoController::class, 'editMemo']);
+    Route::post('update-memo', [MemoController::class, 'updateMemo']);
+    Route::post('hapus-memo', [MemoController::class, 'deleteMemo']);
 
     Route::post('save-memo', [MemoController::class, 'store'])->name('save-memo');
 

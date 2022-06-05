@@ -132,12 +132,53 @@
             {{-- <strong>Coba</strong> --}}
             <p id="last-memo"></p>
             <small id="tgl-memo"></small>
-          </div>
+        </div>
+        <hr>
+        <h5>Latest Memo</h5>
+        <div class="table-responsive">
+            <table class="table table-bordered"  id="memo">
+                <thead>
+                    <th>No</th>
+                    <th>Memo</th>
+                    <th>Tanggal</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 
+@endsection
+
+@section('modal')
+<div class="modal fade" id="edit-memo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <input type="text" name="" id="memo_id">
+            <div class="form-group">
+                <label for="">Memo</label>
+                <textarea name="memo" id="memo_isi" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="update-memo">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('script')
 <script>
+
     $(document).ready(function(){
         $.ajax({
             url: "/last-memo",
@@ -150,7 +191,120 @@
 
             }
         });
+    })
+
+    $('body').on('click','.edit-memo', function () {
+        var id = $(this).data('id');
+        $.ajax({
+            url: "/edit-memo",
+            method: "GET",
+            data: {id: id},
+            success: function(data){
+                console.log(data);
+                $("#edit-memo").modal('show');
+                $("#memo_id").val(data.id);
+                $("#memo_isi").append(data.isi);
+            }
+        });
+    })
+
+    $('body').on('click','#update-memo', function () {
+        var id = $("#memo_id").val();
+        var isi = $("#memo_isi").val();
+        $.ajax({
+            url: "/update-memo",
+            method: "POST",
+            data: {
+                _token : "{{ csrf_token() }}",
+                id: id,
+                isi: isi},
+            success: function(data){
+                console.log(data);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: 'Memo berhasil diupdate',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                $("#edit-memo").modal('hide');
+                setTimeout(() => {
+                    // location.reload();
+                    $('#memo').DataTable().ajax.reload();
+                }, 1500);
+            }
+        });
+    })
+
+    $('body').on('click','.hapus-memo', function () {
+        var id = $(this).data('id');
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Anda tidak dapat mengembalikan data yang sudah dihapus!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "/hapus-memo",
+                    method: "POST",
+                    data: {
+                        _token : "{{ csrf_token() }}",
+                        id: id},
+                    success: function(data){
+                        console.log(data);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: 'Memo berhasil dihapus',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(() => {
+                            $('#memo').DataTable().ajax.reload();
+                        }, 1500);
+
+                    }
+                });
+            }
         })
+    })
+
+    // $(document).ready(function () {
+    //     $.ajax({
+    //         url: "/all-memo",
+    //         method: "GET",
+    //         success : function (data) {
+    //             console.log(data);
+    //         }
+    //     })
+    // })
+
+    $('#memo').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '/all-memo',
+            order: [[2,'desc']],
+            columns: [
+                { data: 'DT_RowIndex',
+                name: 'DT_RowIndex'
+                },{
+                    data: "isi_memo",
+                    name: "isi_memo"
+                 },{
+                    data: "tgl_memo",
+                    name: "tgl_memo"
+                },{
+                    data: "action",
+                    name: "action"   },
+
+            ]
+        }
+    );
+
 
 </script>
 @endsection

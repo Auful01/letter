@@ -33,13 +33,17 @@
                 },
                 success : function () {
                     Swal.fire({
-                        title: 'Good job!',
-                        text: 'You clicked the button!',
+                        title: 'Sukses!',
+                        text: 'Memo Tersimpan!',
                         icon: 'success',
                         timer : 2000,
                         timerProgressBar: true,
                         showConfirmButton : false
                     })
+
+                    setTimeout(function () {
+                        window.location.href = '/dashboard'
+                    }, 2000)
                     $('#form-memo')[0].reset()
                 }
             })
