@@ -59,10 +59,9 @@ class UserController extends Controller
 
     public function dataAnggota()
     {
-        $usera = Profile::with('user')->where('status_akun', '=', 'aktif')->get();
-        $userb = Profile::with('user')->where('status_akun', '=', 'tidak aktif')->get();
+        $usera = Profile::with('user')->get();
         // $user = User::all();
-        return view('sekretaris.keanggotaan.data-anggota', ["usera" => $usera, 'userb' => $userb]);
+        return view('sekretaris.keanggotaan.data-anggota', ["usera" => $usera]);
     }
 
     public function registerAnggota(Request $request)
@@ -103,8 +102,9 @@ class UserController extends Controller
 
     public function hapusUser(Request $request)
     {
-        $user = Profile::where('id', '=', $request->id)->delete();
-        return $user;
+        $profil = Profile::where('id', '=', $request->id)->first();
+        User::where('id', '=', $profil->user_id)->delete();
+        return Profile::where('id', '=', $request->id)->delete();
     }
 
     public function profile()

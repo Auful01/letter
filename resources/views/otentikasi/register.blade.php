@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group mb-4">
+                            {{-- <div class="form-group mb-4">
                                 <div class="row">
                                     <div class="col">
                                         <input type="password" name="password"
@@ -100,7 +100,6 @@
                                         @enderror
                                     </div>
                                     <div class="col">
-                                        {{-- <input type="text" name="nama_belakang" class="form-control" placeholder="Nama Belakang" id=""> --}}
                                         <input type="password" name="password_confirmation" class="form-control"
                                             placeholder="Re-Password" id="re-password">
                                         @error('password')
@@ -110,7 +109,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <button type="submit" class="btn btn-primary" style="width: 100%">Daftar</button>
                         </form>
                     </div>

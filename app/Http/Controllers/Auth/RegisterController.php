@@ -42,6 +42,8 @@ class RegisterController extends Controller
             return '/dashboard';
         } else if (auth()->user()->jabatan_id == 2) {
             return '/dashboard';
+        } else if (auth()->user()->jabatan_id == 2) {
+            return '/dashboard';
         }
     }
 
@@ -68,7 +70,7 @@ class RegisterController extends Controller
             'nama_belakang' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255'],
             'jabatan' => ['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -87,7 +89,7 @@ class RegisterController extends Controller
             'nama_belakang' => $data['nama_belakang'],
             'username' => $data['username'],
             'jabatan_id' => $data['jabatan'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make('12345678'),
         ]);
     }
 }
