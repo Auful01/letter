@@ -788,7 +788,7 @@
             </div>
             <div class="col-md-4">
                 <p class="text-center">Sidodadi, {{ date("Y M d") }}</p>
-                <p class="text-center">A.n Kepala Desa Sidodadi</p>
+                <p class="text-center">A.n {{ $ttd->jabatan->jabatan }}, Desa Sidodadi</p>
 
                 <br>
                 <br>

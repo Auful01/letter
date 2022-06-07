@@ -587,7 +587,7 @@
         </div>
         <br>
         <div>
-            <p>Yang bertanda tangan di bawah Kepala Desa Sidodadi Kecamatan Garum Kabupaten Blitar,
+            <p>Yang bertanda tangan di bawah {{ $ttd->jabatan->jabatan }}, Desa Sidodadi Kecamatan Garum Kabupaten Blitar,
                 menerangkan bahwa :
             </p>
         </div>
@@ -657,7 +657,7 @@
             </div>
             <div class="col-md-4">
                 <p>Sidodadi, {{ date("Y M d") }}</p>
-                <p> Kepala Desa Sidodadi</p>
+                <p> {{ $ttd->jabatan->jabatan }}, Desa Sidodadi</p>
 
                 <br>
                 <br>
