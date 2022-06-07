@@ -142,7 +142,7 @@
             $('#table-sktm').DataTable();
         });
 
-        $('.tutup').on('click', function (params) {
+        $('body').on('click', '.tutup', function (params) {
             $('.modal').modal('hide');
         })
 
@@ -334,7 +334,7 @@
             })
         })
 
-        $('#update-arsip').on('click', function() {
+        $('body').on('click', '#update-arsip', function() {
             var fd = new FormData();
             var modal = '#modal-edit-arsip'
             var id = $(modal).find('#id').val()
