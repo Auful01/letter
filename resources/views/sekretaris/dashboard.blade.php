@@ -66,7 +66,7 @@
                 <div class="icon">
                     <i class="fas fa-clipboard-list " ></i>
                 </div>
-                <a href="{{route('data-anggota')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                {{-- <a href="{{route('data-anggota')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
             </div>
         </div>
         <div class="col-lg-3 col-6">
@@ -82,7 +82,7 @@
                 <div class="icon">
                     <i class="fas fa-envelope-open" ></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
             </div>
         </div>
         <div class="col-lg-3 col-6">
@@ -95,7 +95,7 @@
                 <div class="icon">
                     <i class="fas fa-inbox "></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
             </div>
         </div>
 

@@ -3488,7 +3488,7 @@
                     })
 
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 },
@@ -3571,7 +3571,7 @@
                     })
 
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 },
@@ -3642,7 +3642,7 @@
                     })
 
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 },
@@ -3735,7 +3735,7 @@
                 })
 
                 setTimeout(() => {
-                    table.ajax.reload()
+                    $('#myTable').DataTable().ajax.reload()
                     $('.modal').modal('hide')
                 }, 2000);
             },
@@ -3794,7 +3794,7 @@
                 })
 
                 // setTimeout(() => {
-                //     table.ajax.reload()
+                //     $('#myTable').DataTable().ajax.reload()
                 //     $('.modal').modal('hide')
                 // }, 2000);
             },
@@ -3868,7 +3868,7 @@
                     })
 
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 }, error: function (err) {
@@ -3938,7 +3938,7 @@
                         timerProgressBar :  true
                     })
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 }, error : function () {
@@ -4008,7 +4008,7 @@
                         timerProgressBar :  true
                     })
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 }, error : function () {
@@ -4076,7 +4076,7 @@
                         timerProgressBar :  true
                     })
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 }, error : function () {
@@ -4144,7 +4144,7 @@
                         timerProgressBar :  true
                     })
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 }, error : function () {
@@ -4206,7 +4206,7 @@
                         timerProgressBar :  true
                     })
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 }, error : function () {
@@ -4281,7 +4281,7 @@
                         timerProgressBar :  true
                     })
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 }, error : function () {
@@ -4345,7 +4345,7 @@
                         timerProgressBar :  true
                     })
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 }, error : function () {
@@ -4426,7 +4426,7 @@
                         timerProgressBar :  true
                     })
                     setTimeout(() => {
-                        table.ajax.reload()
+                        $('#myTable').DataTable().ajax.reload()
                         $('.modal').modal('hide')
                     }, 2000);
                 }, error : function () {
@@ -4740,7 +4740,7 @@
                                         })
 
                             setTimeout(() => {
-                                table.ajax.reload()
+                                $('#myTable').DataTable().ajax.reload()
                             }, 1500);
                         }
                     })
