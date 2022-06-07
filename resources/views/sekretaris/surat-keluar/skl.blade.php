@@ -84,7 +84,6 @@
                     <div class="col">
                         <select name="ttd" id="ttd" class="form-control">
                             <option value="">-- Silahkan pilih nama --</option>
-                            <option value="rafliruk">Rafli Rukantala</option>
 
                         </select>
                         <small class="text-info"><i class="fas fa-info-circle"></i> surat ini mendukung ttd elektor</small>
@@ -103,6 +102,7 @@
 
 @section('script')
 <script>
+    loadTtd()
     $('#pekerjaan').on('change', function () {
         var coba = $(this).find(':selected').val()
         console.log(coba);
