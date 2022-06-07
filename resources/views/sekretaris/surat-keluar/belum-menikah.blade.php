@@ -170,7 +170,7 @@
                 type : 'GET',
                 success : function (data) {
                     console.log(data);
-                    data == null ? $('#nomer_surat').val(1) : $('#nomer_surat').val(parseInt(data.nomor_surat) + 1)
+                    data == null ? $('#nomer_surat').val(1) : $('#nomer_surat').val(parseInt(data.nomer_surat) + 1)
                 }
             })
 
