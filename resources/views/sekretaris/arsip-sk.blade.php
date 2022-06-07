@@ -827,8 +827,8 @@
                         </div>
                         <div class="card-body">
                             <ol>
-                                <li>coba</li>
-                                <li>coba</li>
+                                <li>Untuk pemohon domisili kota Blitar cukup isikan Kota Blitar kemudian isikan NIK pemohon maka otomatis akan terisi isian data pemohon</li>
+                                <li>Untuk pemohon luar kota, maka anda perlu mengisi manual isian data pemohon (untuk isian kelurahan, kecamatan, dan kota/kab, isikan nama bukan angka)</li>
                             </ol>
                         </div>
                     </div>
