@@ -199,6 +199,7 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     Route::get('get-last-skn', [SuratController::class, 'getLastSkn']);
     Route::get('get-last-skdu', [SuratController::class, 'getLastSkdu']);
     Route::get('get-last-spm', [SuratController::class, 'getLastSpm']);
+    Route::get('get-last-sk', [SuratController::class, 'getLastSk']);
 
     // ARSIP
     Route::get('arsip-surat-keluar', function () {

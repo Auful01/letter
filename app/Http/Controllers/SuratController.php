@@ -195,6 +195,7 @@ class SuratController extends Controller
         $skpm = Skpm::all()->last();
         return $skpm;
     }
+
     public function getLastSk()
     {
         $sk = Sk::all()->last();
