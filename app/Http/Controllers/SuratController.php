@@ -225,10 +225,6 @@ class SuratController extends Controller
     {
         // return $request;
         $data = Identitas::create($request->all());
-        $ttd = User::where('id', '=', $request->ttd)->first();
-        $userttd = $ttd->nama_depan . ' ' . $ttd->nama_belakang;
-        $data->ttd = $userttd;
-        $data->save();
 
         $filename = $request->file('file')->getClientOriginalName();
 
@@ -244,7 +240,7 @@ class SuratController extends Controller
             'sk_rtrw' => $filename,
             'berlaku_mulai' => $request->berlaku,
             'berlaku_sampai' => $request->sampai,
-            'ttd' => $userttd
+            'ttd' => $request->ttd,
         ]);
     }
 
