@@ -338,7 +338,7 @@
             var fd = new FormData();
             var modal = '#modal-edit-arsip'
             var id = $(modal).find('#id').val()
-            var no_surat = $('body #no_surat').val()
+            var no_surat = $(modal).find('#no_surat').val()
             var perihal = $(modal).find('#perihal').val()
             var tgl_surat = $(modal).find('#tgl_surat').val()
             var sifat_surat = $(modal).find('#sifat_surat').val()
