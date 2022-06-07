@@ -846,7 +846,7 @@ class SuratController extends Controller
             'alamat' => $request->alamat,
             'kategori_id' => $request->kategori_id,
             'ttd' => $request->ttd,
-            'nomor_surat' => $request->nomor_surat,
+            'nomer_surat' => $request->nomor_surat,
         ]);
 
         $umkm = Umkm::create([
