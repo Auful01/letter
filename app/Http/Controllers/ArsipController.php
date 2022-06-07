@@ -22,7 +22,7 @@ class ArsipController extends Controller
         }
         Surat::create([
             'user_id' => Auth::user()->id,
-            'no_surat' => '002/L/' . $request->nomer_surat . '/V/2022',
+            'no_surat' => $request->nomer_surat,
             'perihal' => $request->perihal,
             'tgl_menerima' => $request->tgl_menerima,
             'tgl_surat' => $request->tgl_surat,
