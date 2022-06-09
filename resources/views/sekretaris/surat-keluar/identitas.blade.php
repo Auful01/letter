@@ -60,7 +60,7 @@
 
         </div>
 
-        <div class="row mb-4" {{ Request::segment(1) == 'form-skpn' || Request::segment(1) == 'form-skpm' ? '' : 'hidden' }}>
+        <div class="row mb-4" {{ Request::segment(1) == 'form-surat-keterangan-pindah-nikah' || Request::segment(1) == 'form-surat-keterangan-pindah-masuk' ? '' : 'hidden' }}>
             <div class="col-md-3 text-right">
                 <label for="">Kebangsaan</label>
             </div>
@@ -116,7 +116,7 @@
                 </select>
             </div>
         </div>
-        <div class="row mb-4" {{ Request::segment(1) == 'form-skpn' ? 'hidden' : '' }}>
+        <div class="row mb-4" {{ Request::segment(1) == 'form-surat-keterangan-pindah-nikah' ? 'hidden' : '' }}>
             <div class="col-md-3  text-right">
                 <label for="">Pendidikan </label>
             </div>

@@ -26,7 +26,7 @@
                 console.log(data);
                 $.each(data, function(k, v) {
                     $(
-                        `<a class="collapse-item l-surat" data-srt=${v.kode_kategori} id=${v.id} href="{{ route('form-sktm') }}">${v.nama_kategori}</a>`
+                        `<a class="collapse-item l-surat" data-srt=${v.kode_kategori} id=${v.id} href="{{ route('form-surat-keterangan-tidak-mampu') }}">${v.nama_kategori}</a>`
                     ).insertAfter('body .jenis-surat')
                 })
             }

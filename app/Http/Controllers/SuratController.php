@@ -1289,52 +1289,52 @@ class SuratController extends Controller
         // return $kategori;
         Identitas::where('nomer_surat', '=', $request->nosurat)->where('kategori_id', '=', $request->kategori)->delete();
         switch ($kategori->link) {
-            case 'form-skbm':
+            case 'form-surat-keterangan-belum-menikah':
                 $skbm = Skbm::with('identitas')->where('nomer_surat', '=', $request->nosurat);
                 return $skbm->delete();
                 break;
 
-            case 'form-skl':
+            case 'form-surat-keterangan-lain':
                 $skl = Skl::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return $skl->delete();
                 break;
 
-            case 'form-skck':
+            case 'form-surat-keterangan-catatan-kepolisian':
                 $skck = Skck::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return $skck->delete();
                 break;
 
-            case 'form-skik':
+            case 'form-surat-keterangan-ijin-keramaian':
                 $skik = Skik::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return $skik->delete();
                 break;
 
-            case 'form-skiu':
+            case 'form-surat-keterangan-ijin-usaha':
                 $skiu = Skiu::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return  $skiu->delete();
                 break;
 
-            case 'form-sp':
+            case 'form-surat-pengantar':
                 $sp = Sp::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return  $sp->delete();
                 break;
 
-            case 'form-skpn':
+            case 'form-surat-keterangan-pindah-nikah':
                 $skpn = Skpn::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return $skpn->delete();
                 break;
 
-            case 'form-sk':
+            case 'form-surat-kuasa':
                 $sk = Sk::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return $sk->delete();
                 break;
 
-            case 'form-skpm':
+            case 'form-surat-keterangan-pindah-masuk':
                 $skpm = Skpm::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return  $skpm->delete();
                 break;
 
-            case 'form-skn':
+            case 'form-surat-keterangan-nikah':
                 $skn = Skn::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return  $skn->delete();
                 break;
@@ -1342,12 +1342,18 @@ class SuratController extends Controller
                 $umkm = Umkm::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return  $umkm->delete();
                 break;
-            case 'form-sktm':
+            case 'form-surat-keterangan-tidak-mampu':
                 $sktm = Sktm::with('identitas')->where('nomor_surat', '=', $request->nosurat);
                 return  $sktm->delete();
                 break;
-
-
+            case 'form-surat-keterangan-domisili-usaha':
+                $skdu = Skdu::with('identitas')->where('nomor_surat', '=', $request->nosurat);
+                return $skdu->delete();
+                break;
+            case 'form-surat-penggunaan-makam':
+                $spm = Spm::with('identitas')->where('nomor_surat', '=', $request->nosurat);
+                return $spm->delete();
+                break;
             default:
                 # code...
                 break;

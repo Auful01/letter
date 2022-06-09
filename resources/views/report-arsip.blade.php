@@ -577,11 +577,11 @@
                 {{-- <th>Tanda Tangan</th> --}}
             </thead>
             <tbody>
-                @foreach ($data as $d)
-                    <tr>
                         @php
                             $no = 1;
                         @endphp
+                @foreach ($data as $d)
+                    <tr>
                         <td>{{$no}}</td>
                         <td>{{$d->no_surat}}</td>
                         <td>{{$d->asal_instansi}}</td>

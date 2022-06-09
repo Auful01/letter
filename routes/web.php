@@ -53,61 +53,61 @@ Route::middleware(['auth', 'role:Sekretaris'])->group(function () {
     })->name('registrasi-anggota');
 
     // SURAT KELUAR
-    Route::get('form-sktm', function () {
+    Route::get('form-surat-keterangan-tidak-mampu', function () {
         return view('sekretaris.surat-keluar.sktm');
-    })->name('form-sktm');
+    })->name('form-surat-keterangan-tidak-mampu');
 
-    Route::get('form-skbm', function () {
+    Route::get('form-surat-keterangan-belum-menikah', function () {
         return view('sekretaris.surat-keluar.belum-menikah');
-    })->name('form-skbm');
+    })->name('form-surat-keterangan-belum-menikah');
 
     Route::get('form-umkm', function () {
         return view('sekretaris.surat-keluar.umkm');
     })->name('form-umkm');
 
-    Route::get('form-skdu', function () {
+    Route::get('form-surat-keterangan-domisili-usaha', function () {
         return view('sekretaris.surat-keluar.skdu');
-    })->name('form-skdu');
+    })->name('form-surat-keterangan-domisili-usaha');
 
-    Route::get('form-sp', function () {
+    Route::get('form-surat-pengantar', function () {
         return view('sekretaris.surat-keluar.surat-pengantar');
-    })->name('form-sp');
+    })->name('form-surat-pengantar');
 
-    Route::get('form-skck', function () {
+    Route::get('form-surat-keterangan-catatan-kepolisian', function () {
         return view('sekretaris.surat-keluar.skck');
-    })->name('form-skck');
+    })->name('form-surat-keterangan-catatan-kepolisian');
 
-    Route::get('form-skik', function () {
+    Route::get('form-surat-keterangan-ijin-keramaian', function () {
         return view('sekretaris.surat-keluar.skik');
-    })->name('form-skik');
+    })->name('form-surat-keterangan-ijin-keramaian');
 
-    Route::get('form-skiu', function () {
+    Route::get('form-surat-keterangan-ijin-usaha', function () {
         return view('sekretaris.surat-keluar.izin-usaha');
-    })->name('form-skiu');
+    })->name('form-surat-keterangan-ijin-usaha');
 
-    Route::get('form-spm', function () {
+    Route::get('form-surat-penggunaan-makam', function () {
         return view('sekretaris.surat-keluar.makam');
-    })->name('form-spm');
+    })->name('form-surat-penggunaan-makam');
 
-    Route::get('form-skl', function () {
+    Route::get('form-surat-keterangan-lain', function () {
         return view('sekretaris.surat-keluar.skl');
-    })->name('form-skl');
+    })->name('form-surat-keterangan-lain');
 
-    Route::get('form-skn', function () {
+    Route::get('form-surat-keterangan-nikah', function () {
         return view('sekretaris.surat-keluar.skn');
-    })->name('form-skn');
+    })->name('form-surat-keterangan-nikah');
 
-    Route::get('form-skpn', function () {
+    Route::get('form-surat-keterangan-pindah-nikah', function () {
         return view('sekretaris.surat-keluar.skpn');
-    })->name('form-skpn');
+    })->name('form-surat-keterangan-pindah-nikah');
 
-    Route::get('form-skpm', function () {
+    Route::get('form-surat-keterangan-pindah-masuk', function () {
         return view('sekretaris.surat-keluar.skpm');
-    })->name('form-skpm');
+    })->name('form-surat-keterangan-pindah-masuk');
 
-    Route::get('form-sk', function () {
+    Route::get('form-surat-kuasa', function () {
         return view('sekretaris.surat-keluar.surat-kuasa');
-    })->name('form-sk');
+    })->name('form-surat-kuasa');
 
     // REPORT PRINT
     Route::get('report-print', [SuratController::class, 'reportPrint'])->name('report-print');

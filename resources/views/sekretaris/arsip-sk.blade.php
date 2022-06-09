@@ -2903,7 +2903,7 @@
             success : function (data) {
                 console.log(data.link);
                 switch (data.link) {
-                    case 'form-skbm':
+                    case 'form-surat-keterangan-belum-menikah':
                         $('#edit-modal-skbm').modal('show')
                             $.ajax({
                                 url : '/find-skbm',
@@ -2931,7 +2931,7 @@
                                 }
                             })
                         break;
-                        case 'form-skl':
+                        case 'form-surat-keterangan-lain':
                             $('#edit-modal-skl').modal('show')
 
                             $.ajax({
@@ -2962,7 +2962,7 @@
                                 }
                             })
                         break;
-                        case 'form-skck':
+                        case 'form-surat-keterangan-catatan-kepolisian':
                             $('#edit-modal-skck').modal('show')
 
                             $.ajax({
@@ -2991,7 +2991,7 @@
                                 }
                             })
                             break
-                        case 'form-skik':
+                        case 'form-surat-keterangan-ijin-keramaian':
                             $('#edit-modal-skik').modal('show')
 
                             $.ajax({
@@ -3022,7 +3022,7 @@
                                 }
                             })
                             break
-                        case 'form-skiu':
+                        case 'form-surat-keterangan-ijin-usaha':
                             $('#edit-modal-skiu').modal('show')
 
                             $.ajax({
@@ -3053,7 +3053,7 @@
                                 }
                             })
                             break
-                        case 'form-sp':
+                        case 'form-surat-pengantar':
                             $('#edit-modal-sp').modal('show')
 
                             $.ajax({
@@ -3084,7 +3084,7 @@
                                 }
                             })
                             break
-                        case 'form-skpn':
+                        case 'form-surat-keterangan-pindah-nikah':
                             $('#edit-modal-skpn').modal('show')
 
                             $.ajax({
@@ -3119,7 +3119,7 @@
                                 }
                             })
                             break
-                        case 'form-sk':
+                        case 'form-surat-kuasa':
                             $('#edit-modal-sk').modal('show')
 
                             $.ajax({
@@ -3164,7 +3164,7 @@
                                 }
                             })
                             break
-                        case 'form-skpm':
+                        case 'form-surat-keterangan-pindah-masuk':
                             $('#edit-modal-skpm').modal('show')
 
                             $.ajax({
@@ -3237,7 +3237,7 @@
                                 }
                             })
                             break
-                        case 'form-sktm':
+                        case 'form-surat-keterangan-tidak-mampu':
                             $('#edit-modal-sktm').modal('show')
 
                             $.ajax({
@@ -3267,7 +3267,7 @@
                                 }
                             })
                             break
-                        case 'form-skn':
+                        case 'form-surat-keterangan-nikah':
 
                             $.ajax({
                                 url : '/find-skn',
@@ -3349,7 +3349,7 @@
                                 }
                             })
                             break
-                        case 'form-skdu':
+                        case 'form-surat-keterangan-domisili-usaha':
                             $.ajax({
                                 url : '/find-skdu',
                                 type : "GET",
@@ -3394,7 +3394,7 @@
                                 }
                             })
                             break
-                        case 'form-spm':
+                        case 'form-surat-penggunaan-makam':
                             $.ajax({
                                 url : '/find-spm',
                                 type : "GET",
@@ -4457,7 +4457,7 @@
                 console.log(data.link);
                 console.log(data.link == "form-sk" ? true : false);
                 switch (data.link) {
-                    case 'form-skbm':
+                    case 'form-surat-keterangan-belum-menikah':
                             $.ajax({
                                 url : '/print-skbm',
                                 type : "GET",
@@ -4474,7 +4474,7 @@
                                 }
                             })
                         break
-                    case 'form-skl':
+                    case 'form-surat-keterangan-lain':
                             $.ajax({
                                 url : '/print-skl',
                                 type : "GET",
@@ -4491,7 +4491,7 @@
                                 }
                             })
                         break
-                    case 'form-skck':
+                    case 'form-surat-keterangan-catatan-kepolisian':
                             $.ajax({
                                 url : '/print-skck',
                                 type : "GET",
@@ -4508,7 +4508,7 @@
                                 }
                             })
                         break
-                    case 'form-skik':
+                    case 'form-surat-keterangan-ijin-keramaian':
                             $.ajax({
                                 url : '/print-skik',
                                 type : "GET",
@@ -4525,7 +4525,7 @@
                                 }
                             })
                         break
-                    case 'form-skiu':
+                    case 'form-surat-keterangan-ijin-usaha':
                             $.ajax({
                                 url : '/print-skiu',
                                 type : "GET",
@@ -4542,7 +4542,7 @@
                                 }
                             })
                         break
-                    case 'form-sp':
+                    case 'form-surat-pengantar':
                             $.ajax({
                                 url : '/print-sp',
                                 type : "GET",
@@ -4559,7 +4559,7 @@
                                 }
                             })
                         break
-                    case 'form-skpn':
+                    case 'form-surat-keterangan-pindah-nikah':
                             $.ajax({
                                 url : '/print-skpn',
                                 type : "GET",
@@ -4576,7 +4576,7 @@
                                 }
                             })
                         break
-                    case 'form-sk':
+                    case 'form-surat-kuasa':
                         console.log(true);
                             $.ajax({
                                 url : '/print-sk',
@@ -4594,7 +4594,7 @@
                                 }
                             })
                         break;
-                    case 'form-skpm':
+                    case 'form-surat-keterangan-pindah-masuk':
                         console.log(true);
                             $.ajax({
                                 url : '/print-skpm',
@@ -4612,7 +4612,7 @@
                                 }
                             })
                         break;
-                    case 'form-sktm':
+                    case 'form-surat-keterangan-tidak-mampu':
                         console.log(true);
                             $.ajax({
                                 url : '/print-sktm',
@@ -4630,7 +4630,7 @@
                                 }
                             })
                         break;
-                    case 'form-skn' :
+                    case 'form-surat-keterangan-nikah' :
                         console.log(true);
                             $.ajax({
                                 url : '/print-skn',
@@ -4666,7 +4666,7 @@
                                 }
                             })
                         break;
-                    case 'form-skdu':
+                    case 'form-surat-keterangan-domisili-usaha':
                         console.log(true);
                             $.ajax({
                                 url : '/print-skdu',
@@ -4684,7 +4684,7 @@
                                 }
                             })
                         break;
-                    case 'form-spm':
+                    case 'form-surat-penggunaan-makam':
                         console.log(true);
                             $.ajax({
                                 url : '/print-spm',
