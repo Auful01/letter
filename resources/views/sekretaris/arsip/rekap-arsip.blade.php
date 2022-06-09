@@ -315,14 +315,14 @@
                 success: function(data) {
                     $('body #nama_file').empty()
                     console.log(data);
-                    $('body #id').val(data.id).prop('hidden', true)
-                    $('body #no_surat').val(data.no_surat)
-                    $('body #perihal').val(data.perihal)
-                    $('body #tgl_surat').val(data.tgl_surat)
-                    $('body #sifat_surat').val(data.sifat_surat)
-                    $('body #tgl_menerima').val(data.tgl_menerima)
-                    $('body #instansi').val(data.asal_instansi)
-                    $('body #nama_file').append(data.file_surat)
+                    $('body #id').val(data.id).prop('hidden', true).prop('disabled', false)
+                    $('body #no_surat').val(data.no_surat).prop('disabled', false)
+                    $('body #perihal').val(data.perihal).prop('disabled', false)
+                    $('body #tgl_surat').val(data.tgl_surat).prop('disabled', false)
+                    $('body #sifat_surat').val(data.sifat_surat).prop('disabled', false)
+                    $('body #tgl_menerima').val(data.tgl_menerima).prop('disabled', false)
+                    $('body #instansi').val(data.asal_instansi).prop('disabled', false)
+                    $('body #nama_file').append(data.file_surat).prop('disabled', false)
                     $('body .file_surat').attr('href',
                         `{{ asset('storage/file/${data.file_surat}') }}`)
                     $('body .embed').attr('src',
