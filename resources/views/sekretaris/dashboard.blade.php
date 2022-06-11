@@ -77,7 +77,7 @@
 
                     <h3 style="color: #fff">{{ $now->id }}</h3>
                     @endforeach
-                    <p style="color: #fff">SURAT (HARI INI)</p>
+                    <p style="color: #fff">SURAT KELUAR(HARI INI)</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-envelope-open" ></i>
@@ -90,12 +90,37 @@
             <div class="small-box bg-danger">
                 <div class="inner">
                     <h3 style="color: #fff"> {{ $sktm }}</h3>
-                    <p style="color: #fff"> SURAT (KESELURUHAN)</p>
+                    <p style="color: #fff"> SURAT KELUAR(KESELURUHAN)</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-inbox "></i>
                 </div>
-                {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            {{-- <div style="background-image: url('/public/image/jam.jpg')"></div> --}}
+            <div class="small-box bg-secondary">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 style="color: #fff" id="hari"></h3>
+                            <p style="color: #fff" id="tanggal"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p  class="text-right" style="color: #fff; font-size: 15pt;margin-top: 10px">
+                                <b id="jam"></b> :  <b id="menit"></b> : <b id="detik"></b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="position-relative">
+                        <div class="position-absolute top-0 end-0" >
+                                <b id="jam"></b> :  <b id="menit"></b>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -192,6 +217,73 @@
             }
         });
     })
+
+    $(document).ready(function(){
+        var date = Date(Date.now())
+        var tgl = date.toString()
+        var dt = tgl.trim().split(/\s+/)
+        console.log(dt);
+        var hari = ""
+        switch (dt[0]) {
+            case 'Sun':
+                hari = "Minggu"
+                break;
+            case 'Mon':
+                hari = "Senin"
+                break;
+            case 'Tue':
+                hari = "Selasa"
+                break;
+            case 'Wed':
+                hari = "Rabu"
+                break;
+            case 'Thu':
+                hari = "Kamis"
+                break;
+            case 'Fri':
+                hari = "Jumat"
+                break;
+            case 'Sat':
+                hari = "Sabtu"
+                break;
+            default:
+                break;
+        }
+                $("#hari").append(hari);
+                $("#tanggal").append(dt[2] + ' ' + dt[1] + ' ' + dt[3] );
+        // $.ajax({
+        //     url: "/last-memo",
+        //     method: "GET",
+        //     success: function(data){
+        //         // console.log(data);
+
+
+        //     }
+        // });
+    })
+
+    setInterval(() => {
+        $('#jam').empty()
+        $('#menit').empty()
+        $('#detik').empty()
+    d = new Date(); //object of date()
+    hr = d.getHours();
+    min = d.getMinutes();
+    sec = d.getSeconds();
+    // hr_rotation = 30 * hr + min / 2; //converting current time
+    // min_rotation = 6 * min;
+    // sec_rotation = 6 * sec;
+
+    $('#jam').append(hr < 10 ? '0' + hr : hr);
+    $('#menit').append(min < 10 ? '0' + min : min);
+    $('#detik').append(sec < 10 ? '0' + sec : sec);
+
+
+    // hour.style.transform = `rotate(${hr_rotation}deg)`;
+    // minute.style.transform = `rotate(${min_rotation}deg)`;
+    // second.style.transform = `rotate(${sec_rotation}deg)`;
+}, 1000);
+
 
     $('body').on('click','.edit-memo', function () {
         var id = $(this).data('id');

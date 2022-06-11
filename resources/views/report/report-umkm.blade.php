@@ -556,6 +556,13 @@
         background-color: #28a745 !important;
     }
     /*  */
+
+    body{
+        font-size: 12pt;
+          /* margin: 25mm 25mm 25mm 25mm; */
+    }
+
+
 </style>
 
 <body onload="window.print()">
